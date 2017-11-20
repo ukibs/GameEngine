@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\USUARIO\Documents\Visual Studio 2015\Projects\GameEngine\Debug\vs_dev_lib\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\USUARIO\Documents\Visual Studio 2015\Projects\GameEngine\Debug\vs_dev_lib\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Debug\vs_dev_lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Debug\vs_dev_lib\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
