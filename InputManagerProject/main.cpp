@@ -1,6 +1,7 @@
 //Using SDL, SDL_image, standard IO, and strings
 #include <SDL.h>
 #include <stdio.h>
+//#include <cstdio>
 #include <string>
 
 #include "InputManager.h"

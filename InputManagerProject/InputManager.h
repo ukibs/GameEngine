@@ -3,10 +3,11 @@
 #include <string>
 #include <SDL.h>
 #include <vector>
+#include <stdio.h>
 
 //#include <list>
 
-#include <stdio.h>
+//#include <cstdio>
 #include "key.h"
 #include "Input.h"
 
@@ -18,6 +19,7 @@ public:
 
 
 private:
-	vector <key> keys;
+	vector <key*> keys;
+	vector <key*>::iterator keysIt;
 	vector <bool> keysToCheck;
 };

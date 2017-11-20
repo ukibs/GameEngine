@@ -1,0 +1,9 @@
+﻿  main.cpp
+c:\users\usuario\documents\visual studio 2015\projects\gameengine\gameengine\main.cpp(76): warning C4101: 'e': unreferenced local variable
+  key.cpp
+c:\users\usuario\documents\visual studio 2015\projects\gameengine\gameengine\key.cpp(27): warning C4244: '=': conversion from 'Uint32' to 'float', possible loss of data
+  InputManager.cpp
+  Input.cpp
+  Generating Code...
+  GameEngine.vcxproj -> C:\Users\USUARIO\Documents\Visual Studio 2015\Projects\GameEngine\Debug\GameEngine.exe
+  GameEngine.vcxproj -> C:\Users\USUARIO\Documents\Visual Studio 2015\Projects\GameEngine\Debug\GameEngine.pdb (Full PDB)
