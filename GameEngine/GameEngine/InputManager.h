@@ -21,5 +21,6 @@ public:
 private:
 	vector <key*> keys;
 	vector <key*>::iterator keysIt;
-	vector <bool> keysToCheck;
+	//vector <bool> keysToCheck;
+	bool* keysToCheck;
 };

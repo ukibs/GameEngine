@@ -23,7 +23,8 @@ InputManager::InputManager()
 		getline(keysTxt, name);
 		keys.push_back(new key(name, sdl, as));
 	}
-	for (int i = 0; i < 27; i++)
+	keysToCheck = new bool[keys.size()];
+	for (int i = 0; i < keys.size(); i++)
 	{
 		keysToCheck[i] = false;
 	}

@@ -1,2 +1,4 @@
-﻿  GameEngine.vcxproj -> C:\Users\Martín\Documents\InputManagerProject\GameEngine\Debug\GameEngine.exe
+﻿  InputManager.cpp
+c:\users\martín\documents\inputmanagerproject\gameengine\gameengine\inputmanager.cpp(27): warning C4018: '<': signed/unsigned mismatch
+  GameEngine.vcxproj -> C:\Users\Martín\Documents\InputManagerProject\GameEngine\Debug\GameEngine.exe
   GameEngine.vcxproj -> C:\Users\Martín\Documents\InputManagerProject\GameEngine\Debug\GameEngine.pdb (Full PDB)
