@@ -5,6 +5,7 @@
 #include <string>
 
 #include "InputManager.h"
+#include "ActionManager.h"
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -65,8 +66,9 @@ int main(int argc, char* args[])
 	}
 	else
 	{
-		//Create it
-		InputManager inputManager;
+		//Create the managers
+		InputManager::CreateSingleton();
+		ActionManager::CreateSingleton();
 		//And lets put some inputs
 		
 		//Main loop flag

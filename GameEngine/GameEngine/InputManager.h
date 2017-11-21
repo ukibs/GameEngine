@@ -8,10 +8,11 @@
 //#include <list>
 
 //#include <cstdio>
+#include "Singleton.h"
 #include "key.h"
 #include "Input.h"
 
-class InputManager 
+class InputManager : public Singleton<InputManager>
 {
 public:
 	InputManager();
