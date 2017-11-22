@@ -72,7 +72,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>..\Debug\vs_dev_lib\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\vs_dev_lib\lib\x86;..\Debug\vs_dev_lib\lib\x86;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\Debug\vs_dev_lib\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

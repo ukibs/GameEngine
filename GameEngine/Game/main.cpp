@@ -74,7 +74,7 @@ int main(int argc, char* args[])
 		InputManager::CreateSingleton();
 		ActionManager::CreateSingleton();
 		//And lets put some inputs
-		
+
 		//Main loop flag
 		bool quit = false;
 
@@ -91,26 +91,26 @@ int main(int argc, char* args[])
 				//Update the inputs
 				InputManager::GetInstance().keyboardCheck(e);
 			}/*
-			//Up test
-			if (inputManager.GetKeyPressed("Up")) {
-				printf("Key up pressed\n");
-			}
-			if (inputManager.GetKeyDown("Up")) {
-				printf("Key up down\n");
-			}
-			if (inputManager.GetKeyReleased("Up")) {
-				printf("Key up released\n");
-			}
-			//Down test
-			if (inputManager.GetKeyPressed("Down")) {
-				printf("Key down pressed\n");
-			}
-			if (inputManager.GetKeyDown("Down")) {
-				printf("Key down down\n");
-			}
-			if (inputManager.GetKeyReleased("Down")) {
-				printf("Key down released\n");
-			}*/
+			 //Up test
+			 if (inputManager.GetKeyPressed("Up")) {
+			 printf("Key up pressed\n");
+			 }
+			 if (inputManager.GetKeyDown("Up")) {
+			 printf("Key up down\n");
+			 }
+			 if (inputManager.GetKeyReleased("Up")) {
+			 printf("Key up released\n");
+			 }
+			 //Down test
+			 if (inputManager.GetKeyPressed("Down")) {
+			 printf("Key down pressed\n");
+			 }
+			 if (inputManager.GetKeyDown("Down")) {
+			 printf("Key down down\n");
+			 }
+			 if (inputManager.GetKeyReleased("Down")) {
+			 printf("Key down released\n");
+			 }*/
 		}
 	}
 
