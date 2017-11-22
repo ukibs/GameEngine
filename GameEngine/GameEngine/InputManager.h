@@ -23,4 +23,5 @@ private:
 	vector <key*>::iterator keysIt;
 	//vector <bool> keysToCheck;
 	bool* keysToCheck;
+	bool init();
 };

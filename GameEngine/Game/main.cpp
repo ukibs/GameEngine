@@ -7,43 +7,16 @@
 #include "InputManager.h"
 #include "ActionManager.h"
 
-//The window we'll be rendering to
-SDL_Window* gWindow = NULL;
-
-//The window renderer
-SDL_Renderer* gRenderer = NULL;
-
 #undef main
 
 //
 bool init()
 {
-	//Initialization flag
-	bool success = true;
+	InputManager::CreateSingleton();
+	ActionManager::CreateSingleton();
+	
 
-	//Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
-		success = false;
-	}
-	else
-	{
-		//Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
-		if (gWindow == NULL)
-		{
-			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
-			success = false;
-		}
-		else
-		{
-			//Get window surface
-			//gScreenSurface = SDL_GetWindowSurface(gWindow);
-		}
-	}
-
-	return success;
+	return true;
 }
 
 //
@@ -71,8 +44,7 @@ int main(int argc, char* args[])
 	else
 	{
 		//Create the managers
-		InputManager::CreateSingleton();
-		ActionManager::CreateSingleton();
+		
 		//And lets put some inputs
 
 		//Main loop flag
@@ -90,27 +62,7 @@ int main(int argc, char* args[])
 			{
 				//Update the inputs
 				InputManager::GetInstance().keyboardCheck(e);
-			}/*
-			 //Up test
-			 if (inputManager.GetKeyPressed("Up")) {
-			 printf("Key up pressed\n");
-			 }
-			 if (inputManager.GetKeyDown("Up")) {
-			 printf("Key up down\n");
-			 }
-			 if (inputManager.GetKeyReleased("Up")) {
-			 printf("Key up released\n");
-			 }
-			 //Down test
-			 if (inputManager.GetKeyPressed("Down")) {
-			 printf("Key down pressed\n");
-			 }
-			 if (inputManager.GetKeyDown("Down")) {
-			 printf("Key down down\n");
-			 }
-			 if (inputManager.GetKeyReleased("Down")) {
-			 printf("Key down released\n");
-			 }*/
+			}
 		}
 	}
 

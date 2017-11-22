@@ -12,6 +12,7 @@ using namespace std;
 
 InputManager::InputManager() 
 {
+	init();
 	string file = "./Config/keys.txt";
 	ifstream keysTxt(file);
 	string as, name;
@@ -47,4 +48,38 @@ void InputManager::keyboardCheck(SDL_Event& e)
 		}
 		i++;
 	}
+}
+
+bool InputManager::init()
+{
+	//Initialization flag
+	bool success = true;
+
+	//Initialize SDL
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
+		success = false;
+	}
+	else
+	{
+		//Create window/
+		//The window we'll be rendering to
+		SDL_Window* gWindow = NULL;
+
+		//The window renderer
+		SDL_Renderer* gRenderer = NULL;
+		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
+		if (gWindow == NULL)
+		{
+			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+			success = false;
+		}
+		else
+		{
+			//Get window surface
+			//gScreenSurface = SDL_GetWindowSurface(gWindow);
+		}
+	}
+	return success;
 }
