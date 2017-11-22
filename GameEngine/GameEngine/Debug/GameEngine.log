@@ -1,3 +1,0 @@
-﻿  InputManager.cpp
-c:\users\aritz\documents\gameengine\gameengine\gameengine\inputmanager.cpp(32): warning C4018: '<': signed/unsigned mismatch
-  GameEngine.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\GameEngine.lib
