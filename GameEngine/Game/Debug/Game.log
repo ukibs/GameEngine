@@ -1,0 +1,4 @@
+﻿main.obj : error LNK2019: unresolved external symbol "public: __thiscall InputManager::InputManager(void)" (??0InputManager@@QAE@XZ) referenced in function "public: static void __cdecl Singleton<class InputManager>::CreateSingleton(void)" (?CreateSingleton@?$Singleton@VInputManager@@@@SAXXZ)
+main.obj : error LNK2019: unresolved external symbol "public: void __thiscall InputManager::keyboardCheck(union SDL_Event &)" (?keyboardCheck@InputManager@@QAEXAATSDL_Event@@@Z) referenced in function _SDL_main
+main.obj : error LNK2019: unresolved external symbol "public: __thiscall ActionManager::ActionManager(void)" (??0ActionManager@@QAE@XZ) referenced in function "public: static void __cdecl Singleton<class ActionManager>::CreateSingleton(void)" (?CreateSingleton@?$Singleton@VActionManager@@@@SAXXZ)
+C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.exe : fatal error LNK1120: 3 unresolved externals

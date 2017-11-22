@@ -4,6 +4,9 @@
 // For asserts
 #include <string>
 
+#undef main
+#undef _SDL_main
+
 /**
 Class Singleton
 Base class to create singletons controlling construction and destruction of singleton

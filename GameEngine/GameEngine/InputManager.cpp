@@ -1,6 +1,5 @@
 
 #include <list>
-#include <SDL.h>
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -13,7 +12,7 @@ using namespace std;
 
 InputManager::InputManager() 
 {
-	string file = "keys.txt";
+	string file = "./Config/keys.txt";
 	ifstream keysTxt(file);
 	string as, name;
 	string sdlString;
