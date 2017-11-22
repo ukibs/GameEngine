@@ -79,14 +79,14 @@ int main(int argc, char* args[])
 
 		//While application is running
 		while (!quit)
-		{/*
+		{
 			//SDL_PumpEvents();
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
 				//Update the inputs
-				inputManager.UpdateInputs(e);
-			}
+				InputManager::GetInstance().keyboardCheck(e);
+			}/*
 			//Up test
 			if (inputManager.GetKeyPressed("Up")) {
 				printf("Key up pressed\n");

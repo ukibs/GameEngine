@@ -8,9 +8,12 @@
 class ActionManager : public Singleton<ActionManager>
 {
 private:
-	//vector <Action> actionArray;
+	vector <Action> actionArray;
 public:
 	ActionManager();
 	~ActionManager();
+	void addAction();
+	void removeAction();
+	void updateAction();
 };
 

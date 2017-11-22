@@ -26,7 +26,7 @@ InputManager::InputManager()
 	keysToCheck = new bool[keys.size()];
 	for (int i = 0; i < keys.size(); i++)
 	{
-		keysToCheck[i] = false;
+		keysToCheck[i] = true;
 	}
 }
 
