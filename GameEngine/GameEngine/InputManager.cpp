@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 using namespace std;
 
 #include "InputManager.h"
@@ -15,13 +16,18 @@ InputManager::InputManager()
 	string file = "keys.txt";
 	ifstream keysTxt(file);
 	string as, name;
-	SDL_Keycode sdl;
-	for (int i = 0; i < 27; i++)
+	string sdlString;
+	string  line;
+	while(getline(keysTxt,line))
 	{
-		keysTxt >> sdl;
-		keysTxt >> as;
-		getline(keysTxt, name);
-		keys.push_back(new key(name, sdl, as));
+		stringstream ss(line);
+		getline(ss, sdlString, '\t');
+		const char* pointerSdl = name.c_str();
+		getline(ss, as, '\t');
+		getline(ss, name, '\t');
+		SDL_Keycode sdl_key = SDL_GetKeyFromName(pointerSdl); /*SDLK_BACKSPACE;*/
+		const char* sdl_name = SDL_GetKeyName(SDLK_BACKSPACE);
+		keys.push_back(new key(name, sdl_key, as));
 	}
 	keysToCheck = new bool[keys.size()];
 	for (int i = 0; i < keys.size(); i++)
