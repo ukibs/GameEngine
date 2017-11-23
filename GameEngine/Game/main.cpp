@@ -6,18 +6,11 @@
 
 #include "InputManager.h"
 #include "ActionManager.h"
+#include "RenderManager.h"
 
 #undef main
 
 //
-bool init()
-{
-	InputManager::CreateSingleton();
-	ActionManager::CreateSingleton();
-	
-
-	return true;
-}
 
 //
 bool loadMedia() {
@@ -37,7 +30,10 @@ void close() {
 int main(int argc, char* args[])
 {
 	//Initialize SDL
-	if (!init())
+	RenderManager::CreateSingleton();
+	InputManager::CreateSingleton();
+	ActionManager::CreateSingleton();
+	if (!RenderManager::GetInstance().init())
 	{
 		printf("Failed to initialize!\n");
 	}
@@ -58,9 +54,11 @@ int main(int argc, char* args[])
 		{
 			//SDL_PumpEvents();
 			//Handle events on queue
+			RenderManager::GetInstance().addImage("images/dot.bmp");
 			while (SDL_PollEvent(&e) != 0)
 			{
 				//Update the inputs
+				RenderManager::GetInstance().update();
 				InputManager::GetInstance().keyboardCheck(e);
 			}
 		}
