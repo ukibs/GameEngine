@@ -58,11 +58,11 @@ int main(int argc, char* args[])
 		{
 			//SDL_PumpEvents();
 			//Handle events on queue
-			
+			RenderManager::GetInstance().update();
 			while (SDL_PollEvent(&e) != 0)
 			{
 				//Update the inputs
-				RenderManager::GetInstance().update();
+				
 				InputManager::GetInstance().keyboardCheck(e);
 			}
 		}

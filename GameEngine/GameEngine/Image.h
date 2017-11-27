@@ -3,6 +3,7 @@
 #include <string>
 #include <stdio.h>
 #include <SDL_image.h>
+#include <iostream>
 class Image
 {
 public:
