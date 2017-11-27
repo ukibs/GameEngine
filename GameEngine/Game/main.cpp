@@ -29,19 +29,23 @@ void close() {
 #undef main
 int main(int argc, char* args[])
 {
-	//Initialize SDL
+	//Create the managers
 	RenderManager::CreateSingleton();
 	InputManager::CreateSingleton();
 	ActionManager::CreateSingleton();
+	//Initialize SDL
 	if (!RenderManager::GetInstance().init())
 	{
 		printf("Failed to initialize!\n");
 	}
 	else
 	{
-		//Create the managers
+		
 		
 		//And lets put some inputs
+
+		//And images
+		RenderManager::GetInstance().addImage("images/dot.bmp");
 
 		//Main loop flag
 		bool quit = false;
@@ -54,7 +58,7 @@ int main(int argc, char* args[])
 		{
 			//SDL_PumpEvents();
 			//Handle events on queue
-			RenderManager::GetInstance().addImage("images/dot.bmp");
+			
 			while (SDL_PollEvent(&e) != 0)
 			{
 				//Update the inputs
