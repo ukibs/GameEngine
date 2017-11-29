@@ -65,19 +65,36 @@ bool RenderManager::init()
 	return success;
 }
 
-void RenderManager::update()
+void RenderManager::postUpdate()
 {
 	int i = 0;
 	//for (int i = 0; i < keysToCheck.size; i++)
-	for (imageIt = images.begin(); imageIt != images.end(); imageIt++)
+	/*for (imageIt = images.begin(); imageIt != images.end(); imageIt++)
 	{
-		imageIt->render();
+		imageIt->render(0,0);
 		i++;
-	}
+	}*/
+	SDL_RenderPresent(gRenderer);
 }
 
-void RenderManager::addImage(std::string path)
+void RenderManager::addImage(std::string path,std::string name)
 {
-	Image newImage(gRenderer, path);
+	Image newImage(gRenderer, path,name);
 	images.push_back(newImage);
+}
+
+Image * RenderManager::getImageByName(string name)
+{
+	for (imageIt = images.begin(); imageIt != images.end(); imageIt++) {
+		if (imageIt->name==name) {
+			return &(*imageIt);
+		}
+	}
+	return NULL;
+}
+
+void RenderManager::preUpdate()
+{
+	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(gRenderer);
 }

@@ -13,6 +13,7 @@
 
 class InputManager : public Singleton<InputManager>
 {
+	friend class Singleton<InputManager>;
 public:
 	InputManager();
 	void keyboardCheck(SDL_Event& e);

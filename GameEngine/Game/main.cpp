@@ -7,7 +7,9 @@
 #include "InputManager.h"
 #include "ActionManager.h"
 #include "RenderManager.h"
-
+#include "ObjectManager.h"
+#include "Image.h"
+#include "Object.h"
 #undef main
 
 //
@@ -30,6 +32,7 @@ void close() {
 int main(int argc, char* args[])
 {
 	//Create the managers
+	ObjectManager::CreateSingleton();
 	RenderManager::CreateSingleton();
 	InputManager::CreateSingleton();
 	ActionManager::CreateSingleton();
@@ -44,9 +47,11 @@ int main(int argc, char* args[])
 		
 		//And lets put some inputs
 
-		//And images
-		RenderManager::GetInstance().addImage("images/dot.bmp");
-
+		//create an object
+		ObjectManager::GetInstance().addObject("obj_dot",0,0);
+		RenderManager::GetInstance().addImage("images/dot.bmp", "img_dot");
+		Image* img_Dot = RenderManager::GetInstance().getImageByName("img_dot");
+		ObjectManager::GetInstance().getObjectByName("obj_dot")->setImage(img_Dot);
 		//Main loop flag
 		bool quit = false;
 
@@ -58,7 +63,9 @@ int main(int argc, char* args[])
 		{
 			//SDL_PumpEvents();
 			//Handle events on queue
-			RenderManager::GetInstance().update();
+			RenderManager::GetInstance().preUpdate();
+			ObjectManager::GetInstance().update();
+			RenderManager::GetInstance().postUpdate();
 			while (SDL_PollEvent(&e) != 0)
 			{
 				//Update the inputs

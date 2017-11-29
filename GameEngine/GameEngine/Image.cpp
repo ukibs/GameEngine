@@ -2,17 +2,23 @@
 
 
 
-Image::Image(SDL_Renderer * gRendererRef, std::string path)
+Image::Image()
+{
+}
+
+Image::Image(SDL_Renderer * gRendererRef, string path, string name,int depth,bool visible)
 {
 	gRenderer = gRendererRef;
 	loadFromFile(path);
+	this->name = name;
+	this->depth = depth;
 }
 
 Image::~Image()
 {
 }
 
-void Image::render(SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)
+void Image::render(int x, int y,SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)
 {
 	//set rendering space and render to screen
 	SDL_Rect renderQuad = { x,y,width,height };
