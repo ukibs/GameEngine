@@ -64,6 +64,9 @@ int main(int argc, char* args[])
 			//SDL_PumpEvents();
 			//Handle events on queue
 			RenderManager::GetInstance().preUpdate();
+			if (InputManager::GetInstance().checkKey("d")) {
+				ObjectManager::GetInstance().getObjectByName("obj_dot")->x += 1;
+			}
 			ObjectManager::GetInstance().update();
 			RenderManager::GetInstance().postUpdate();
 			while (SDL_PollEvent(&e) != 0)
@@ -72,6 +75,7 @@ int main(int argc, char* args[])
 				
 				InputManager::GetInstance().keyboardCheck(e);
 			}
+			
 		}
 	}
 

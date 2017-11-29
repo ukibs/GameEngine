@@ -17,6 +17,7 @@ class InputManager : public Singleton<InputManager>
 public:
 	InputManager();
 	void keyboardCheck(SDL_Event& e);
+	bool checkKey(string name);
 
 
 private:

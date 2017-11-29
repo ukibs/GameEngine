@@ -14,6 +14,8 @@ private:
 public:
 	key(string, SDL_Keycode, string);
 	void updateData(SDL_Event&);
+	string getName();
+	bool getPressed();
 	~key();
 };
 

@@ -27,7 +27,18 @@ void key::updateData(SDL_Event& e)
 	time = SDL_GetTicks();
 }
 
+string key::getName()
+{
+	return name;
+}
+
+bool key::getPressed()
+{
+	return pressed;
+}
+
 
 key::~key()
 {
+	
 }

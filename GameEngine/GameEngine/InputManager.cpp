@@ -49,4 +49,14 @@ void InputManager::keyboardCheck(SDL_Event& e)
 	}
 }
 
+bool InputManager::checkKey(string name)
+{
+	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++) {
+		if ((*keysIt)->getName() == name) {
+			return (*keysIt)->getPressed();
+		}
+	}
+	return false;
+}
+
 
