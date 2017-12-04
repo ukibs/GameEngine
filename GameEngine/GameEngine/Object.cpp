@@ -9,6 +9,8 @@ Object::Object()
 Object::Object(string name,int x, int y,int depth)
 {
 	this->name = name;
+	this->x = x;
+	this->y = y;
 	this->depth = depth;
 }
 
