@@ -20,9 +20,10 @@ void key::updateData(SDL_Event& e)
 		pressed = true;
 		cout << name << ": " << pressed;
 	}
-	else
+	else if(e.type == SDL_KEYUP && e.key.keysym.sym==assignCode)
 	{
 		pressed = false;
+		cout << name << ":" << pressed;
 	}
 	time = SDL_GetTicks();
 }
