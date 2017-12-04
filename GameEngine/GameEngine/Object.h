@@ -16,7 +16,7 @@ public:
 	int x;
 	int y;
 	//vector <Image*> images;
-	Image* image;
+	Image image;
 	int depth;
 	void start();
 	void update();

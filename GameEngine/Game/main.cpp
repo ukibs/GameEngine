@@ -43,20 +43,19 @@ int main(int argc, char* args[])
 	}
 	else
 	{
-		
-		
+	
 		//And lets put some inputs
-
+		ObjectManager::GetInstance().addObject("obj_e", 100, 100, 0);
+		RenderManager::GetInstance().addImage("images/dot1.bmp", "img_e");
+		Image* img_DotE = RenderManager::GetInstance().getImageByName("img_e");
+		ObjectManager::GetInstance().getObjectByName("obj_e")->setImage(img_DotE);
 		//create an object
 		ObjectManager::GetInstance().addObject("obj_dot",0,0, 0);
 		RenderManager::GetInstance().addImage("images/dot.bmp", "img_dot");
 		Image* img_Dot = RenderManager::GetInstance().getImageByName("img_dot");
 		ObjectManager::GetInstance().getObjectByName("obj_dot")->setImage(img_Dot);
 
-		/*ObjectManager::GetInstance().addObject("obj_e", 100, 100, 0);
-		RenderManager::GetInstance().addImage("images/dot.bmp", "img_e");
-		Image* img_DotE = RenderManager::GetInstance().getImageByName("img_e");
-		ObjectManager::GetInstance().getObjectByName("obj_e")->setImage(img_DotE);*/
+		
 
 		//Main loop flag
 		bool quit = false;
@@ -70,28 +69,29 @@ int main(int argc, char* args[])
 			//SDL_PumpEvents();
 			//Handle events on queue
 			RenderManager::GetInstance().preUpdate();
-			if (InputManager::GetInstance().checkKey("d")) {
-				ObjectManager::GetInstance().getObjectByName("obj_dot")->x += 1;
-			}
-			if (InputManager::GetInstance().checkKey("a"))
-			{
-				ObjectManager::GetInstance().getObjectByName("obj_dot")->x -= 1;
-			}
-			if (InputManager::GetInstance().checkKey("w"))
-			{
-				ObjectManager::GetInstance().getObjectByName("obj_dot")->y -= 1;
-			}
-			if (InputManager::GetInstance().checkKey("s"))
-			{
-				ObjectManager::GetInstance().getObjectByName("obj_dot")->y += 1;
-			}
+			if (ObjectManager::GetInstance().getObjectByName("obj_dot") != nullptr) {
+				if (InputManager::GetInstance().checkKey("d")) {
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->x += 1;
+				}
+				if (InputManager::GetInstance().checkKey("a"))
+				{
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->x -= 1;
+				}
+				if (InputManager::GetInstance().checkKey("w"))
+				{
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->y -= 1;
+				}
+				if (InputManager::GetInstance().checkKey("s"))
+				{
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->y += 1;
+				}
 
-			if (ObjectManager::GetInstance().getObjectByName("obj_dot")->x > 200 || ObjectManager::GetInstance().getObjectByName("obj_dot")->y > 200)
-			{
-				ObjectManager::GetInstance().getObjectByName("obj_dot")->x = 0;
-				ObjectManager::GetInstance().getObjectByName("obj_dot")->y = 0;
+				if (ObjectManager::GetInstance().getObjectByName("obj_dot")->x > 200 || ObjectManager::GetInstance().getObjectByName("obj_dot")->y > 200)
+				{
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->x = 0;
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->y = 0;
+				}
 			}
-
 			ObjectManager::GetInstance().update();
 			RenderManager::GetInstance().postUpdate();
 			while (SDL_PollEvent(&e) != 0)

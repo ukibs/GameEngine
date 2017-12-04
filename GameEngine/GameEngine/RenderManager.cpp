@@ -68,19 +68,13 @@ bool RenderManager::init()
 void RenderManager::postUpdate()
 {
 	int i = 0;
-	//for (int i = 0; i < keysToCheck.size; i++)
-	/*for (imageIt = images.begin(); imageIt != images.end(); imageIt++)
-	{
-		imageIt->render(0,0);
-		i++;
-	}*/
 	SDL_RenderPresent(gRenderer);
 }
 
 void RenderManager::addImage(std::string path,std::string name)
 {
-	Image newImage(gRenderer, path,name);
-	images.push_back(newImage);
+	Image* newImage = new Image(gRenderer, path,name);
+	images.push_back(*newImage);
 }
 
 Image * RenderManager::getImageByName(string name)

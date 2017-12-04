@@ -24,16 +24,18 @@ void Object::start()
 
 void Object::update()
 {
-	image->render(x,y);
+	//if (image) {
+		image.render(x, y);
+	//}
 }
 
 void Object::addImage(string path,string name)
 {
 	RenderManager::GetInstance().addImage(path, name);
-	image = RenderManager::GetInstance().getImageByName(name);
+	image = *(RenderManager::GetInstance().getImageByName(name));
 }
 
 void Object::setImage(Image* newImage)
 {
-	image = newImage;
+	image = *newImage;
 }

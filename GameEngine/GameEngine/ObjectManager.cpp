@@ -24,7 +24,7 @@ void ObjectManager::addObject(string name, int x, int y, int depth)
 
 void ObjectManager::update()
 {
-	int i = 0;
+	
 	for (objIt = objects.begin(); objIt != objects.end(); objIt++) {
 		objIt->update();
 	}
