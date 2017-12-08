@@ -1,5 +1,6 @@
 #pragma once
-#include "SoundManager.h"
+//#include "SoundManager.h"
+#include <SDL.h>
 
 class Sound
 {

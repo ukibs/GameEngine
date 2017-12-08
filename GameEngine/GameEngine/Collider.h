@@ -1,13 +1,21 @@
 #pragma once
+#include <SDL.h>
+#include <string>
+#include <iostream>
+using namespace std;
+
 class Collider
 {
 public:
 	Collider();
+	Collider(string name, int x, int y, int w, int h);
 	~Collider();
-	//Shape shape
-	float height;
-	float width;
-	//shape getShape();
-	//void setShape(Shape shape);
+
+	SDL_Rect collider;
+	string name;
+
+	bool checkCollision(SDL_Rect b);
+	void Update(int x, int y);
+	SDL_Rect getCollider();
 };
 

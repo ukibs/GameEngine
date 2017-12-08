@@ -1,6 +1,7 @@
 //Using SDL, SDL_image, standard IO, and strings
 #include <SDL.h>
 #include <stdio.h>
+#include <cstdlib>
 //#include <cstdio>
 #include <string>
 
@@ -36,6 +37,7 @@ int main(int argc, char* args[])
 	RenderManager::CreateSingleton();
 	InputManager::CreateSingleton();
 	ActionManager::CreateSingleton();
+	ColliderManager::CreateSingleton();
 	ObjectManager objManager = ObjectManager::GetInstance();
 	RenderManager renderManager = RenderManager::GetInstance();
 	InputManager inputManager = InputManager::GetInstance();
@@ -49,15 +51,17 @@ int main(int argc, char* args[])
 	{
 	
 		//And lets put some inputs
-		objManager.addObject("obj_e", 100, 100, 0);
-		renderManager.addImage("images/dot1.bmp", "img_e");
-		Image* img_DotE = renderManager.getImageByName("img_e");
-		objManager.getObjectByName("obj_e")->setImage(img_DotE);
+		ObjectManager::GetInstance().addObject("obj_e", 200, 100, 0, 10, 10);
+		RenderManager::GetInstance().addImage("images/dot1.bmp", "img_e");
+		Image* img_DotE = RenderManager::GetInstance().getImageByName("img_e");
+		ObjectManager::GetInstance().getObjectByName("obj_e")->setImage(img_DotE);
+		Object * enemy = ObjectManager::GetInstance().getObjectByName("obj_e");
 		//create an object
-		objManager.addObject("obj_dot",0,0, 0);
-		renderManager.addImage("images/dot.bmp", "img_dot");
-		Image* img_Dot = renderManager.getImageByName("img_dot");
-		objManager.getObjectByName("obj_dot")->setImage(img_Dot);
+		ObjectManager::GetInstance().addObject("obj_dot",0,0, 0, 10, 10);
+		RenderManager::GetInstance().addImage("images/dot.bmp", "img_dot");
+		Image* img_Dot = RenderManager::GetInstance().getImageByName("img_dot");
+		ObjectManager::GetInstance().getObjectByName("obj_dot")->setImage(img_Dot);
+		Object * dot = ObjectManager::GetInstance().getObjectByName("obj_dot");
 
 		
 
@@ -72,37 +76,39 @@ int main(int argc, char* args[])
 		{
 			//SDL_PumpEvents();
 			//Handle events on queue
-			renderManager.preUpdate();
-			if (objManager.getObjectByName("obj_dot") != nullptr) {
-				if (inputManager.checkKey("d")) {
-					objManager.getObjectByName("obj_dot")->x += 1;
+			RenderManager::GetInstance().preUpdate();
+			if (ObjectManager::GetInstance().getObjectByName("obj_dot") != nullptr) {
+				if (InputManager::GetInstance().checkKey("d")) {
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->x += 1;
 				}
-				if (inputManager.checkKey("a"))
+				if (InputManager::GetInstance().checkKey("a"))
 				{
-					objManager.getObjectByName("obj_dot")->x -= 1;
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->x -= 1;
 				}
-				if (inputManager.checkKey("w"))
+				if (InputManager::GetInstance().checkKey("w"))
 				{
-					objManager.getObjectByName("obj_dot")->y -= 1;
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->y -= 1;
 				}
-				if (inputManager.checkKey("s"))
+				if (InputManager::GetInstance().checkKey("s"))
 				{
-					objManager.getObjectByName("obj_dot")->y += 1;
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->y += 1;
 				}
 
-				if (objManager.getObjectByName("obj_dot")->x > 200 || objManager.getObjectByName("obj_dot")->y > 200)
+				if (ObjectManager::GetInstance().getObjectByName("obj_dot")->checkCollision(ObjectManager::GetInstance().getObjectByName("obj_e")))
 				{
-					objManager.getObjectByName("obj_dot")->x = 0;
-					objManager.getObjectByName("obj_dot")->y = 0;
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->x = 0;
+					ObjectManager::GetInstance().getObjectByName("obj_dot")->y = 0;
+					ObjectManager::GetInstance().getObjectByName("obj_e")->x = rand() % 630;
+					ObjectManager::GetInstance().getObjectByName("obj_e")->y = rand() % 470;
 				}
 			}
-			objManager.update();
-			renderManager.postUpdate();
+			ObjectManager::GetInstance().update();
+			RenderManager::GetInstance().postUpdate();
 			while (SDL_PollEvent(&e) != 0)
 			{
 				//Update the inputs
 				
-				inputManager.keyboardCheck(e);
+				InputManager::GetInstance().keyboardCheck(e);
 			}
 			
 		}

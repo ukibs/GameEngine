@@ -6,6 +6,7 @@
 #include <string>
 #include <cstdio>
 #include <vector>
+#include "Sound.h"
 using namespace std;
 
 class SoundManager

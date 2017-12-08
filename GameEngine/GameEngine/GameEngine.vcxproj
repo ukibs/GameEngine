@@ -152,6 +152,7 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="ActionManager.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputManager.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="ActionManager.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InputManager.cpp" />
