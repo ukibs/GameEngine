@@ -9,6 +9,7 @@
 #include "ActionManager.h"
 #include "RenderManager.h"
 #include "ObjectManager.h"
+#include "SoundManager.h"
 #include "Image.h"
 #include "Object.h"
 #undef main
@@ -38,6 +39,7 @@ int main(int argc, char* args[])
 	InputManager::CreateSingleton();
 	ActionManager::CreateSingleton();
 	ColliderManager::CreateSingleton();
+	SoundManager::CreateSingleton();
 	ObjectManager objManager = ObjectManager::GetInstance();
 	RenderManager renderManager = RenderManager::GetInstance();
 	InputManager inputManager = InputManager::GetInstance();
