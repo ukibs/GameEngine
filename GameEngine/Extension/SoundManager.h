@@ -18,10 +18,12 @@ private:
 	void close();
 
 public:
-	bool loadMedia();
+	bool loadMusic(string path,string name);
+	bool loadEffect(string path, string name);
 	bool init();
 	SoundManager();
 	~SoundManager();
-	void play();
+	void play(string name);
+	void toggleMusic();
 };
 

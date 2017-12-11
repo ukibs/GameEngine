@@ -20,13 +20,6 @@ bool SoundManager::init()
 		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
 		success = false;
 	}
-		/*//Initialize PNG loading
-		int imgFlags = IMG_INIT_PNG;
-	if (!(IMG_Init(imgFlags) & imgFlags))
-	{
-		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-		success = false;
-	}*/
 
 	//Initialize SDL_mixer
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
@@ -38,25 +31,35 @@ bool SoundManager::init()
 	return success;
 }
 
-bool SoundManager::loadMedia()
+bool SoundManager::loadMusic(string path,string name)
 {
 	//Loading success flag
 	bool success = true;
 
-	/*//Load prompt texture
-	if (!gPromptTexture.loadFromFile("21_sound_effects_and_music/prompt.png"))
-	{
-		printf("Failed to load prompt texture!\n");
-		success = false;
-	}*/
-
 	//Load music
-	gMusic = Mix_LoadMUS("sound/beat.wav");
-	if (gMusic == NULL)
+	Mix_Music *newMusic = Mix_LoadMUS(path.c_str());
+	if (newMusic == NULL)
 	{
 		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
 		success = false;
-	}
+	} Sound newSound = Sound(newMusic,name);
+	sounds.push_back(newSound);
+	return success;
+}
+
+bool SoundManager::loadEffect(string path, string name)
+{
+	//Loading success flag
+	bool success = true;
+
+	//Load music
+	Mix_Chunk *newMusic = Mix_LoadWAV(path.c_str());
+	if (newMusic == NULL)
+	{
+		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	} Sound newSound = Sound(newMusic, name);
+	sounds.push_back(newSound);
 	return success;
 }
 
@@ -71,7 +74,21 @@ void SoundManager::close()
 	Mix_Quit();
 }
 
-void SoundManager::play()
+void SoundManager::play(string name)
 {
-	Mix_PlayMusic(gMusic, -1);
+	for (soundIt = sounds.begin(); soundIt != sounds.end(); soundIt++) {
+		if (soundIt->GetName() == name) {
+			soundIt->play();
+		}
+	}
+}
+
+void SoundManager::toggleMusic()
+{
+	if (Mix_PausedMusic() == 0) {
+		Mix_PauseMusic();
+	}
+	else {
+		Mix_ResumeMusic();
+	}
 }

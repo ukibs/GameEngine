@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <cstdlib>
-//#include <cstdio>
 #include <string>
 
 #include "InputManager.h"
@@ -12,21 +11,6 @@
 #include "SoundManager.h"
 #include "Image.h"
 #include "Object.h"
-#undef main
-//
-
-//
-bool loadMedia() {
-	bool success = true;
-
-
-	return success;
-}
-
-//
-void close() {
-
-}
 
 
 #undef main
@@ -54,7 +38,9 @@ int main(int argc, char* args[])
 		{
 			printf("Failed to initialize!\n");
 		}
-		SoundManager::GetInstance().loadMedia();
+		SoundManager::GetInstance().loadEffect("sound/high.wav","sound_1");
+		SoundManager::GetInstance().loadMusic("sound/beat.wav", "music_1");
+		SoundManager::GetInstance().play("music_1");
 		//And lets put some inputs
 		ObjectManager::GetInstance().addObject("obj_e", 200, 100, 0, 10, 10);
 		RenderManager::GetInstance().addImage("images/dot1.bmp", "img_e");
@@ -80,7 +66,6 @@ int main(int argc, char* args[])
 		//While application is running
 		while (!quit)
 		{
-			//SDL_PumpEvents();
 			//Handle events on queue
 			RenderManager::GetInstance().preUpdate();
 			if (ObjectManager::GetInstance().getObjectByName("obj_dot") != nullptr) {
@@ -99,6 +84,9 @@ int main(int argc, char* args[])
 				{
 					ObjectManager::GetInstance().getObjectByName("obj_dot")->y += 1;
 				}
+				if (InputManager::GetInstance().checkKey("space")) {
+					SoundManager::GetInstance().toggleMusic();
+				}
 
 				if (ObjectManager::GetInstance().getObjectByName("obj_dot")->checkCollision(ObjectManager::GetInstance().getObjectByName("obj_e")))
 				{
@@ -106,7 +94,7 @@ int main(int argc, char* args[])
 					ObjectManager::GetInstance().getObjectByName("obj_dot")->y = 0;
 					ObjectManager::GetInstance().getObjectByName("obj_e")->x = rand() % 630;
 					ObjectManager::GetInstance().getObjectByName("obj_e")->y = rand() % 470;
-					SoundManager::GetInstance().play();
+					SoundManager::GetInstance().play("sound_1");
 				}
 			}
 			ObjectManager::GetInstance().update();
@@ -114,8 +102,12 @@ int main(int argc, char* args[])
 			while (SDL_PollEvent(&e) != 0)
 			{
 				//Update the inputs
-				
-				InputManager::GetInstance().keyboardCheck(e);
+				if (e.type == SDL_QUIT) {
+					quit = true;
+				}
+				else if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
+					InputManager::GetInstance().keyboardCheck(e);
+				}
 			}
 			
 		}
