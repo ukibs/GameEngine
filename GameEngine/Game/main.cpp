@@ -8,6 +8,7 @@
 #include "ActionManager.h"
 #include "RenderManager.h"
 #include "ObjectManager.h"
+#include "TimerManager.h"
 #include "SoundManager.h"
 #include "Image.h"
 #include "Object.h"
@@ -22,11 +23,8 @@ int main(int argc, char* args[])
 	InputManager::CreateSingleton();
 	ActionManager::CreateSingleton();
 	ColliderManager::CreateSingleton();
+	TimerManager::CreateSingleton();
 	SoundManager::CreateSingleton();
-	ObjectManager objManager = ObjectManager::GetInstance();
-	RenderManager renderManager = RenderManager::GetInstance();
-	InputManager inputManager = InputManager::GetInstance();
-	ActionManager actionManager = ActionManager::GetInstance();
 	//Initialize SDL
 	if (!RenderManager::GetInstance().init())
 	{
@@ -109,7 +107,7 @@ int main(int argc, char* args[])
 					InputManager::GetInstance().keyboardCheck(e);
 				}
 			}
-			
+			TimerManager::GetInstance().update();
 		}
 	}
 

@@ -1,5 +1,2 @@
-﻿  main.cpp
-c:\users\aritz\documents\gameengine\gameengine\game\main.cpp(111): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\aritz\documents\gameengine\gameengine\game\main.cpp(112): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Game.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.exe
+﻿  Game.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.exe
   Game.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.pdb (Full PDB)
