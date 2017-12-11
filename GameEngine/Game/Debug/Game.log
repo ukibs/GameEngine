@@ -1,9 +1,5 @@
 ﻿  main.cpp
-c:\users\usuario\documents\gameengine\gameengine\game\main.cpp(104): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\usuario\documents\gameengine\gameengine\game\main.cpp(105): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-Extension.lib(SoundManager.obj) : error LNK2019: unresolved external symbol _Mix_Quit referenced in function "private: void __thiscall SoundManager::close(void)" (?close@SoundManager@@AAEXXZ)
-Extension.lib(SoundManager.obj) : error LNK2019: unresolved external symbol _Mix_OpenAudio referenced in function "private: bool __thiscall SoundManager::init(void)" (?init@SoundManager@@AAE_NXZ)
-Extension.lib(SoundManager.obj) : error LNK2019: unresolved external symbol _Mix_LoadMUS referenced in function "private: bool __thiscall SoundManager::loadMedia(void)" (?loadMedia@SoundManager@@AAE_NXZ)
-Extension.lib(SoundManager.obj) : error LNK2019: unresolved external symbol _Mix_FreeMusic referenced in function "private: void __thiscall SoundManager::close(void)" (?close@SoundManager@@AAEXXZ)
-Extension.lib(SoundManager.obj) : error LNK2019: unresolved external symbol _Mix_PlayMusic referenced in function "public: void __thiscall SoundManager::play(void)" (?play@SoundManager@@QAEXXZ)
-C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\Game.exe : fatal error LNK1120: 5 unresolved externals
+c:\users\aritz\documents\gameengine\gameengine\game\main.cpp(107): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\game\main.cpp(108): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Game.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.exe
+  Game.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.pdb (Full PDB)

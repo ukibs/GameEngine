@@ -15,11 +15,11 @@ private:
 	vector <Sound> sounds;
 	vector <Sound>::iterator soundIt;
 	Mix_Music * gMusic;
-	bool init();
-	bool loadMedia();
 	void close();
 
 public:
+	bool loadMedia();
+	bool init();
 	SoundManager();
 	~SoundManager();
 	void play();

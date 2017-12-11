@@ -4,8 +4,6 @@
 
 SoundManager::SoundManager()
 {
-	init();
-	loadMedia();
 }
 
 
@@ -15,7 +13,7 @@ SoundManager::~SoundManager()
 
 bool SoundManager::init()
 {
-	bool success;
+	bool success=true;
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_AUDIO) < 0)
 	{

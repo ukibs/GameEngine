@@ -13,7 +13,6 @@
 #include "Image.h"
 #include "Object.h"
 #undef main
-
 //
 
 //
@@ -39,7 +38,7 @@ int main(int argc, char* args[])
 	InputManager::CreateSingleton();
 	ActionManager::CreateSingleton();
 	ColliderManager::CreateSingleton();
-	//SoundManager::CreateSingleton();
+	SoundManager::CreateSingleton();
 	ObjectManager objManager = ObjectManager::GetInstance();
 	RenderManager renderManager = RenderManager::GetInstance();
 	InputManager inputManager = InputManager::GetInstance();
@@ -51,7 +50,11 @@ int main(int argc, char* args[])
 	}
 	else
 	{
-	
+		if (!SoundManager::GetInstance().init())
+		{
+			printf("Failed to initialize!\n");
+		}
+		SoundManager::GetInstance().loadMedia();
 		//And lets put some inputs
 		ObjectManager::GetInstance().addObject("obj_e", 200, 100, 0, 10, 10);
 		RenderManager::GetInstance().addImage("images/dot1.bmp", "img_e");
@@ -103,7 +106,7 @@ int main(int argc, char* args[])
 					ObjectManager::GetInstance().getObjectByName("obj_dot")->y = 0;
 					ObjectManager::GetInstance().getObjectByName("obj_e")->x = rand() % 630;
 					ObjectManager::GetInstance().getObjectByName("obj_e")->y = rand() % 470;
-					//SoundManager::GetInstance().play();
+					SoundManager::GetInstance().play();
 				}
 			}
 			ObjectManager::GetInstance().update();
