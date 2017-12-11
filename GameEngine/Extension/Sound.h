@@ -4,7 +4,7 @@
 class Sound
 {
 private:
-	SDL_AudioFormat track;
+	//Mix_Music * track;
 	bool loop;
 	float duration;
 public:

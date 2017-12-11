@@ -39,7 +39,7 @@ int main(int argc, char* args[])
 	InputManager::CreateSingleton();
 	ActionManager::CreateSingleton();
 	ColliderManager::CreateSingleton();
-	SoundManager::CreateSingleton();
+	//SoundManager::CreateSingleton();
 	ObjectManager objManager = ObjectManager::GetInstance();
 	RenderManager renderManager = RenderManager::GetInstance();
 	InputManager inputManager = InputManager::GetInstance();
@@ -58,6 +58,7 @@ int main(int argc, char* args[])
 		Image* img_DotE = RenderManager::GetInstance().getImageByName("img_e");
 		ObjectManager::GetInstance().getObjectByName("obj_e")->setImage(img_DotE);
 		Object * enemy = ObjectManager::GetInstance().getObjectByName("obj_e");
+		
 		//create an object
 		ObjectManager::GetInstance().addObject("obj_dot",0,0, 0, 10, 10);
 		RenderManager::GetInstance().addImage("images/dot.bmp", "img_dot");
@@ -102,6 +103,7 @@ int main(int argc, char* args[])
 					ObjectManager::GetInstance().getObjectByName("obj_dot")->y = 0;
 					ObjectManager::GetInstance().getObjectByName("obj_e")->x = rand() % 630;
 					ObjectManager::GetInstance().getObjectByName("obj_e")->y = rand() % 470;
+					//SoundManager::GetInstance().play();
 				}
 			}
 			ObjectManager::GetInstance().update();
