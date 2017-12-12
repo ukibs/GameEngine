@@ -3,10 +3,6 @@
 #include <string>
 #include <vector>
 #include <stdio.h>
-
-//#include <list>
-
-//#include <cstdio>
 #include "Singleton.h"
 #include "key.h"
 #include "Input.h"

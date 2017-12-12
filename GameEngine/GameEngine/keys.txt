@@ -86,10 +86,10 @@ SDLK_KP_MINUS	'-'	keypad minus
 SDLK_KP_PLUS	'+'	keypad plus
 SDLK_KP_ENTER	'\r'	keypad enter
 SDLK_KP_EQUALS	'='	keypad equals
-SDLK_UP	 	up arrow
-SDLK_DOWN	 	down arrow
-SDLK_RIGHT	 	right arrow
-SDLK_LEFT	 	left arrow
+SDLK_UP	'up'	up arrow
+SDLK_DOWN	'down'	down arrow
+SDLK_RIGHT	'right'	right arrow
+SDLK_LEFT	'left'	left arrow
 SDLK_INSERT	 	insert
 SDLK_HOME	 	home
 SDLK_END	 	end

@@ -58,9 +58,17 @@ bool RenderManager::init()
 					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 					success = false;
 				}
+
+				//Initialize SDL_ttf
+				if (TTF_Init() == -1)
+				{
+					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+					success = false;
+				}
 			}
 		}
 	}
+	if (success) setFont("./Config/OpenSans-Bold.ttf");
 
 	return success;
 }
@@ -77,6 +85,12 @@ void RenderManager::addImage(std::string path,std::string name)
 	images.push_back(*newImage);
 }
 
+void RenderManager::addText(std::string text, std::string name)
+{
+	Text* newText = new Text(gRenderer, text, name,gFont);
+	texts.push_back(*newText);
+}
+
 Image * RenderManager::getImageByName(string name)
 {
 	for (imageIt = images.begin(); imageIt != images.end(); imageIt++) {
@@ -87,8 +101,24 @@ Image * RenderManager::getImageByName(string name)
 	return NULL;
 }
 
+Text * RenderManager::getTextByName(string name)
+{
+	for (textIt = texts.begin(); textIt != texts.end(); textIt++) {
+		if (textIt->name == name) {
+			return &(*textIt);
+		}
+	}
+	return NULL;
+}
+
+void RenderManager::setFont(string path)
+{
+	gFont = TTF_OpenFont(path.c_str(), 10);
+}
+
 void RenderManager::preUpdate()
 {
 	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(gRenderer);
 }
+

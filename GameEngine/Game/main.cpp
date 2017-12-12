@@ -11,6 +11,7 @@
 #include "TimerManager.h"
 #include "SoundManager.h"
 #include "Image.h"
+#include "Text.h"
 #include "Object.h"
 
 
@@ -36,24 +37,31 @@ int main(int argc, char* args[])
 		{
 			printf("Failed to initialize!\n");
 		}
+		//load Music and sound effects
 		SoundManager::GetInstance().loadEffect("sound/high.wav","sound_1");
 		SoundManager::GetInstance().loadMusic("sound/beat.wav", "music_1");
 		SoundManager::GetInstance().play("music_1");
-		//And lets put some inputs
+		//create the enemy
 		ObjectManager::GetInstance().addObject("obj_e", 200, 100, 0, 10, 10);
 		RenderManager::GetInstance().addImage("images/dot1.bmp", "img_e");
 		Image* img_DotE = RenderManager::GetInstance().getImageByName("img_e");
 		ObjectManager::GetInstance().getObjectByName("obj_e")->setImage(img_DotE);
 		Object * enemy = ObjectManager::GetInstance().getObjectByName("obj_e");
 		
-		//create an object
+		//create the player
 		ObjectManager::GetInstance().addObject("obj_dot",0,0, 0, 10, 10);
 		RenderManager::GetInstance().addImage("images/dot.bmp", "img_dot");
 		Image* img_Dot = RenderManager::GetInstance().getImageByName("img_dot");
 		ObjectManager::GetInstance().getObjectByName("obj_dot")->setImage(img_Dot);
 		Object * dot = ObjectManager::GetInstance().getObjectByName("obj_dot");
 
-		
+		//create the fpsCounter 
+		ObjectManager::GetInstance().addObject("fpsCounter", 0, 0, 0, 0, 0);
+		RenderManager::GetInstance().addText("0","fps");
+		Text* fpsText = RenderManager::GetInstance().getTextByName("fps");
+		ObjectManager::GetInstance().getObjectByName("fpsCounter")->setText(fpsText);
+		Object * fpsCounter = ObjectManager::GetInstance().getObjectByName("fpsCounter");
+		float fps = 0.0;
 
 		//Main loop flag
 		bool quit = false;
@@ -108,6 +116,8 @@ int main(int argc, char* args[])
 				}
 			}
 			TimerManager::GetInstance().update();
+			fps = TimerManager::GetInstance().getFPS();
+			fpsCounter->text.setText(to_string(fps));
 		}
 	}
 
