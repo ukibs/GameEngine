@@ -26,7 +26,8 @@ public:
 	Text text;
 	int depth;
 	void start();
-	void update();
+	void postUpdate();
+	virtual void update();
 	void addImage(string path,string name);
 	void addCollider(string name, float x, float y, float w, float h);
 	void setImage(Image* newImage);

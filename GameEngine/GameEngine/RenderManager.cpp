@@ -75,7 +75,6 @@ bool RenderManager::init()
 
 void RenderManager::postUpdate()
 {
-	int i = 0;
 	SDL_RenderPresent(gRenderer);
 }
 

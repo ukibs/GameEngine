@@ -25,13 +25,12 @@ void Object::start()
 {
 }
 
-void Object::update()
+void Object::postUpdate()
 {
-	//if (image) {
+		update();
 		image.render(x, y);
 		text.render(x, y);
 		collider.Update(this->x, this->y);
-	//}
 }
 
 void Object::addCollider(string name, float x, float y, float w, float h)
@@ -66,3 +65,5 @@ bool Object::checkCollision(Object * b)
 {
 	return collider.checkCollision(b->getCollider());
 }
+
+void Object::update(){}

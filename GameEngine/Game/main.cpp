@@ -13,6 +13,8 @@
 #include "Image.h"
 #include "Text.h"
 #include "Object.h"
+#include "Player.h"
+#include "Enemy.h"
 
 
 #undef main
@@ -42,20 +44,21 @@ int main(int argc, char* args[])
 		SoundManager::GetInstance().loadMusic("sound/beat.wav", "music_1");
 		SoundManager::GetInstance().play("music_1");
 		//create the enemy
-		ObjectManager::GetInstance().addObject("obj_e", 200, 100, 0, 10, 10);
-		RenderManager::GetInstance().addImage("images/dot1.bmp", "img_e");
-		Image* img_DotE = RenderManager::GetInstance().getImageByName("img_e");
-		ObjectManager::GetInstance().getObjectByName("obj_e")->setImage(img_DotE);
-		Object * enemy = ObjectManager::GetInstance().getObjectByName("obj_e");
+		Enemy enemy("obj_enemy", 200, 100, 0, 10, 10);
+		ObjectManager::GetInstance().addObject(&enemy);
+		RenderManager::GetInstance().addImage("images/dot1.bmp", "img_enemy");
+		Image* img_DotE = RenderManager::GetInstance().getImageByName("img_enemy");
+		enemy.setImage(img_DotE);
+		
 		
 		//create the player
-		ObjectManager::GetInstance().addObject("obj_dot",0,0, 0, 10, 10);
+		Player player("obj_dot", 0, 0, 0, 10, 10);
+		ObjectManager::GetInstance().addObject(&player);
 		RenderManager::GetInstance().addImage("images/dot.bmp", "img_dot");
 		Image* img_Dot = RenderManager::GetInstance().getImageByName("img_dot");
-		ObjectManager::GetInstance().getObjectByName("obj_dot")->setImage(img_Dot);
-		Object * dot = ObjectManager::GetInstance().getObjectByName("obj_dot");
+		player.setImage(img_Dot);
 
-		//create the fpsCounter 
+		//create the fpsCounter
 		ObjectManager::GetInstance().addObject("fpsCounter", 0, 0, 0, 0, 0);
 		RenderManager::GetInstance().addText("0","fps");
 		Text* fpsText = RenderManager::GetInstance().getTextByName("fps");
@@ -74,36 +77,19 @@ int main(int argc, char* args[])
 		{
 			//Handle events on queue
 			RenderManager::GetInstance().preUpdate();
-			if (ObjectManager::GetInstance().getObjectByName("obj_dot") != nullptr) {
-				if (InputManager::GetInstance().checkKey("d")) {
-					ObjectManager::GetInstance().getObjectByName("obj_dot")->x += 1;
-				}
-				if (InputManager::GetInstance().checkKey("a"))
-				{
-					ObjectManager::GetInstance().getObjectByName("obj_dot")->x -= 1;
-				}
-				if (InputManager::GetInstance().checkKey("w"))
-				{
-					ObjectManager::GetInstance().getObjectByName("obj_dot")->y -= 1;
-				}
-				if (InputManager::GetInstance().checkKey("s"))
-				{
-					ObjectManager::GetInstance().getObjectByName("obj_dot")->y += 1;
-				}
+					
 				if (InputManager::GetInstance().checkKey("space")) {
 					SoundManager::GetInstance().toggleMusic();
 				}
-
-				if (ObjectManager::GetInstance().getObjectByName("obj_dot")->checkCollision(ObjectManager::GetInstance().getObjectByName("obj_e")))
-				{
-					ObjectManager::GetInstance().getObjectByName("obj_dot")->x = 0;
-					ObjectManager::GetInstance().getObjectByName("obj_dot")->y = 0;
-					ObjectManager::GetInstance().getObjectByName("obj_e")->x = rand() % 630;
-					ObjectManager::GetInstance().getObjectByName("obj_e")->y = rand() % 470;
-					SoundManager::GetInstance().play("sound_1");
-				}
-			}
+		
 			ObjectManager::GetInstance().update();
+			if (player.checkCollision(&enemy))
+			{
+				player.x = 0;
+				player.y = 0;
+				enemy.caught();
+				SoundManager::GetInstance().play("sound_1");
+			}
 			RenderManager::GetInstance().postUpdate();
 			while (SDL_PollEvent(&e) != 0)
 			{

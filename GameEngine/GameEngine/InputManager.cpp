@@ -24,7 +24,7 @@ InputManager::InputManager()
 		const char* pointerSdl = name.c_str();
 		getline(ss, as, '\t');
 		getline(ss, name, '\t');
-		SDL_Keycode sdl_key = SDL_GetKeyFromName(pointerSdl); /*SDLK_BACKSPACE;*/
+		SDL_Keycode sdl_key = SDL_GetKeyFromName(pointerSdl);
 		const char* sdl_name = SDL_GetKeyName(SDLK_BACKSPACE);
 		keys.push_back(new key(name, sdl_key, as));
 	}
@@ -38,7 +38,6 @@ InputManager::InputManager()
 void InputManager::keyboardCheck(SDL_Event& e)
 {
 	int i = 0;
-	//for (int i = 0; i < keysToCheck.size; i++)
 	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
 	{
 		if (keysToCheck[i])
@@ -51,8 +50,10 @@ void InputManager::keyboardCheck(SDL_Event& e)
 
 bool InputManager::checkKey(string name)
 {
-	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++) {
-		if ((*keysIt)->getName() == name) {
+	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++) 
+	{
+		if ((*keysIt)->getName() == name) 
+		{
 			return (*keysIt)->getPressed();
 		}
 	}
