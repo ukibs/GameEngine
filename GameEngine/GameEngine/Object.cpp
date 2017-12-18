@@ -1,4 +1,5 @@
 #include "Object.h"
+#include "ObjectManager.h"
 
 
 
@@ -15,6 +16,7 @@ Object::Object(string name,int x, int y,int depth, float w, float h)
 	height = h;
 	this->depth = depth;
 	addCollider(name, this->x, this->y, this->width, this->height);
+	ObjectManager::GetInstance().addObject(this);
 }
 
 Object::~Object()

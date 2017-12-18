@@ -45,7 +45,6 @@ int main(int argc, char* args[])
 		SoundManager::GetInstance().play("music_1");
 		//create the enemy
 		Enemy enemy("obj_enemy", 200, 100, 0, 10, 10);
-		ObjectManager::GetInstance().addObject(&enemy);
 		RenderManager::GetInstance().addImage("images/dot1.bmp", "img_enemy");
 		Image* img_DotE = RenderManager::GetInstance().getImageByName("img_enemy");
 		enemy.setImage(img_DotE);
@@ -53,7 +52,6 @@ int main(int argc, char* args[])
 		
 		//create the player
 		Player player("obj_dot", 0, 0, 0, 10, 10);
-		ObjectManager::GetInstance().addObject(&player);
 		RenderManager::GetInstance().addImage("images/dot.bmp", "img_dot");
 		Image* img_Dot = RenderManager::GetInstance().getImageByName("img_dot");
 		player.setImage(img_Dot);
