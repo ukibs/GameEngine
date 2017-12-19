@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "ObjectManager.h"
 #include "InputManager.h"
+#include "ActionManager.h"
 class Player: public Object
 {
 public:

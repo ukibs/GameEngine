@@ -83,6 +83,11 @@ int main(int argc, char* args[])
 		Object * fpsCounter = ObjectManager::GetInstance().getObjectByName("fpsCounter");
 		float fps = 0.0;
 
+		//create some actions
+		ActionManager::GetInstance().addAction("up", "w");
+		ActionManager::GetInstance().getActionByName("up")->addKey("i");
+		ActionManager::GetInstance().addAction("down", "s");
+		ActionManager::GetInstance().getActionByName("down")->addKey("k");
 		//Main loop flag
 		bool quit = false;
 
@@ -95,10 +100,10 @@ int main(int argc, char* args[])
 			//Handle events on queue
 			RenderManager::GetInstance().preUpdate();
 					
-				if (InputManager::GetInstance().checkKey("space")) {
-					SoundManager::GetInstance().toggleMusic();
-				}
-		
+			if (InputManager::GetInstance().checkKey("space")) {
+				SoundManager::GetInstance().toggleMusic();
+			}
+			ActionManager::GetInstance().update();
 			ObjectManager::GetInstance().update();
 			
 
@@ -125,7 +130,5 @@ int main(int argc, char* args[])
 			fpsCounter->text.setText(to_string(fps));
 		}
 	}
-
 	return 0;
-
 }

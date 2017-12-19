@@ -24,11 +24,11 @@ void Player::update()
 	{
 		newX = x - speed;
 	}
-	if (InputManager::GetInstance().checkKey("w"))
+	if (ActionManager::GetInstance().getDown("up"))
 	{
 		newY = y - speed;
 	}
-	if (InputManager::GetInstance().checkKey("s"))
+	if (ActionManager::GetInstance().getDown("down"))
 	{
 		newY = y + speed;
 	}

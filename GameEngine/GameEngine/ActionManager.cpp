@@ -16,14 +16,18 @@ void ActionManager::addAction(Action action)
 	actions.push_back(action);
 }
 
-void ActionManager::addAction(string name, string keyName, ...)
+void ActionManager::addAction(string name, string keyName) {
+	Action newAction(name);
+	newAction.addKey(keyName);
+	actions.push_back(newAction);
+}
+
+void ActionManager::addAction( string name, string keyNames[])
 {
 	Action newAction(name);
-	va_list arguments;
-	for (va_start(arguments, keyName); !keyName.empty(); keyName = va_arg(arguments, string)) {
-		newAction.addKey(keyName);
+	for (int i=0;i<sizeof(keyNames);i++) {
+		newAction.addKey(keyNames[i]);
 	}
-	va_end(arguments);
 	actions.push_back(newAction);
 }
 
@@ -75,4 +79,15 @@ bool ActionManager::getReleased(string name)
 	}
 	printf("no existe la accion");
 	return false;
+}
+
+Action* ActionManager::getActionByName(string name)
+{
+	for (actionIt = actions.begin(); actionIt != actions.end(); actionIt++) {
+		if (actionIt->getAction() == name) {
+			return &(*actionIt);
+		}
+	}
+	printf("no existe la accion");
+	return NULL;
 }

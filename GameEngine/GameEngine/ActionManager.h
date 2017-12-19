@@ -16,11 +16,15 @@ public:
 	ActionManager();
 	~ActionManager();
 	void addAction(Action action);
-	void addAction(string name, string keyName, ...);
+	void addAction(string name, string keyName);
+	void addAction(string name, string keyNames[]);
+	void addAction(int numKeys, string name, string keyName, ...);
+	//void addAction(string name, string keyName, ...);
 	void removeAction(string name);
 	void update();
 	bool getDown(string name);
 	bool getPressed(string name);
 	bool getReleased(string name);
+	Action* getActionByName(string name);
 };
 
