@@ -22,12 +22,25 @@ void ActionManager::addAction(string name, string keyName) {
 	actions.push_back(newAction);
 }
 
-void ActionManager::addAction( string name, string keyNames[])
+/*void ActionManager::addAction( string name, string keyNames[])
 {
 	Action newAction(name);
 	for (int i=0;i<sizeof(keyNames);i++) {
 		newAction.addKey(keyNames[i]);
 	}
+	actions.push_back(newAction);
+}*/
+
+void ActionManager::addAction(string name,int numKeys, string keyName, ...) {
+	Action newAction(name);
+	va_list arguments;
+	va_start(arguments, keyName);
+	for (int i=0; i<numKeys; i++) {
+		newAction.addKey(keyName);
+		keyName = va_arg(arguments, string);
+	}
+	newAction.addKey(keyName);
+	va_end(arguments);
 	actions.push_back(newAction);
 }
 

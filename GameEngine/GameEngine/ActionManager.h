@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include <stdarg.h>
 #include "Singleton.h"
 #include "Action.h"
 
@@ -17,8 +18,8 @@ public:
 	~ActionManager();
 	void addAction(Action action);
 	void addAction(string name, string keyName);
-	void addAction(string name, string keyNames[]);
-	void addAction(int numKeys, string name, string keyName, ...);
+	//void addAction(string name, string keyNames[]);
+	void addAction(string name,int numKeys, string keyName, ...);
 	//void addAction(string name, string keyName, ...);
 	void removeAction(string name);
 	void update();

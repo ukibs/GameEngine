@@ -84,10 +84,12 @@ int main(int argc, char* args[])
 		float fps = 0.0;
 
 		//create some actions
-		ActionManager::GetInstance().addAction("up", "w");
+		ActionManager::GetInstance().addAction("up",0, "w");
 		ActionManager::GetInstance().getActionByName("up")->addKey("i");
-		ActionManager::GetInstance().addAction("down", "s");
+		//ActionManager::GetInstance().getActionByName("up")->addKey("up");
+		ActionManager::GetInstance().addAction("down",0, "s");
 		ActionManager::GetInstance().getActionByName("down")->addKey("k");
+		//ActionManager::GetInstance().getActionByName("down")->addKey("down");
 		//Main loop flag
 		bool quit = false;
 
