@@ -26,3 +26,15 @@ Collider* ColliderManager::getColliderByName(string name)
 	}
 	return NULL;
 }
+
+bool ColliderManager::anyCollision(Collider check)
+{
+	for (collIt = colliders.begin(); collIt != colliders.end(); collIt++) 
+	{
+		if(check.checkCollision(collIt->getCollider()) && check.name != collIt->name)
+		{
+			return true;
+		}
+	}
+	return false;
+}

@@ -14,5 +14,6 @@ public:
 	vector<Collider> colliders;
 	vector<Collider>::iterator collIt;
 	Collider* getColliderByName(string name);
+	bool anyCollision(Collider check);
 };
 
