@@ -12,6 +12,7 @@ class ActionManager : public Singleton<ActionManager>
 private:
 	vector <Action> actions;
 	vector <Action>::iterator actionIt;
+
 public:
 	ActionManager();
 	~ActionManager();

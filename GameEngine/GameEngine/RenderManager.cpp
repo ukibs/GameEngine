@@ -93,7 +93,7 @@ void RenderManager::addText(std::string text, std::string name)
 Image * RenderManager::getImageByName(string name)
 {
 	for (imageIt = images.begin(); imageIt != images.end(); imageIt++) {
-		if (imageIt->name==name) {
+		if (imageIt->getName() ==name) {
 			return &(*imageIt);
 		}
 	}
@@ -103,7 +103,7 @@ Image * RenderManager::getImageByName(string name)
 Text * RenderManager::getTextByName(string name)
 {
 	for (textIt = texts.begin(); textIt != texts.end(); textIt++) {
-		if (textIt->name == name) {
+		if (textIt->getName() == name) {
 			return &(*textIt);
 		}
 	}

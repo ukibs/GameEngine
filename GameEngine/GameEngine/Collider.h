@@ -6,17 +6,19 @@ using namespace std;
 
 class Collider
 {
+private:
+	SDL_Rect collider;
+	string name;
+
 public:
 	Collider();
 	Collider(string name, int x, int y, int w, int h);
 	~Collider();
 
-	SDL_Rect collider;
-	string name;
-
 	bool checkCollision(SDL_Rect b);
 	bool anyCollision();
 	void Update(int x, int y);
 	SDL_Rect getCollider();
+	string getName();
 };
 

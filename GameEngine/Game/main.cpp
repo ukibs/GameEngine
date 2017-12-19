@@ -57,7 +57,7 @@ int main(int argc, char* args[])
 		
 		//create the player
 		Player player("obj_dot", 25, 25, 0, 20, 20);
-		RenderManager::GetInstance().addImage("images/dot.bmp", "img_dot");
+		RenderManager::GetInstance().addImage("images/snakeRight.jpg", "img_dot");
 		Image* img_Dot = RenderManager::GetInstance().getImageByName("img_dot");
 		player.setImage(img_Dot);
 
@@ -109,8 +109,6 @@ int main(int argc, char* args[])
 
 			if (player.checkCollision(&enemy))
 			{
-				player.x = 20;
-				player.y = 20;
 				enemy.caught();
 				SoundManager::GetInstance().play("sound_1");
 			}
@@ -127,7 +125,7 @@ int main(int argc, char* args[])
 			}
 			TimerManager::GetInstance().update();
 			fps = TimerManager::GetInstance().getFPS();
-			fpsCounter->text.setText(to_string(fps));
+			//fpsCounter->text.setText(to_string(fps));
 		}
 	}
 	return 0;

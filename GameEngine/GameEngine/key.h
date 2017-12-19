@@ -13,9 +13,10 @@ private:
 	bool down;
 public:
 	key(string, SDL_Keycode, string);
+	~key();
+
 	void updateData(SDL_Event&);
 	string getName();
 	bool getDown();
-	~key();
 };
 

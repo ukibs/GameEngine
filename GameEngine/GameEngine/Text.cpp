@@ -83,3 +83,8 @@ void Text::setText(string newText)
 	free();
 	loadFromRenderedText(newText);
 }
+
+string Text::getName()
+{
+	return name;
+}

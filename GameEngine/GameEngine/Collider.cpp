@@ -80,3 +80,8 @@ bool Collider::anyCollision()
 {
 	return ColliderManager::GetInstance().anyCollision(*this);
 }
+
+string Collider::getName()
+{
+	return name;
+}

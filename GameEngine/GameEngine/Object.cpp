@@ -35,7 +35,7 @@ void Object::postUpdate()
 		collider.Update(this->x, this->y);
 }
 
-void Object::addCollider(string name, float x, float y, float w, float h)
+void Object::addCollider(string name, int x, int y, float w, float h)
 {
 	ColliderManager::GetInstance().addCollider(name, x, y, w, h);
 	collider = *(ColliderManager::GetInstance().getColliderByName(name));
@@ -74,3 +74,8 @@ bool Object::anyCollision()
 }
 
 void Object::update(){}
+
+string Object::getName()
+{
+	return name;
+}

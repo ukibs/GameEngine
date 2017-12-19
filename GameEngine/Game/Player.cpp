@@ -14,26 +14,26 @@ Player::~Player()
 
 void Player::update()
 {
-	float newX = x;
-	float newY = y;
+	int newX = x;
+	int newY = y;
 	if (InputManager::GetInstance().checkKey("d")) 
 	{
 		newX = x + speed;
 	}
-	if (InputManager::GetInstance().checkKey("a"))
+	else if (InputManager::GetInstance().checkKey("a"))
 	{
 		newX = x - speed;
 	}
-	if (ActionManager::GetInstance().getDown("up"))
+	else if (ActionManager::GetInstance().getDown("up"))
 	{
 		newY = y - speed;
 	}
-	if (ActionManager::GetInstance().getDown("down"))
+	else if (ActionManager::GetInstance().getDown("down"))
 	{
 		newY = y + speed;
 	}
 
-	if (newY < 460 && newY > 20 && newX < 460 && newX > 20)
+	if (newY < 440 && newY > 20 && newX < 600 && newX > 20)
 	{
 		x = newX;
 		y = newY;

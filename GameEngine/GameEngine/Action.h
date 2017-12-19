@@ -12,6 +12,7 @@ private:
 	bool down;
 	bool released;
 	bool prevDown;
+
 public:
 	Action(string name);
 	Action(string name, key* keyToAdd, ...);

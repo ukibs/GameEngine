@@ -72,4 +72,6 @@ key * InputManager::getKey(string name)
 	return NULL;
 }
 
+InputManager::~InputManager() {}
+
 

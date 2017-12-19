@@ -11,7 +11,7 @@ ColliderManager::~ColliderManager()
 {
 }
 
-void ColliderManager::addCollider(string name, float x, float y, float w, float h)
+void ColliderManager::addCollider(string name, int x, int y, float w, float h)
 {
 	Collider* newCollider = new Collider(name, x, y, w, h);
 	colliders.push_back(*newCollider);
@@ -20,7 +20,7 @@ void ColliderManager::addCollider(string name, float x, float y, float w, float 
 Collider* ColliderManager::getColliderByName(string name)
 {
 	for (collIt = colliders.begin(); collIt != colliders.end(); collIt++) {
-		if (collIt->name == name) {
+		if (collIt->getName() == name) {
 			return &(*collIt);
 		}
 	}
@@ -31,7 +31,7 @@ bool ColliderManager::anyCollision(Collider check)
 {
 	for (collIt = colliders.begin(); collIt != colliders.end(); collIt++) 
 	{
-		if(check.checkCollision(collIt->getCollider()) && check.name != collIt->name)
+		if(check.checkCollision(collIt->getCollider()) && check.getName() != collIt->getName())
 		{
 			return true;
 		}

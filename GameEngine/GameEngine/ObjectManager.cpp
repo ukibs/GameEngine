@@ -34,7 +34,7 @@ void ObjectManager::update()
 Object* ObjectManager::getObjectByName(string name)
 {
 	for (objIt = objects.begin(); objIt != objects.end(); objIt++) {
-		if ((*objIt)->name==name) {
+		if ((*objIt)->getName()==name) {
 			return (*objIt);
 		}
 	}
@@ -43,18 +43,9 @@ Object* ObjectManager::getObjectByName(string name)
 
 void ObjectManager::destroyObject(Object * o)
 {
-	/*for (objIt = objects.begin(); objIt != objects.end(); objIt++) 
-	{
-		if ((*objIt)->name == o->name) 
-		{
-			objects.erase(objIt);
-			return;
-		}
-	}*/
-
 	for (int i = 0; i < objects.size(); i++)
 	{
-		if (objects[i]->name == o->name)
+		if (objects[i]->getName() == o->getName())
 		{
 			objects.erase(objects.begin()+i);
 			return;
