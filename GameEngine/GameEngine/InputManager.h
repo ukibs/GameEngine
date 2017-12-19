@@ -14,11 +14,11 @@ public:
 	InputManager();
 	void keyboardCheck(SDL_Event& e);
 	bool checkKey(string name);
+	key* getKey(string name);
 
 
 private:
 	vector <key*> keys;
 	vector <key*>::iterator keysIt;
-	//vector <bool> keysToCheck;
 	bool* keysToCheck;
 };

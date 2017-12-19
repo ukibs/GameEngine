@@ -54,10 +54,22 @@ bool InputManager::checkKey(string name)
 	{
 		if ((*keysIt)->getName() == name) 
 		{
-			return (*keysIt)->getPressed();
+			return (*keysIt)->getDown();
 		}
 	}
 	return false;
+}
+
+key * InputManager::getKey(string name)
+{
+	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
+	{
+		if ((*keysIt)->getName() == name)
+		{
+			return *keysIt;
+		}
+	}
+	return NULL;
 }
 
 

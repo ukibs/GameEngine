@@ -1,19 +1,26 @@
 #pragma once
 
 #include <vector>
-
+#include <string>
 #include "Singleton.h"
 #include "Action.h"
+
+using namespace std;
 
 class ActionManager : public Singleton<ActionManager>
 {
 private:
-	vector <Action> actionArray;
+	vector <Action> actions;
+	vector <Action>::iterator actionIt;
 public:
 	ActionManager();
 	~ActionManager();
-	void addAction();
-	void removeAction();
-	void updateAction();
+	void addAction(Action action);
+	void addAction(string name, string keyName, ...);
+	void removeAction(string name);
+	void update();
+	bool getDown(string name);
+	bool getPressed(string name);
+	bool getReleased(string name);
 };
 

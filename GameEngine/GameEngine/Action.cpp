@@ -1,21 +1,72 @@
 #include "Action.h"
 
-
-
-Action::Action()
+Action::Action(string name)
 {
+	this->name = name;
 }
 
+Action::Action(string name, key* keyToAdd, ...)
+{
+	this->name = name;
+	va_list arguments;
+	for (va_start(arguments, keyToAdd); keyToAdd != NULL; keyToAdd = va_arg(arguments, key*)) {
+		keys.push_back(keyToAdd);
+	}
+	va_end(arguments);
+}
 
 Action::~Action()
 {
 }
 
-void Action::addKey()
+void Action::addKey(key* keyToAdd)
 {
+	keys.push_back(keyToAdd);
+}
+
+void Action::addKey(string name) {
+	key* keyToAdd = InputManager::GetInstance().getKey(name);
+	if (keyToAdd != NULL) {
+		keys.push_back(keyToAdd);
+	}
 }
 
 string Action::getAction()
 {
-	return string();
+	return name;
+}
+
+bool Action::getPressed()
+{
+	return pressed;
+}
+
+bool Action::getDown()
+{
+	return down;
+}
+
+bool Action::getReleased()
+{
+	return released;
+}
+
+void Action::update()
+{
+	pressed = false;
+	down = false;
+	released = false;
+	for (keyIt = keys.begin(); keyIt < keys.end(); keyIt++) {
+		//
+		if ((*keyIt)->getDown()) {
+			
+			down = true;
+			pressed = !prevDown;
+			break;
+		}
+	}
+	if (prevDown && !down) {
+		released = true;
+	}
+	prevDown = down;
 }
