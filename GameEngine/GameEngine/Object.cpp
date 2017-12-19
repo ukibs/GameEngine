@@ -68,4 +68,9 @@ bool Object::checkCollision(Object * b)
 	return collider.checkCollision(b->getCollider());
 }
 
+bool Object::anyCollision()
+{
+	return collider.anyCollision();
+}
+
 void Object::update(){}

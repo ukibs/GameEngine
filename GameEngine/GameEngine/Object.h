@@ -16,8 +16,8 @@ public:
 	~Object();
 	string name;
 	string tag;
-	float x;
-	float y;
+	int x;
+	int y;
 	float width;
 	float height;
 	Collider collider;
@@ -34,5 +34,6 @@ public:
 	void setText(Text* newText);
 	SDL_Rect getCollider();
 	bool checkCollision(Object * b);
+	bool anyCollision();
 };
 

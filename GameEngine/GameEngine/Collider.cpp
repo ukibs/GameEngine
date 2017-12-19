@@ -1,4 +1,5 @@
 #include "Collider.h"
+#include "ColliderManager.h"
 
 
 
@@ -73,4 +74,9 @@ bool Collider::checkCollision(SDL_Rect b)
 SDL_Rect Collider::getCollider()
 {
 	return this->collider;
+}
+
+bool Collider::anyCollision()
+{
+	return ColliderManager::GetInstance().anyCollision(*this);
 }
