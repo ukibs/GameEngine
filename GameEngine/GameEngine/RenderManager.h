@@ -25,8 +25,8 @@ public:
 	SDL_Renderer* gRenderer;
 	//The window we'll be rendering to
 	SDL_Window* gWindow = NULL;
-	std::vector<Image> images;
-	std::vector<Image>::iterator imageIt;
+	std::vector<Image*> images;
+	std::vector<Image*>::iterator imageIt;
 	std::vector<Text> texts;
 	std::vector<Text>::iterator textIt;
 	Image* getImageByName(string name);

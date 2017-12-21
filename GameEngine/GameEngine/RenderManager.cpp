@@ -81,7 +81,7 @@ void RenderManager::postUpdate()
 void RenderManager::addImage(std::string path,std::string name)
 {
 	Image* newImage = new Image(gRenderer, path,name);
-	images.push_back(*newImage);
+	images.push_back(newImage);
 }
 
 void RenderManager::addText(std::string text, std::string name)
@@ -93,8 +93,8 @@ void RenderManager::addText(std::string text, std::string name)
 Image * RenderManager::getImageByName(string name)
 {
 	for (imageIt = images.begin(); imageIt != images.end(); imageIt++) {
-		if (imageIt->name==name) {
-			return &(*imageIt);
+		if ((*imageIt)->name==name) {
+			return (*imageIt);
 		}
 	}
 	return NULL;

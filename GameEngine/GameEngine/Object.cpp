@@ -45,7 +45,7 @@ void Object::addCollider(string name, float x, float y, float w, float h)
 void Object::addImage(string path,string name)
 {
 	RenderManager::GetInstance().addImage(path, name);
-	image = *(RenderManager::GetInstance().getImageByName(name));
+	image = *RenderManager::GetInstance().getImageByName(name);
 }
 
 void Object::setImage(Image* newImage)

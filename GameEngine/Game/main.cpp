@@ -57,9 +57,7 @@ int main(int argc, char* args[])
 		
 		//create the player
 		Player player("obj_dot", 25, 25, 0, 20, 20);
-		RenderManager::GetInstance().addImage("images/dot.bmp", "img_dot");
-		Image* img_Dot = RenderManager::GetInstance().getImageByName("img_dot");
-		player.setImage(img_Dot);
+		
 
 		//create the walls
 		walls[0] = new Object("obj_wall1", 0, 0, 0, 640, 20);
@@ -111,8 +109,7 @@ int main(int argc, char* args[])
 
 			if (player.checkCollision(&enemy))
 			{
-				player.x = 20;
-				player.y = 20;
+				player.addBody();
 				enemy.caught();
 				SoundManager::GetInstance().play("sound_1");
 			}
