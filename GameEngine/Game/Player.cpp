@@ -29,12 +29,12 @@ void Player::update()
 {
 	float newX = x;
 	float newY = y;
-	if (InputManager::GetInstance().checkKey("d")) 
+	if (ActionManager::GetInstance().getDown("right"))
 	{
 		newX = x + speed;
 		direction = 0;
 	}
-	if (InputManager::GetInstance().checkKey("a"))
+	if (ActionManager::GetInstance().getDown("left"))
 	{
 		newX = x - speed;
 		direction = 1;

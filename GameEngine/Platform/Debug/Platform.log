@@ -1,0 +1,4 @@
+﻿  JumpMan.cpp
+c:\users\aritz\documents\gameengine\gameengine\platform\jumpman.cpp(10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.exe
+  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)

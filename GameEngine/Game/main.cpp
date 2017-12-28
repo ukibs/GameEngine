@@ -83,11 +83,13 @@ int main(int argc, char* args[])
 
 		//create some actions
 		ActionManager::GetInstance().addAction("up",0, "w");
-		ActionManager::GetInstance().getActionByName("up")->addKey("i");
-		//ActionManager::GetInstance().getActionByName("up")->addKey("up");
+		ActionManager::GetInstance().getActionByName("up")->addKey("up");
 		ActionManager::GetInstance().addAction("down",0, "s");
-		ActionManager::GetInstance().getActionByName("down")->addKey("k");
-		//ActionManager::GetInstance().getActionByName("down")->addKey("down");
+		ActionManager::GetInstance().getActionByName("down")->addKey("down");
+		ActionManager::GetInstance().addAction("left", 0, "a");
+		ActionManager::GetInstance().getActionByName("left")->addKey("left");
+		ActionManager::GetInstance().addAction("right", 0, "a");
+		ActionManager::GetInstance().getActionByName("right")->addKey("right");
 		//Main loop flag
 		bool quit = false;
 
@@ -107,7 +109,7 @@ int main(int argc, char* args[])
 			ObjectManager::GetInstance().update();
 			
 
-			if (player.checkCollision(&enemy))
+			if (player.checkCollision(&enemy,player.x,player.y))
 			{
 				player.addBody();
 				enemy.caught();

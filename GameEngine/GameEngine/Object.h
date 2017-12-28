@@ -33,7 +33,7 @@ public:
 	void setImage(Image* newImage);
 	void setText(Text* newText);
 	SDL_Rect getCollider();
-	bool checkCollision(Object * b);
-	bool anyCollision();
+	bool checkCollision(Object * b,int x,int y);
+	bool anyCollision(int x,int y);
 };
 

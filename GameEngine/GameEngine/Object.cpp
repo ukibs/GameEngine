@@ -63,14 +63,18 @@ SDL_Rect Object::getCollider()
 	return collider.getCollider();
 }
 
-bool Object::checkCollision(Object * b)
+bool Object::checkCollision(Object * b,int x, int y)
 {
+	collider.Update(x, y);
 	return collider.checkCollision(b->getCollider());
+	collider.Update(this->x, this->y);
 }
 
-bool Object::anyCollision()
+bool Object::anyCollision(int x, int y)
 {
+	collider.Update(x, y);
 	return collider.anyCollision();
+	collider.Update(this->x, this->y);
 }
 
 void Object::update(){}

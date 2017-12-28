@@ -1,0 +1,28 @@
+﻿  Action.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\key.h(3): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ActionManager.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\key.h(3): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Collider.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\Collider.h(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ColliderManager.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\Collider.h(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Image.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\Image.h(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Input.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\Input.h(4): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  InputManager.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\key.h(3): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  key.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\key.h(3): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Object.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\Image.h(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ObjectManager.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\Image.h(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  RenderManager.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\RenderManager.h(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Text.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\Text.h(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  TimerManager.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\TimerManager.h(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Timer.cpp
+c:\users\aritz\documents\gameengine\gameengine\gameengine\Timer.h(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
