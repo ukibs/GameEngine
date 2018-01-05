@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Launcher", "Launcher\Launch
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Platform", "Platform\Platform.vcxproj", "{D1F4A8B4-CF15-4BC4-B5C7-7555F6A0615B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VerticalShooter", "VerticalShooter\VerticalShooter.vcxproj", "{154866F1-D70B-4F60-8257-6CF0726E666E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,16 @@ Global
 		{D1F4A8B4-CF15-4BC4-B5C7-7555F6A0615B}.Release|x64.Build.0 = Release|x64
 		{D1F4A8B4-CF15-4BC4-B5C7-7555F6A0615B}.Release|x86.ActiveCfg = Release|Win32
 		{D1F4A8B4-CF15-4BC4-B5C7-7555F6A0615B}.Release|x86.Build.0 = Release|Win32
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Debug|x64.ActiveCfg = Debug|x64
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Debug|x64.Build.0 = Debug|x64
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Debug|x86.ActiveCfg = Debug|Win32
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Debug|x86.Build.0 = Debug|Win32
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Release|Any CPU.ActiveCfg = Release|Win32
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Release|x64.ActiveCfg = Release|x64
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Release|x64.Build.0 = Release|x64
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Release|x86.ActiveCfg = Release|Win32
+		{154866F1-D70B-4F60-8257-6CF0726E666E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
