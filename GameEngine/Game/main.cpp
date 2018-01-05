@@ -88,13 +88,11 @@ int main(int argc, char* args[])
 		ActionManager::GetInstance().getActionByName("down")->addKey("down");
 		ActionManager::GetInstance().addAction("left", 0, "a");
 		ActionManager::GetInstance().getActionByName("left")->addKey("left");
-		ActionManager::GetInstance().addAction("right", 0, "a");
+		ActionManager::GetInstance().addAction("right", 0, "d");
 		ActionManager::GetInstance().getActionByName("right")->addKey("right");
+
 		//Main loop flag
 		bool quit = false;
-
-		//Event handler
-		SDL_Event e;
 
 		//While application is running
 		while (!quit)
@@ -102,7 +100,8 @@ int main(int argc, char* args[])
 			//Handle events on queue
 			RenderManager::GetInstance().preUpdate();
 					
-			if (InputManager::GetInstance().checkKey("space")) {
+			if (InputManager::GetInstance().checkKey("space")) 
+			{
 				SoundManager::GetInstance().toggleMusic();
 			}
 			ActionManager::GetInstance().update();
@@ -116,16 +115,7 @@ int main(int argc, char* args[])
 				SoundManager::GetInstance().play("sound_1");
 			}
 			RenderManager::GetInstance().postUpdate();
-			while (SDL_PollEvent(&e) != 0)
-			{
-				//Update the inputs
-				if (e.type == SDL_QUIT) {
-					quit = true;
-				}
-				else if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
-					InputManager::GetInstance().keyboardCheck(e);
-				}
-			}
+
 			TimerManager::GetInstance().update();
 			fps = TimerManager::GetInstance().getFPS();
 			fpsCounter->text.setText(to_string(fps));

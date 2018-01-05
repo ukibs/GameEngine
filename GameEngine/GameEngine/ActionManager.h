@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <string>
+#include <stdio.h>
+#include <iostream>
 #include <stdarg.h>
 #include "Singleton.h"
 #include "Action.h"

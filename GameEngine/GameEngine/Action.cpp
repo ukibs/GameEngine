@@ -19,14 +19,12 @@ Action::~Action()
 {
 }
 
-void Action::addKey(key* keyToAdd)
+void Action::addKey(string name) 
 {
-	keys.push_back(keyToAdd);
-}
-
-void Action::addKey(string name) {
 	key* keyToAdd = InputManager::GetInstance().getKey(name);
-	if (keyToAdd != NULL) {
+	if (keyToAdd != NULL) 
+	{
+		InputManager::GetInstance().changeKeyStatus(keyToAdd->getName());
 		keys.push_back(keyToAdd);
 	}
 }
@@ -58,7 +56,8 @@ void Action::update()
 	released = false;
 	for (keyIt = keys.begin(); keyIt < keys.end(); keyIt++) {
 		//
-		if ((*keyIt)->getDown()) {
+		if ((*keyIt)->getDown()) 
+		{
 			
 			down = true;
 			pressed = !prevDown;

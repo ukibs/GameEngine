@@ -37,20 +37,23 @@ InputManager::InputManager()
 	keysToCheck = new bool[keys.size()];
 	for (int i = 0; i < keys.size(); i++)
 	{
-		keysToCheck[i] = true;
+		keysToCheck[i] = false;
 	}
 }
 
-void InputManager::keyboardCheck(SDL_Event& e)
+void InputManager::keyboardCheck()
 {
-	int i = 0;
-	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
+	while (SDL_PollEvent(&e) != 0)
 	{
-		if (keysToCheck[i])
+		int i = 0;
+		for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
 		{
-			(*keysIt)->updateData(e);
+			if (keysToCheck[i])
+			{
+				(*keysIt)->updateData(e);
+			}
+			i++;
 		}
-		i++;
 	}
 }
 
@@ -76,6 +79,19 @@ key * InputManager::getKey(string name)
 		}
 	}
 	return NULL;
+}
+
+void InputManager::changeKeyStatus(string name)
+{
+	int i = 0;
+	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
+	{
+		if ((*keysIt)->getName() == name)
+		{
+			keysToCheck[i] = true;
+		}
+		i++;
+	}
 }
 
 

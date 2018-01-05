@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 #include "key.h"
 #include "InputManager.h"
 class Action
