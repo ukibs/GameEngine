@@ -50,22 +50,12 @@ int main(int argc, char* args[])
 		
 		// create the player
 		PlayerShip playerShip("PlayerShip", 200, 200, 45, 37);
-		ObjectManager::GetInstance().addObject(&playerShip);
-		//ObjectManager::GetInstance().addObject("PlayerShip", 200, 200, 0, 45, 37);
 		ObjectManager::GetInstance().getObjectByName("PlayerShip")->addImage("images/PlayerShip.png", "PlayerShip");
 
 
 		//create the walls
-		
-		RenderManager::GetInstance().addImage("images/horWall.jpg", "img_horWall");
-		
-		RenderManager::GetInstance().addImage("images/verWall.jpg", "img_verWall");
-		
-
 		RenderManager::GetInstance().addImage("images/plt_40_20.png", "img_plt");
 		
-
-
 		//create the fpsCounter
 		ObjectManager::GetInstance().addObject("fpsCounter", 0, 0, 0, 0, 0);
 		RenderManager::GetInstance().addText("0", "fps");
@@ -87,9 +77,6 @@ int main(int argc, char* args[])
 		//Main loop flag
 		bool quit = false;
 
-		//Event handler
-		SDL_Event e;
-
 		//While application is running
 		while (!quit)
 		{
@@ -100,18 +87,8 @@ int main(int argc, char* args[])
 			ObjectManager::GetInstance().update();
 
 			//playerShip.update();
-
 			RenderManager::GetInstance().postUpdate();
-			/*while (SDL_PollEvent(&e) != 0)
-			{
-				//Update the inputs
-				if (e.type == SDL_QUIT) {
-					quit = true;
-				}
-				else if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
-					InputManager::GetInstance().keyboardCheck(e);
-				}
-			}*/
+
 			TimerManager::GetInstance().update();
 			fps = TimerManager::GetInstance().getFPS();
 			fpsCounter->text.setText(to_string(fps));

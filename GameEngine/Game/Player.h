@@ -7,7 +7,7 @@ class Player: public Object
 {
 public:
 	float speed;
-	Object * body[10];
+	Object * body[100];
 	Image * image[5];
 	int countBody;
 	int direction;

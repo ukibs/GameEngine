@@ -100,8 +100,8 @@ void Player::moveBody()
 {
 	int posX;
 	int posY;
-	int newX;
-	int newY;
+	int dir;
+
 	for (int i = 0; i < countBody; i++)
 	{
 		if(i == 0)
@@ -111,23 +111,32 @@ void Player::moveBody()
 			switch (direction)
 			{
 				//derecha
-				case 0: body[i]->x = lastX - 20; body[i]->y = lastY; break;
+			case 0: body[i]->x = lastX - 20; body[i]->y = lastY; dir = 0; break;
 				//izquierda
-				case 1: body[i]->x = lastX + 20; body[i]->y = lastY; break;
+			case 1: body[i]->x = lastX + 20; body[i]->y = lastY; dir = 1;  break;
 				//arriba
-				case 2: body[i]->y = lastY + 20; body[i]->x = lastX; break;
+			case 2: body[i]->y = lastY + 20; body[i]->x = lastX; dir = 2; break;
 				//abajo
-				case 3:  body[i]->y = lastY - 20; body[i]->x = lastX; break;
+			case 3:  body[i]->y = lastY - 20; body[i]->x = lastX; dir = 3; break;
 			}
+			dir = direction;
 		}
 		else
 		{
-			newX = body[i]->x;
-			newY = body[i]->y;
-			body[i]->x = posX;
-			body[i]->y = posY;
-			posX = newX;
-			posY = newY;
+			switch (dir)
+			{
+				//derecha
+			case 0: body[i]->x = posX; dir = 0; break;
+				//izquierda
+			case 1: body[i]->x = posX; dir = 1; break;
+				//arriba
+			case 2: body[i]->y = posY; dir = 2; break;
+				//abajo
+			case 3:  body[i]->y = posY; dir = 3; break;
+			}
+			posX = body[i]->x;
+			posY = body[i]->y;
+
 		}
 	}
 }

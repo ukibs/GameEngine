@@ -11,14 +11,37 @@ int GetInput()
 	return choice;
 }
 
+void gotoxy(int x, int y) {
+
+	HANDLE hCon;
+	hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD dwPos;//estructura de coordenadas
+	dwPos.X = x;
+	dwPos.Y = y;
+	SetConsoleCursorPosition(hCon, dwPos);//para posicionar el cursor
+}
+
 void DisplayMainMenu()
 {
-	cout << "Main Menu\n";
-	cout << "Please make your selection\n";
-	cout << "1 - Snake\n";
-	cout << "2 - Platformer\n";
-	cout << "3 - Exit\n";
-	cout << "Selection: ";
+	for (int i = 2; i < 78; i++)//lineas horizontales del recuadro
+	{
+		gotoxy(i, 1);  cout << char(205);
+		gotoxy(i, 13); cout << char(205);
+	}
+
+	gotoxy(2, 1);  cout << char(201);
+	gotoxy(2, 13); cout << char(200);
+	gotoxy(77, 1); cout << char(187);
+	gotoxy(77, 13); cout << char(188);
+
+	gotoxy(3, 2);
+	cout << "\n     ---------------------------MAIN MENU----------------------------------\n";
+	cout << "\n                             1. Snake                                        ";
+	cout << "\n                             2. Platformer                                   ";
+	cout << "\n                             3. Vertical Shooter                             ";
+	cout << "\n                             4. Exit                                         ";
+	cout << "\n                                                                             ";
+	cout << "\n                            Select option => ";
 }
 
 int main(int argc, char *argv[])
@@ -36,11 +59,15 @@ int main(int argc, char *argv[])
 			break;
 		case 2:
 			system("start ..\\Debug\\Platform.exe");
+			break;
 		case 3:
+			system("start ..\\Debug\\VerticalShooter.exe");
+			break;
+		case 4:
 			break;
 		default:
 			break;
 		}
-	} while (choice != 3);
+	} while (choice != 4);
 	return 0;
 }
