@@ -1,5 +1,4 @@
-﻿  main.cpp
-c:\users\usuario\documents\gameengine\gameengine\platform\main.cpp(126): error C2660: 'InputManager::keyboardCheck': function does not take 1 arguments
-  JumpMan.cpp
-c:\users\usuario\documents\gameengine\gameengine\platform\jumpman.cpp(10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
+﻿  JumpMan.cpp
+c:\users\aritz\documents\gameengine\gameengine\platform\jumpman.cpp(10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.exe
+  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)

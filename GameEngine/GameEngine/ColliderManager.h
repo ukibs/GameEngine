@@ -15,5 +15,6 @@ public:
 	vector<Collider>::iterator collIt;
 	Collider* getColliderByName(string name);
 	bool anyCollision(Collider check);
+	string getCollisionName(Collider check);
 };
 

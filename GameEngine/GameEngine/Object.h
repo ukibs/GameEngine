@@ -35,5 +35,6 @@ public:
 	SDL_Rect getCollider();
 	bool checkCollision(Object * b,int x,int y);
 	bool anyCollision(int x,int y);
+	string getCollisionName(int x, int y);
 };
 

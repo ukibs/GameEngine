@@ -3,6 +3,7 @@
 #include "ObjectManager.h"
 #include "InputManager.h"
 #include "ActionManager.h"
+#include "Item.h"
 #include <vector>
 class JumpMan: public Object
 {
@@ -17,17 +18,13 @@ public:
 	int getGravity();
 	void setGravity(int newG);
 	void addImage(Image * newImage);
-	void setPlatforms(Object ** platforms,int numP);
 	~JumpMan();
 private:
-	vector<Object*>  platforms;
-	vector<Object*>::iterator pltIt;
 	int xSpeed;
 	int ySpeed;
 	int jumpSpeed;
 	bool jumping;
 	int gravity;
 	Image * sprite;
-	bool checkIfCollision(int x,int y);
 };
 

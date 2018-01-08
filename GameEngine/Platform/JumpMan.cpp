@@ -36,26 +36,33 @@ void JumpMan::update()
 		ySpeed = -jumpSpeed;
 		jumping = true;
 	}
+	//check to collect items
+	string checkName = getCollisionName(newX, newY);
+	if (checkName != "") {
+		Object* check = ObjectManager::GetInstance().getObjectByName("a");
+	}
+	/*
+	if (typeid(&check) == typeid(Item)) {
+		cout << "Es un item\n";
+	}*/
+
 	//apply gravity
 	ySpeed += gravity;
+	jumping = true;
 	newY = y + ySpeed;
 	//collision check
-	if (!checkIfCollision(newX, newY)) {
+	if (!anyCollision(newX, newY)) {//no collision
 		x = newX;
 		y = newY;
 	}
 	else {
-		if (!checkIfCollision(x, newY)) {
+		if (!anyCollision(x, newY)) {//collision on x axis
 			y = newY;
 		}
-		else if (!checkIfCollision(newX, y)) {
-			jumping = false;
+		if (!anyCollision(newX, y)) {//collision on y axis
+			if(ySpeed>0)	jumping = false;//if it is grounded
 			ySpeed = 0;
 			x = newX;
-		}
-		else {
-			jumping = false;
-			ySpeed = 0;
 		}
 	}
 }
@@ -95,32 +102,6 @@ void JumpMan::addImage(Image * newImage)
 	sprite = newImage;
 }
 
-void JumpMan::setPlatforms(Object ** platforms, int numP)
-{
-	for (int i = 0; i < numP; i++) {
-		this->platforms.push_back(platforms[i]);
-	}
-}
-
 JumpMan::~JumpMan()
 {
-}
-
-bool JumpMan::checkIfCollision(int x,int y)
-{
-	bool collision = false;
-	/*if (y > 440 || y < 20 || x > 600 || x < 20)
-	{
-		collision = true;
-	}
-	for (pltIt = platforms.begin(); pltIt != platforms.end(); pltIt++) {
-		if (checkCollision((*pltIt))) {
-			collision=true;
-			break;
-		}
-	}*/
-	if (anyCollision(x,y)) {
-		return true;
-	}
-	return collision;
 }

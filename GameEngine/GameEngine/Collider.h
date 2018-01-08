@@ -16,6 +16,7 @@ public:
 
 	bool checkCollision(SDL_Rect b);
 	bool anyCollision();
+	string getCollisionName();
 	void Update(int x, int y);
 	SDL_Rect getCollider();
 };

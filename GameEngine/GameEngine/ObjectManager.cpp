@@ -25,7 +25,7 @@ void ObjectManager::addObject(string name, int x, int y, int depth, float w, flo
 void ObjectManager::update()
 {
 	
-	for (objIt = objects.begin(); objIt != objects.end(); objIt++) 
+	for (vector <Object*>::iterator objIt = objects.begin(); objIt != objects.end(); objIt++)
 	{
 		(*objIt)->postUpdate();
 	}
@@ -33,7 +33,7 @@ void ObjectManager::update()
 
 Object* ObjectManager::getObjectByName(string name)
 {
-	for (objIt = objects.begin(); objIt != objects.end(); objIt++) {
+	for (vector <Object*>::iterator objIt = objects.begin(); objIt != objects.end(); objIt++) {
 		if ((*objIt)->name==name) {
 			return (*objIt);
 		}

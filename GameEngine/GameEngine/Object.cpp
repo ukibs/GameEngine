@@ -77,4 +77,11 @@ bool Object::anyCollision(int x, int y)
 	collider.Update(this->x, this->y);
 }
 
+string Object::getCollisionName(int x, int y)
+{
+	collider.Update(x, y);
+	return collider.getCollisionName();
+	collider.Update(this->x, this->y);
+}
+
 void Object::update(){}

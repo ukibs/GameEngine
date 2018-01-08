@@ -79,9 +79,7 @@ int main(int argc, char* args[])
 		platforms[2]->setImage(img_plt);
 		platforms[3]->setImage(img_plt);
 
-		//point the platforms to the player
-		player.setPlatforms(platforms,4);
-
+		
 		//create the fpsCounter
 		ObjectManager::GetInstance().addObject("fpsCounter", 0, 0, 0, 0, 0);
 		RenderManager::GetInstance().addText("0", "fps");
@@ -100,32 +98,20 @@ int main(int argc, char* args[])
 		ActionManager::GetInstance().addAction("right", 0, "d");
 		ActionManager::GetInstance().getActionByName("right")->addKey("right");
 
+		SoundManager::GetInstance().loadEffect("sound/high.wav", "sound_1");
+
 		//Main loop flag
 		bool quit = false;
-
-		//Event handler
-		SDL_Event e;
 
 		//While application is running
 		while (!quit)
 		{
 			//Handle events on queue
 			RenderManager::GetInstance().preUpdate();
-
 			ActionManager::GetInstance().update();
 			ObjectManager::GetInstance().update();
-
 			RenderManager::GetInstance().postUpdate();
-			while (SDL_PollEvent(&e) != 0)
-			{
-				//Update the inputs
-				if (e.type == SDL_QUIT) {
-					quit = true;
-				}
-				else if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
-					InputManager::GetInstance().keyboardCheck(e);
-				}
-			}
+
 			TimerManager::GetInstance().update();
 			fps = TimerManager::GetInstance().getFPS();
 			fpsCounter->text.setText(to_string(fps));
