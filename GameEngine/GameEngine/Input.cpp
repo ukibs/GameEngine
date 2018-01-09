@@ -29,7 +29,7 @@ void Input::SetValues(SDL_Event& e) {
 	down = false;
 	repeated = true;
 	//
-	for (keyIt = keys.begin(); keyIt < keys.end(); keyIt++) {
+	for (vector <SDL_Keycode>::iterator keyIt = keys.begin(); keyIt < keys.end(); keyIt++) {
 		//
 		pressed = pressed || (e.type == SDL_KEYDOWN && e.key.repeat == 0 && e.key.keysym.sym == *keyIt);
 		//

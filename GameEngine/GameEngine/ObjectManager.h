@@ -18,6 +18,6 @@ public:
 	void destroyObject(Object * o);
 private:
 	vector <Object*> objects;
-	vector <Object*>::iterator objIt;
+	//vector <Object*>::iterator objIt;
 };
 

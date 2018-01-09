@@ -46,7 +46,7 @@ void InputManager::keyboardCheck()
 	while (SDL_PollEvent(&e) != 0)
 	{
 		int i = 0;
-		for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
+		for (vector <key*>::iterator keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
 		{
 			if (keysToCheck[i])
 			{
@@ -59,7 +59,7 @@ void InputManager::keyboardCheck()
 
 bool InputManager::checkKey(string name)
 {
-	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++) 
+	for (vector <key*>::iterator keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
 	{
 		if ((*keysIt)->getName() == name) 
 		{
@@ -71,7 +71,7 @@ bool InputManager::checkKey(string name)
 
 key * InputManager::getKey(string name)
 {
-	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
+	for (vector <key*>::iterator keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
 	{
 		if ((*keysIt)->getName() == name)
 		{
@@ -84,7 +84,7 @@ key * InputManager::getKey(string name)
 void InputManager::changeKeyStatus(string name)
 {
 	int i = 0;
-	for (keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
+	for (vector <key*>::iterator keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
 	{
 		if ((*keysIt)->getName() == name)
 		{

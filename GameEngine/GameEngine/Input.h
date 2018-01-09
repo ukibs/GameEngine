@@ -3,6 +3,7 @@
 #include <string>
 #include <SDL.h>
 #include <vector>
+using namespace std;
 
 class Input
 {
@@ -22,11 +23,11 @@ public:
 	bool GetReleased();
 
 private:
-	std::string name;
+	string name;
 	//SDL_Keysym key;
 	//SDL_Keycode key;
-	std::vector <SDL_Keycode> keys;
-	std::vector <SDL_Keycode>::iterator keyIt;
+	vector <SDL_Keycode> keys;
+	//vector <SDL_Keycode>::iterator keyIt;
 
 	bool down;
 	bool pressed;

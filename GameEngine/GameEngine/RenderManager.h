@@ -9,6 +9,7 @@
 #include "Image.h"
 #include "Text.h"
 #include <iostream>
+using namespace std;
 
 class RenderManager : public Singleton<RenderManager>
 {
@@ -25,10 +26,10 @@ public:
 	SDL_Renderer* gRenderer;
 	//The window we'll be rendering to
 	SDL_Window* gWindow = NULL;
-	std::vector<Image*> images;
-	std::vector<Image*>::iterator imageIt;
-	std::vector<Text> texts;
-	std::vector<Text>::iterator textIt;
+	vector<Image*> images;
+	vector<Image*>::iterator imageIt;
+	vector<Text> texts;
+	vector<Text>::iterator textIt;
 	Image* getImageByName(string name);
 	Text* getTextByName(string name);
 	void setFont(string path);

@@ -12,7 +12,7 @@ public:
 
 	void addCollider(string name, float x, float y, float w, float h);
 	vector<Collider> colliders;
-	vector<Collider>::iterator collIt;
+	//vector<Collider>::iterator collIt;
 	Collider* getColliderByName(string name);
 	bool anyCollision(Collider check);
 	string getCollisionName(Collider check);

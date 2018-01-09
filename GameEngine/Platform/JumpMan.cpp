@@ -56,13 +56,21 @@ void JumpMan::update()
 		y = newY;
 	}
 	else {
+		bool col = false;
 		if (!anyCollision(x, newY)) {//collision on x axis
 			y = newY;
+			col = true;
 		}
 		if (!anyCollision(newX, y)) {//collision on y axis
-			if(ySpeed>0)	jumping = false;//if it is grounded
+			if (ySpeed > 0) { 
+				jumping = false; 
+			}//if it is grounded
 			ySpeed = 0;
 			x = newX;
+			col = true;
+		}
+		if(!col) {
+			 ySpeed = 0;
 		}
 	}
 }

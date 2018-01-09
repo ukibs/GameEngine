@@ -20,7 +20,7 @@ public:
 
 private:
 	vector <key*> keys;
-	vector <key*>::iterator keysIt;
+	//vector <key*>::iterator keysIt;
 	bool* keysToCheck;
 	SDL_Event e;
 };
