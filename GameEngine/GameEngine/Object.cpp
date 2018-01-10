@@ -31,7 +31,7 @@ void Object::postUpdate()
 {
 		update();
 		image.render(x, y);
-		text.render(x, y);
+		//text.render(x, y);
 		collider.Update(this->x, this->y);
 }
 
@@ -53,10 +53,10 @@ void Object::setImage(Image* newImage)
 	image = *newImage;
 }
 
-void Object::setText(Text * newText)
+/*void Object::setText(Text * newText)
 {
 	text = *newText;
-}
+}*/
 
 SDL_Rect Object::getCollider()
 {

@@ -1,22 +1,18 @@
 #include "Text.h"
-
+#include "RenderManager.h"
 
 
 Text::Text()
 {
 }
 
-
-Text::Text(SDL_Renderer * gRendererRef, string text, string name,TTF_Font* font, int depth, bool visible)
+Text::Text(string text, string name, int x, int y, float w, float h, int depth, bool visible):Object(name, x, y, depth, w, h)
 {
-	gRenderer = gRendererRef;
-	gFont = font;
-	//For now only black text
-	if (loadFromRenderedText(name)) {
-		cout << "Good";
-	}
-	this->name = name;
-	this->depth = depth;
+	gRenderer = RenderManager::GetInstance().getRenderer();
+	this->text = text;
+	this->visible = visible;
+	setFont("./Config/OpenSans-Bold.ttf");
+	loadFromRenderedText(text);
 }
 
 Text::~Text()
@@ -82,4 +78,14 @@ void Text::setText(string newText)
 {
 	free();
 	loadFromRenderedText(newText);
+}
+
+void Text::setFont(string path)
+{
+	gFont = TTF_OpenFont(path.c_str(), 10);
+}
+
+void Text::update()
+{
+	render(x, y);
 }

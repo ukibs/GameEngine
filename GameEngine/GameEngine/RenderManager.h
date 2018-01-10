@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include "Singleton.h"
 #include "Image.h"
-#include "Text.h"
 #include <iostream>
 using namespace std;
 
@@ -22,19 +21,16 @@ public:
 	bool init();
 	void postUpdate();
 	void addImage(std::string path,std::string name);
-	void addText(std::string text, std::string name);
 	SDL_Renderer* gRenderer;
 	//The window we'll be rendering to
 	SDL_Window* gWindow = NULL;
 	vector<Image*> images;
 	vector<Image*>::iterator imageIt;
-	vector<Text> texts;
-	vector<Text>::iterator textIt;
 	Image* getImageByName(string name);
-	Text* getTextByName(string name);
 	void setFont(string path);
 	void preUpdate();
+	SDL_Renderer* getRenderer();
 private:
-	TTF_Font* gFont;
+
 };
 

@@ -74,11 +74,8 @@ int main(int argc, char* args[])
 		walls[3]->setImage(img_verWall);
 
 		//create the fpsCounter
-		ObjectManager::GetInstance().addObject("fpsCounter", 0, 0, 0, 0, 0);
-		RenderManager::GetInstance().addText("0","fps");
-		Text* fpsText = RenderManager::GetInstance().getTextByName("fps");
-		ObjectManager::GetInstance().getObjectByName("fpsCounter")->setText(fpsText);
-		Object * fpsCounter = ObjectManager::GetInstance().getObjectByName("fpsCounter");
+		Text prueba("fjksd", "0", 10, 10, 10, 10, 0, true);
+		Text prueba2("prueba2", "1", 100, 100, 0, 0, 0, true);
 		float fps = 0.0;
 
 		//create some actions
@@ -119,7 +116,7 @@ int main(int argc, char* args[])
 
 			TimerManager::GetInstance().update();
 			fps = TimerManager::GetInstance().getFPS();
-			fpsCounter->text.setText(to_string(fps));
+			prueba.setText(to_string(fps));
 		}
 	}
 	return 0;

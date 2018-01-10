@@ -68,7 +68,6 @@ bool RenderManager::init()
 			}
 		}
 	}
-	if (success) setFont("./Config/OpenSans-Bold.ttf");
 
 	return success;
 }
@@ -84,12 +83,6 @@ void RenderManager::addImage(std::string path,std::string name)
 	images.push_back(newImage);
 }
 
-void RenderManager::addText(std::string text, std::string name)
-{
-	Text* newText = new Text(gRenderer, text, name,gFont);
-	texts.push_back(*newText);
-}
-
 Image * RenderManager::getImageByName(string name)
 {
 	for (vector<Image*>::iterator imageIt = images.begin(); imageIt != images.end(); imageIt++) {
@@ -100,24 +93,16 @@ Image * RenderManager::getImageByName(string name)
 	return NULL;
 }
 
-Text * RenderManager::getTextByName(string name)
-{
-	for (vector<Text>::iterator textIt = texts.begin(); textIt != texts.end(); textIt++) {
-		if (textIt->name == name) {
-			return &(*textIt);
-		}
-	}
-	return NULL;
-}
-
-void RenderManager::setFont(string path)
-{
-	gFont = TTF_OpenFont(path.c_str(), 10);
-}
-
 void RenderManager::preUpdate()
 {
 	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(gRenderer);
 }
+
+SDL_Renderer* RenderManager::getRenderer()
+{
+	return gRenderer;
+}
+
+
 

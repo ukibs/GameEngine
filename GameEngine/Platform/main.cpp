@@ -88,11 +88,6 @@ int main(int argc, char* args[])
 		item.setImage(img_Item);
 		
 		//create the fpsCounter
-		ObjectManager::GetInstance().addObject("fpsCounter", 0, 0, 0, 0, 0);
-		RenderManager::GetInstance().addText("0", "fps");
-		Text* fpsText = RenderManager::GetInstance().getTextByName("fps");
-		ObjectManager::GetInstance().getObjectByName("fpsCounter")->setText(fpsText);
-		Object * fpsCounter = ObjectManager::GetInstance().getObjectByName("fpsCounter");
 		float fps = 0.0;
 
 		//create some actions
@@ -121,7 +116,6 @@ int main(int argc, char* args[])
 
 			TimerManager::GetInstance().update();
 			fps = TimerManager::GetInstance().getFPS();
-			fpsCounter->text.setText(to_string(fps));
 		}
 	}
 	return 0;
