@@ -1,2 +1,11 @@
-﻿  VerticalShooter.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\VerticalShooter.exe
-  VerticalShooter.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\VerticalShooter.pdb (Partial PDB)
+﻿  PlayerShip.cpp
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\playership.cpp(8): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+  GameManager.cpp
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(6): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  EnemyShip.cpp
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\enemyship.cpp(8): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  LINK : C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\VerticalShooter.exe not found or not built by the last incremental link; performing full link
+  VerticalShooter.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\VerticalShooter.exe
+  VerticalShooter.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\VerticalShooter.pdb (Partial PDB)

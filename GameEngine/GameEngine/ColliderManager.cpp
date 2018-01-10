@@ -50,3 +50,16 @@ string ColliderManager::getCollisionName(Collider check)
 	}
 	return "";
 }
+
+void ColliderManager::destroyCollider(string name)
+{
+	for (vector<Collider>::iterator collIt = colliders.begin(); collIt != colliders.end(); collIt++)
+	{
+		if (name == collIt->name)
+		{
+			colliders.erase(collIt);
+			return;
+		}
+	}
+	return;
+}

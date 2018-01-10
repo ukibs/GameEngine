@@ -84,4 +84,10 @@ string Object::getCollisionName(int x, int y)
 	collider.Update(this->x, this->y);
 }
 
+void Object::destroy()
+{
+	ObjectManager::GetInstance().destroyObject(name);
+	collider.destroy();
+}
+
 void Object::update(){}

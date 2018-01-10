@@ -19,5 +19,6 @@ public:
 	string getCollisionName();
 	void Update(int x, int y);
 	SDL_Rect getCollider();
+	void destroy();
 };
 

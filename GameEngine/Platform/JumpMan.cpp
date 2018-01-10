@@ -36,6 +36,12 @@ void JumpMan::update()
 		ySpeed = -jumpSpeed;
 		jumping = true;
 	}
+
+	//apply gravity
+	ySpeed += gravity;
+	jumping = true;
+	newY = y + ySpeed;
+
 	//check to collect items
 	string checkName = getCollisionName(newX, newY);
 	if (checkName != "") {
@@ -44,13 +50,11 @@ void JumpMan::update()
 		if (typeid(*check) == typeid(Item)) {
 			Item *item = dynamic_cast<Item *>(check);
 			item->collect();
+			item->destroy();
 		}
 	}
 	
-	//apply gravity
-	ySpeed += gravity;
-	jumping = true;
-	newY = y + ySpeed;
+	
 	//collision check
 	if (!anyCollision(newX, newY)) {//no collision
 		x = newX;

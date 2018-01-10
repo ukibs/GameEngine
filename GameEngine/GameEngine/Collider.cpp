@@ -76,6 +76,11 @@ SDL_Rect Collider::getCollider()
 	return this->collider;
 }
 
+void Collider::destroy()
+{
+	ColliderManager::GetInstance().destroyCollider(name);
+}
+
 bool Collider::anyCollision()
 {
 	return ColliderManager::GetInstance().anyCollision(*this);

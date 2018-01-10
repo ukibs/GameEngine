@@ -42,13 +42,13 @@ Object* ObjectManager::getObjectByName(string name)
 	return NULL;
 }
 
-void ObjectManager::destroyObject(Object * o)
+void ObjectManager::destroyObject(string name)
 {
-	for (int i = 0; i < objects.size(); i++)
+	for (vector<Object*>::iterator objIt = objects.begin(); objIt != objects.end(); objIt++)
 	{
-		if (objects[i]->name == o->name)
+		if ((*objIt)->name == name)
 		{
-			objects.erase(objects.begin()+i);
+			objects.erase(objIt);
 			return;
 		}
 	}

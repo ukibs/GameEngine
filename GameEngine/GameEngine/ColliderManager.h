@@ -16,5 +16,6 @@ public:
 	Collider* getColliderByName(string name);
 	bool anyCollision(Collider check);
 	string getCollisionName(Collider check);
+	void destroyCollider(string name);
 };
 
