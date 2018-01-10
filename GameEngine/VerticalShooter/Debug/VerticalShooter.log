@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 ﻿  GameManager.cpp
 d:\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(6): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   VerticalShooter.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\VerticalShooter.exe
   VerticalShooter.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\VerticalShooter.pdb (Partial PDB)
+=======
+﻿  PlayerShip.cpp
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\playership.cpp(8): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Compiling...
+  main.cpp
+  Generating Code...
+  VerticalShooter.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\VerticalShooter.exe
+  VerticalShooter.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\VerticalShooter.pdb (Partial PDB)
+>>>>>>> 2d235964eccd8951b975ef3a74a9b652e8e0fce9

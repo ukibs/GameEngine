@@ -12,4 +12,5 @@ Item::~Item()
 void Item::collect()
 {
 	SoundManager::GetInstance().play("sound_1");
+	//delete(this);
 }

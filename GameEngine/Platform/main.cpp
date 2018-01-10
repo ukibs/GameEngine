@@ -14,6 +14,7 @@
 #include "Text.h"
 #include "Object.h"
 #include "JumpMan.h"
+#include "Item.h"
 
 #undef main
 int main(int argc, char* args[])
@@ -79,6 +80,12 @@ int main(int argc, char* args[])
 		platforms[2]->setImage(img_plt);
 		platforms[3]->setImage(img_plt);
 
+
+		//create an item
+		Item item("obj_item", 200, 360, 0, 20, 20);
+		RenderManager::GetInstance().addImage("images/manzana.jpg", "img_item");
+		Image* img_Item = RenderManager::GetInstance().getImageByName("img_item");
+		item.setImage(img_Item);
 		
 		//create the fpsCounter
 		ObjectManager::GetInstance().addObject("fpsCounter", 0, 0, 0, 0, 0);

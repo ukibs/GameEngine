@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  main.cpp
   JumpMan.cpp
 d:\documents\gameengine\gameengine\platform\jumpman.cpp(10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -6,3 +7,8 @@ d:\documents\gameengine\gameengine\platform\jumpman.cpp(10): warning C4244: 'arg
   LINK : D:\Documents\GameEngine\GameEngine\Debug\Platform.exe not found or not built by the last incremental link; performing full link
   Platform.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Platform.exe
   Platform.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)
+=======
+﻿  Item.cpp
+  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.exe
+  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)
+>>>>>>> 2d235964eccd8951b975ef3a74a9b652e8e0fce9

@@ -5,6 +5,8 @@
 #include "ActionManager.h"
 #include "Item.h"
 #include <vector>
+
+using namespace std;
 class JumpMan: public Object
 {
 public:
