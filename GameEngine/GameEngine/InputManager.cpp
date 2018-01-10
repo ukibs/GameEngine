@@ -25,13 +25,13 @@ InputManager::InputManager()
 		getline(ss, as, '\t');
 		getline(ss, name, ' ');
 		SDL_Keycode sdl_key = SDL_GetKeyFromName(pointerSdl);
-		if (sdl_key == 0) {
+		/*if (sdl_key == 0) {
 			cout << "no coge: ";
 		}
 		else {
 			cout << "si coge: ";
 		}
-		cout << sdlString << " " << as << " " << name << " " << pointerSdl << "\n";
+		cout << sdlString << " " << as << " " << name << " " << pointerSdl << "\n";*/
 		keys.push_back(new key(name, sdl_key, as));
 	}
 	keysToCheck = new bool[keys.size()];

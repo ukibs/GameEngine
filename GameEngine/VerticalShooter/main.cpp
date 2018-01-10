@@ -17,6 +17,8 @@
 
 //Game ones
 #include "PlayerShip.h"
+#include "EnemyShip.h"
+#include "GameManager.h"
 
 #undef main
 int main(int argc, char* args[])
@@ -42,27 +44,11 @@ int main(int argc, char* args[])
 	{
 		if (!SoundManager::GetInstance().init())
 		{
-			printf("Failed to initialize!\n");
+			printf("Failed to initialize sound!\n");
 		}
-		// the image for the player
-		//RenderManager::GetInstance().addImage("images/PlayerShip.png", "PlayerShip");
-		//Image* img_player = RenderManager::GetInstance().getImageByName("PlayerShip");
-		
-		// create the player
-		PlayerShip playerShip("PlayerShip", 200, 200, 45, 37);
-		ObjectManager::GetInstance().getObjectByName("PlayerShip")->addImage("images/PlayerShip.png", "PlayerShip");
 
-
-		//create the walls
-		RenderManager::GetInstance().addImage("images/plt_40_20.png", "img_plt");
 		
-		//create the fpsCounter
-		ObjectManager::GetInstance().addObject("fpsCounter", 0, 0, 0, 0, 0);
-		RenderManager::GetInstance().addText("0", "fps");
-		Text* fpsText = RenderManager::GetInstance().getTextByName("fps");
-		ObjectManager::GetInstance().getObjectByName("fpsCounter")->setText(fpsText);
-		Object * fpsCounter = ObjectManager::GetInstance().getObjectByName("fpsCounter");
-		float fps = 0.0;
+		GameManager gameManager("GameManager", 0, 0, 0, 0);
 
 		//create some actions
 		ActionManager::GetInstance().addAction("up", 0, "w");
@@ -90,8 +76,6 @@ int main(int argc, char* args[])
 			RenderManager::GetInstance().postUpdate();
 
 			TimerManager::GetInstance().update();
-			fps = TimerManager::GetInstance().getFPS();
-			fpsCounter->text.setText(to_string(fps));
 		}
 	}
 	return 0;

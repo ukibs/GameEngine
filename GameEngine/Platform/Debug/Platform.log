@@ -1,4 +1,8 @@
-﻿  JumpMan.cpp
-c:\users\aritz\documents\gameengine\gameengine\platform\jumpman.cpp(10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.exe
-  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)
+﻿  main.cpp
+  JumpMan.cpp
+d:\documents\gameengine\gameengine\platform\jumpman.cpp(10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Item.cpp
+  Generating Code...
+  LINK : D:\Documents\GameEngine\GameEngine\Debug\Platform.exe not found or not built by the last incremental link; performing full link
+  Platform.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Platform.exe
+  Platform.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)

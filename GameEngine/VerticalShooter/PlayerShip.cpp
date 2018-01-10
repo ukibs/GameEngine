@@ -4,11 +4,9 @@ PlayerShip::PlayerShip()
 {
 }
 
-PlayerShip::PlayerShip(string name, int x, int y, int w, int h, Image* sprite, int depth, int speed) : Object(name, x, y, depth, w, h)
+PlayerShip::PlayerShip(string name, int x, int y, int w, int h, Image* sprite, int depth) : Object(name, x, y, depth, w, h)
 {
-	this->image = sprite;
-	setImage(this->image);
-	this->speed = speed;
+	setImage(sprite);
 }
 
 PlayerShip::~PlayerShip()
@@ -35,7 +33,12 @@ void PlayerShip::update()
 	{
 		newY = y + speed;
 	}
-	cout << "Updating";
+	//cout << "Updating";
 	x = newX;
 	y = newY;
+
+	//Check collisions
+	if (anyCollision(x, y)) {
+		cout << "Collision" << endl;
+	}
 }

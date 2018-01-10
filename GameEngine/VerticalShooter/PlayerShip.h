@@ -9,12 +9,12 @@ class PlayerShip : public Object
 {
 public:
 	PlayerShip();
-	PlayerShip(string name, int x, int y, int w, int h, Image* sprite = NULL, int depth = 0, int speed = 10);
+	PlayerShip(string name, int x, int y, int w, int h, Image* sprite = NULL, int depth = 0);
 	~PlayerShip();
 
 	int speed = 10;
 
-	Image * image;
+	Image * image;		// Revisar
 
 	void update();
 

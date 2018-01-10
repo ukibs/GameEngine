@@ -1,2 +1,4 @@
-﻿  VerticalShooter.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\VerticalShooter.exe
-  VerticalShooter.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\VerticalShooter.pdb (Partial PDB)
+﻿  GameManager.cpp
+d:\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(6): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  VerticalShooter.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\VerticalShooter.exe
+  VerticalShooter.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\VerticalShooter.pdb (Partial PDB)
