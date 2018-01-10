@@ -24,26 +24,20 @@ void ObjectManager::addObject(string name, int x, int y, int depth, float w, flo
 
 void ObjectManager::update()
 {
-	int i = 0;
 	for (vector <Object*>::iterator objIt = objects.begin(); objIt != objects.end(); objIt++)
 	{
-		i++;
 		(*objIt)->postUpdate();
-		if (i == 12) {
-			cout << "se ha pasado, i=" << i << "\n";
-		}
-
 	}
 }
 
-Object* ObjectManager::getObjectByName(string name)
+Object * ObjectManager::getObjectByName(string name)
 {
 	for (vector <Object*>::iterator objIt = objects.begin(); objIt != objects.end(); objIt++) {
-		if ((*objIt)->name==name) {
+		if ((*objIt)->name == name) {
 			return (*objIt);
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 void ObjectManager::destroyObject(Object * o)

@@ -39,13 +39,14 @@ void JumpMan::update()
 	//check to collect items
 	string checkName = getCollisionName(newX, newY);
 	if (checkName != "") {
-		Object* check = ObjectManager::GetInstance().getObjectByName("a");
-	}
-	/*
-	if (typeid(&check) == typeid(Item)) {
-		cout << "Es un item\n";
-	}*/
+		Object* check = ObjectManager::GetInstance().getObjectByName(checkName);
 
+		if (typeid(*check) == typeid(Item)) {
+			Item *item = dynamic_cast<Item *>(check);
+			item->collect();
+		}
+	}
+	
 	//apply gravity
 	ySpeed += gravity;
 	jumping = true;

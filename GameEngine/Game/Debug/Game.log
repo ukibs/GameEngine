@@ -1,2 +1,12 @@
-﻿  Game.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.exe
+﻿  Enemy.cpp
+  Generating Code...
+  Compiling...
+  main.cpp
+  Player.cpp
+c:\users\aritz\documents\gameengine\gameengine\game\player.cpp(30): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\game\player.cpp(31): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\game\player.cpp(72): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\game\player.cpp(73): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  Game.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.exe
   Game.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.pdb (Full PDB)
