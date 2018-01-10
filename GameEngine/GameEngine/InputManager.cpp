@@ -38,6 +38,9 @@ void InputManager::keyboardCheck()
 {
 	while (SDL_PollEvent(&e) != 0)
 	{
+		if (e.type == SDL_QUIT) {
+			quit = true;
+		}
 		int i = 0;
 		for (vector <key*>::iterator keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
 		{
@@ -86,6 +89,11 @@ void InputManager::changeKeyStatus(string name)
 		}
 		i++;
 	}
+}
+
+bool InputManager::checkQuit()
+{
+	return quit;
 }
 
 

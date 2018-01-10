@@ -19,6 +19,7 @@
 #include "PlayerShip.h"
 #include "EnemyShip.h"
 #include "GameManager.h"
+using namespace VerticalShooter;
 
 #undef main
 int main(int argc, char* args[])

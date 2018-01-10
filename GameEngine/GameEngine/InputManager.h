@@ -16,11 +16,12 @@ public:
 	bool checkKey(string name);
 	key* getKey(string name);
 	void changeKeyStatus(string);
-
+	bool checkQuit();
 
 private:
 	vector <key*> keys;
 	//vector <key*>::iterator keysIt;
 	bool* keysToCheck;
 	SDL_Event e;
+	bool quit;
 };

@@ -15,7 +15,8 @@
 #include "Object.h"
 #include "JumpMan.h"
 #include "Item.h"
-
+#include "GameManager.h"
+using namespace Platform;
 #undef main
 int main(int argc, char* args[])
 {
@@ -28,9 +29,6 @@ int main(int argc, char* args[])
 	TimerManager::CreateSingleton();
 	SoundManager::CreateSingleton();
 
-	//variables
-
-
 	//Initialize SDL
 	if (!RenderManager::GetInstance().init())
 	{
@@ -42,50 +40,8 @@ int main(int argc, char* args[])
 		{
 			printf("Failed to initialize!\n");
 		}
-		//the image for the player
-		RenderManager::GetInstance().addImage("images/dot.bmp", "player");
-		Image* img_player = RenderManager::GetInstance().getImageByName("player");
-		//create the player
-		JumpMan player("player", 25, RenderManager::GetInstance().SCREEN_HEIGHT-25-20, 20, 20, img_player);
-
-		//variables
-		Object * walls[4];
-
-		//create the walls
-		walls[0] = new Object("obj_wall1", 0, 0, 0, 640, 20);
-		walls[2] = new Object("obj_wall3", 0, 20, 0, 20, 480);
-		walls[3] = new Object("obj_wall4", 620, 0, 0, 20, 480);
-		walls[1] = new Object("obj_wall2", 0, 460, 0, 640, 20);
-		RenderManager::GetInstance().addImage("images/horWall.jpg", "img_horWall");
-		Image * img_horWall = RenderManager::GetInstance().getImageByName("img_horWall");
-		walls[0]->setImage(img_horWall);
-		walls[1]->setImage(img_horWall);
-		RenderManager::GetInstance().addImage("images/verWall.jpg", "img_verWall");
-		Image * img_verWall = RenderManager::GetInstance().getImageByName("img_verWall");
-		walls[2]->setImage(img_verWall);
-		walls[3]->setImage(img_verWall);
-
-		//the platforms
-		Object * platforms[4];
-
-		//create the platforms
-		platforms[0] = new Object("obj_plt1", 60, 400, 0, 40, 20);
-		platforms[1] = new Object("obj_plt1", 120, 400, 0, 40, 20);
-		platforms[2] = new Object("obj_plt1", 200, 400, 0, 40, 20);
-		platforms[3] = new Object("obj_plt1", 260, 400, 0, 40, 20);
-		RenderManager::GetInstance().addImage("images/plt_40_20.png", "img_plt");
-		Image * img_plt = RenderManager::GetInstance().getImageByName("img_plt");
-		platforms[0]->setImage(img_plt);
-		platforms[1]->setImage(img_plt);
-		platforms[2]->setImage(img_plt);
-		platforms[3]->setImage(img_plt);
-
-
-		//create an item
-		Item item("obj_item", 200, 360, 0, 20, 20);
-		RenderManager::GetInstance().addImage("images/manzana.jpg", "img_item");
-		Image* img_Item = RenderManager::GetInstance().getImageByName("img_item");
-		item.setImage(img_Item);
+		//initialize de gameManager
+		GameManager gameManager("GameManager", 0, 0, 0, 0);
 		
 		//create the fpsCounter
 		float fps = 0.0;
@@ -116,6 +72,7 @@ int main(int argc, char* args[])
 
 			TimerManager::GetInstance().update();
 			fps = TimerManager::GetInstance().getFPS();
+			quit = InputManager::GetInstance().checkQuit();
 		}
 	}
 	return 0;
