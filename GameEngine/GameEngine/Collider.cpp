@@ -90,3 +90,8 @@ string Collider::getCollisionName()
 {
 	return ColliderManager::GetInstance().getCollisionName(*this);
 }
+
+string Collider::getName()
+{
+	return name;
+}

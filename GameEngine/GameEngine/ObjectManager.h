@@ -9,6 +9,8 @@ using namespace std;
 
 class ObjectManager : public Singleton<ObjectManager>
 {
+private:
+	vector <Object*> objects;
 public:
 	ObjectManager();
 	~ObjectManager();
@@ -17,8 +19,5 @@ public:
 	void update();
 	Object* getObjectByName(string name);
 	void destroyObject(string name);
-private:
-	vector <Object*> objects;
-	//vector <Object*>::iterator objIt;
 };
 

@@ -20,7 +20,7 @@ void ColliderManager::addCollider(string name, float x, float y, float w, float 
 Collider* ColliderManager::getColliderByName(string name)
 {
 	for (vector<Collider>::iterator collIt = colliders.begin(); collIt != colliders.end(); collIt++) {
-		if (collIt->name == name) {
+		if (collIt->getName() == name) {
 			return &(*collIt);
 		}
 	}
@@ -31,7 +31,7 @@ bool ColliderManager::anyCollision(Collider check)
 {
 	for (vector<Collider>::iterator collIt = colliders.begin(); collIt != colliders.end(); collIt++)
 	{
-		if(check.checkCollision(collIt->getCollider()) && check.name != collIt->name)
+		if(check.checkCollision(collIt->getCollider()) && check.getName() != collIt->getName())
 		{
 			return true;
 		}
@@ -43,9 +43,9 @@ string ColliderManager::getCollisionName(Collider check)
 {
 	for (vector<Collider>::iterator collIt = colliders.begin(); collIt != colliders.end(); collIt++)
 	{
-		if (check.checkCollision(collIt->getCollider()) && check.name != collIt->name)
+		if (check.checkCollision(collIt->getCollider()) && check.getName() != collIt->getName())
 		{
-			return collIt->name;
+			return collIt->getName();
 		}
 	}
 	return "";
@@ -55,7 +55,7 @@ void ColliderManager::destroyCollider(string name)
 {
 	for (vector<Collider>::iterator collIt = colliders.begin(); collIt != colliders.end(); collIt++)
 	{
-		if (name == collIt->name)
+		if (name == collIt->getName())
 		{
 			colliders.erase(collIt);
 			return;

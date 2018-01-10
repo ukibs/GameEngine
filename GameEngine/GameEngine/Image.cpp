@@ -73,3 +73,8 @@ bool Image::loadFromFile(std::string path)
 	file = newTexture;
 	return file != NULL;
 }
+
+string Image::getName()
+{
+	return name;
+}

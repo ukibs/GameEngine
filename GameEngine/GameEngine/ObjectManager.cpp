@@ -35,7 +35,7 @@ void ObjectManager::update()
 Object* ObjectManager::getObjectByName(string name)
 {
 	for (vector <Object*>::iterator objIt = objects.begin(); objIt != objects.end(); objIt++) {
-		if ((*objIt)->name==name) {
+		if ((*objIt)->getName()==name) {
 			return (*objIt);
 		}
 	}
@@ -46,7 +46,7 @@ void ObjectManager::destroyObject(string name)
 {
 	for (vector<Object*>::iterator objIt = objects.begin(); objIt != objects.end(); objIt++)
 	{
-		if ((*objIt)->name == name)
+		if ((*objIt)->getName() == name)
 		{
 			objects.erase(objIt);
 			return;

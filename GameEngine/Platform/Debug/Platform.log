@@ -1,8 +1,2 @@
-﻿  main.cpp
-c:\users\aritz\documents\gameengine\gameengine\platform\main.cpp(47): warning C4101: 'platforms': unreferenced local variable
-  GameManager.cpp
-c:\users\aritz\documents\gameengine\gameengine\platform\gamemanager.cpp(6): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
-  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.exe
-  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)
+﻿  Platform.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\Platform.exe
+  Platform.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)

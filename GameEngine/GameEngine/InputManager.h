@@ -5,23 +5,23 @@
 #include <stdio.h>
 #include "Singleton.h"
 #include "key.h"
-#include "Input.h"
 
 class InputManager : public Singleton<InputManager>
 {
 	friend class Singleton<InputManager>;
+private:
+	vector <key*> keys;
+	bool* keysToCheck;
+	SDL_Event e;
+	bool quit;
 public:
 	InputManager();
+	~InputManager();
 	void keyboardCheck();
 	bool checkKey(string name);
 	key* getKey(string name);
 	void changeKeyStatus(string);
 	bool checkQuit();
 
-private:
-	vector <key*> keys;
-	//vector <key*>::iterator keysIt;
-	bool* keysToCheck;
-	SDL_Event e;
-	bool quit;
+
 };

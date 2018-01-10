@@ -45,9 +45,9 @@ int main(int argc, char* args[])
 			printf("Failed to initialize!\n");
 		}
 		//load Music and sound effects
-		/*SoundManager::GetInstance().loadEffect("sound/high.wav","sound_1");
+		SoundManager::GetInstance().loadEffect("sound/high.wav","sound_1");
 		SoundManager::GetInstance().loadMusic("sound/beat.wav", "music_1");
-		SoundManager::GetInstance().play("music_1");*/
+		SoundManager::GetInstance().play("music_1");
 		//create the enemy
 		Enemy enemy("obj_enemy", 200, 100, 0, 20, 20);
 		RenderManager::GetInstance().addImage("images/manzana.jpg", "img_enemy");
@@ -97,10 +97,10 @@ int main(int argc, char* args[])
 			//Handle events on queue
 			RenderManager::GetInstance().preUpdate();
 					
-			/*if (InputManager::GetInstance().checkKey("space")) 
+			if (InputManager::GetInstance().checkKey("space")) 
 			{
 				SoundManager::GetInstance().toggleMusic();
-			}*/
+			}
 
 			ActionManager::GetInstance().update();
 			ObjectManager::GetInstance().update();
@@ -117,6 +117,7 @@ int main(int argc, char* args[])
 			TimerManager::GetInstance().update();
 			fps = TimerManager::GetInstance().getFPS();
 			prueba.setText(to_string(fps));
+			quit = InputManager::GetInstance().checkQuit();
 		}
 	}
 	return 0;

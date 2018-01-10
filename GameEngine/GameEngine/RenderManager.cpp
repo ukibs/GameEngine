@@ -86,7 +86,7 @@ void RenderManager::addImage(std::string path,std::string name)
 Image * RenderManager::getImageByName(string name)
 {
 	for (vector<Image*>::iterator imageIt = images.begin(); imageIt != images.end(); imageIt++) {
-		if ((*imageIt)->name==name) {
+		if ((*imageIt)->getName()==name) {
 			return (*imageIt);
 		}
 	}

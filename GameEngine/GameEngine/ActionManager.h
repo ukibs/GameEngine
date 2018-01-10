@@ -20,9 +20,7 @@ public:
 	~ActionManager();
 	void addAction(Action action);
 	void addAction(string name, string keyName);
-	//void addAction(string name, string keyNames[]);
 	void addAction(string name,int numKeys, string keyName, ...);
-	//void addAction(string name, string keyName, ...);
 	void removeAction(string name);
 	void update();
 	bool getDown(string name);

@@ -17,7 +17,6 @@ public:
 	Action(string name);
 	Action(string name, key* keyToAdd, ...);
 	~Action();
-	void addKey(key* keyToAdd);
 	void addKey(string name);
 	string getAction();
 	bool getPressed();

@@ -1,8 +1,5 @@
 #include "Timer.h"
 
-
-
-
 Timer::Timer()
 {
 	//Initialize the variables

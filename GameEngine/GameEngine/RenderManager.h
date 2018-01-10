@@ -13,24 +13,23 @@ using namespace std;
 class RenderManager : public Singleton<RenderManager>
 {
 	friend class Singleton<RenderManager>;
-public:
-	RenderManager();
-	~RenderManager();
-	const int SCREEN_WIDTH = 640;
-	const int SCREEN_HEIGHT = 480;
-	bool init();
-	void postUpdate();
-	void addImage(std::string path,std::string name);
+private:
 	SDL_Renderer* gRenderer;
-	//The window we'll be rendering to
 	SDL_Window* gWindow = NULL;
 	vector<Image*> images;
 	vector<Image*>::iterator imageIt;
+public:
+	const int SCREEN_WIDTH = 640;
+	const int SCREEN_HEIGHT = 480;
+	RenderManager();
+	~RenderManager();
+	bool init();
+	void postUpdate();
+	void addImage(string path,string name);
 	Image* getImageByName(string name);
-	void setFont(string path);
 	void preUpdate();
 	SDL_Renderer* getRenderer();
-private:
+
 
 };
 

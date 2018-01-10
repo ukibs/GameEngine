@@ -34,6 +34,10 @@ InputManager::InputManager()
 	}
 }
 
+InputManager::~InputManager()
+{
+}
+
 void InputManager::keyboardCheck()
 {
 	while (SDL_PollEvent(&e) != 0)
