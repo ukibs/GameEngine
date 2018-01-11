@@ -24,5 +24,12 @@ public:
 	void render(int x,int y,SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	bool loadFromFile(std::string path);
 	string getName();
+	// Get/Set operations
+		// Width
+	int getWidth() { return width; }
+	void setWidth(int value) { width = value; }
+		// Height
+	int getHeight() { return height; }
+	void setHeight(int value) { height = value; }
 };
 

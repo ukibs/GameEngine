@@ -17,11 +17,14 @@ namespace VerticalShooter {
 		~GameManager();
 
 	private:
-		// THe player
+		// The player
 		PlayerShip * playerShip;
 
 		//Enemies
 		vector<EnemyShip*> enemyShips;
+
+		//Background
+		Object * backGround;
 
 		//Time stuff
 		float currentTime;

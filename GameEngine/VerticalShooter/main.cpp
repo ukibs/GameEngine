@@ -71,6 +71,7 @@ int main(int argc, char* args[])
 			RenderManager::GetInstance().preUpdate();
 
 			ActionManager::GetInstance().update();
+			quit = InputManager::GetInstance().checkQuit();
 			ObjectManager::GetInstance().update();
 
 			//playerShip.update();

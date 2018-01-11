@@ -36,9 +36,15 @@ void PlayerShip::update()
 	//cout << "Updating";
 	x = newX;
 	y = newY;
+}
 
-	//Check collisions
-	if (anyCollision(x, y)) {
-		cout << "Collision" << endl;
+void PlayerShip::CheckCollisionsWithEnemies(vector<EnemyShip*> enemyShips)
+{
+	vector<EnemyShip*>::iterator esIT;
+	for (esIT = enemyShips.begin(); esIT < enemyShips.end(); esIT++) {
+		if (checkCollision(*esIT, x, y) && (*esIT)->getDepth() < 2){
+			cout << "Collision with " << (*esIT)->getName() << endl;
+			(*esIT)->Kill();
+		}
 	}
 }

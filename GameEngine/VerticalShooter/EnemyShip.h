@@ -12,13 +12,18 @@ public:
 	void Kill();
 	bool isAlive() { return alive; };
 
-	int speed = 10;
-	Image * image;
+	float speed;
+	//Image * image;
+
+	int getDepth() { return depth; }
 
 private:
 	void update();
-
 	bool alive;
 
+	int maxHeight;
+	int maxWidth;
+
+	float floatDepth;
 };
 

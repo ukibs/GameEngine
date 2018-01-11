@@ -1,9 +1,12 @@
 #pragma once
+#include <vector>
+
 #include "Object.h"
 #include "ObjectManager.h"
 #include "InputManager.h"
 #include "ActionManager.h"
-#include <vector>
+
+#include "EnemyShip.h"
 
 class PlayerShip : public Object
 {
@@ -12,13 +15,12 @@ public:
 	PlayerShip(string name, int x, int y, int w, int h, Image* sprite = NULL, int depth = 0);
 	~PlayerShip();
 
-	int speed = 10;
-
-	Image * image;		// Revisar
-
 	void update();
 
-private:
+	void CheckCollisionsWithEnemies(vector<EnemyShip*>);
 
+private:
+	int speed = 10;
+	//Image * image;		// Revisar
 };
 
