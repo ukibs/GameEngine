@@ -75,7 +75,7 @@ int main(int argc, char* args[])
 
 		//create the fpsCounter
 		Text prueba("fjksd", "0", 10, 10, 10, 10, 0, true);
-		Text prueba2("prueba2", "1", 100, 100, 0, 0, 0, true);
+		//Text prueba2("prueba2", "1", 100, 100, 0, 0, 0, true);
 		float fps = 0.0;
 
 		//create some actions

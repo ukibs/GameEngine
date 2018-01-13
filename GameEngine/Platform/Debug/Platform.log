@@ -1,2 +1,9 @@
-﻿  Platform.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\Platform.exe
+﻿  GameManager.cpp
+c:\users\usuario\documents\gameengine\gameengine\platform\gamemanager.cpp(6): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  JumpMan.cpp
+  Item.cpp
+  Platform.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\Platform.exe
   Platform.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)

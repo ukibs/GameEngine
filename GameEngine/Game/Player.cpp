@@ -71,6 +71,10 @@ void Player::update()
 		lastY = y;
 		x = newX;
 		y = newY;
+		int pos = addTurn();
+		turnX[pos] = x;
+		turnY[pos] = y;
+		turnDirection[pos] = direction;
 	}
 	else
 	{
@@ -100,6 +104,8 @@ void Player::moveBody()
 {
 	int posX;
 	int posY;
+	int newPosX;
+	int newPosY;
 	int dir;
 
 	for (int i = 0; i < countBody; i++)
@@ -123,20 +129,43 @@ void Player::moveBody()
 		}
 		else
 		{
-			switch (dir)
-			{
-				//derecha
-			case 0: body[i]->x = posX; dir = 0; break;
-				//izquierda
-			case 1: body[i]->x = posX; dir = 1; break;
-				//arriba
-			case 2: body[i]->y = posY; dir = 2; break;
-				//abajo
-			case 3:  body[i]->y = posY; dir = 3; break;
-			}
-			posX = body[i]->x;
-			posY = body[i]->y;
-
+			newPosX = body[i]->x;
+			newPosY = body[i]->y;
+			
+				switch (dir)
+				{
+					//derecha
+				case 0: if (checkTurn(posX, posY)) body[i]->x = posX - 20; else body[i]->x = newPosX + 1; body[i]->y = posY; dir = 0; break;
+					//izquierda
+				case 1: if (checkTurn(posX, posY)) body[i]->x = posX + 20; else body[i]->x = newPosX - 1; body[i]->y = posY;  dir = 1; break;
+					//arriba
+				case 2: if (checkTurn(posX, posY)) body[i]->y = posY + 20; else body[i]->y = newPosY - 1; body[i]->x = posX; dir = 2; break;
+					//abajo
+				case 3:  if (checkTurn(posX, posY)) body[i]->y = posY - 20; else body[i]->y = newPosY + 1; body[i]->x = posX; dir = 3; break;
+				}
+			posX = newPosX;
+			posY = newPosY;
 		}
 	}
+}
+
+int Player::addTurn()
+{
+	for (int i = 0; i < 100; i++)
+	{
+		if (turnX[i] == 0) return i;
+	}
+	return -1;
+}
+
+bool Player::checkTurn(int x, int y)
+{
+	for (int i = 0; i < 100; i++)
+	{
+		if (turnX[i] == x && turnY[i] == y)
+		{
+			return true;
+		}
+	}
+	return false;
 }

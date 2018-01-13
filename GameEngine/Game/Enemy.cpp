@@ -13,8 +13,8 @@ Enemy::~Enemy()
 
 void Enemy::caught()
 {
-	x = rand() % 630;
-	y = rand() % 470;
+	x = rand() % 600;
+	y = rand() % 400;
 }
 
 

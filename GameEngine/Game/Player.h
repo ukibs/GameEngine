@@ -8,6 +8,9 @@ class Player: public Object
 public:
 	float speed;
 	Object * body[100];
+	int turnX[100];
+	int turnY[100];
+	int turnDirection[100];
 	Image * image[5];
 	int countBody;
 	int direction;
@@ -18,5 +21,7 @@ public:
 	void update();
 	void addBody();
 	void moveBody();
+	int addTurn();
+	bool checkTurn(int x, int y);
 };
 
