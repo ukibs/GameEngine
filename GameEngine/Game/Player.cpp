@@ -4,8 +4,9 @@
 
 Player::Player(string name, int x, int y, int depth, float w, float h): Object(name, x, y, depth, w, h)
 {
-	speed = 1;
+	time = 0;
 	countBody = 0;
+	direction = 0;
 	RenderManager::GetInstance().addImage("images/snakeUp.jpg", "img_sUp");
 	image[0] = RenderManager::GetInstance().getImageByName("img_sUp");
 	RenderManager::GetInstance().addImage("images/snakeDown.jpg", "img_sDown");
@@ -16,8 +17,20 @@ Player::Player(string name, int x, int y, int depth, float w, float h): Object(n
 	image[3] = RenderManager::GetInstance().getImageByName("img_sRight");
 	RenderManager::GetInstance().addImage("images/body.jpg", "img_sBody");
 	image[4] = RenderManager::GetInstance().getImageByName("img_sBody");
+	RenderManager::GetInstance().addImage("images/body2.jpg", "img_sBody2");
+	image[5] = RenderManager::GetInstance().getImageByName("img_sBody2");
 
 	setImage(image[3]);
+
+	for (int i = 0; i < 32; i++)
+	{
+		for (int j = 0; j < 24; j++)
+		{
+			position[i][j] = 0;
+		}
+	}
+
+	position[2][2] = 1;
 }
 
 
@@ -27,145 +40,103 @@ Player::~Player()
 
 void Player::update()
 {
-	float newX = x;
-	float newY = y;
-	if (ActionManager::GetInstance().getDown("right"))
-	{
-		newX = x + speed;
-		direction = 0;
-	}
-	if (ActionManager::GetInstance().getDown("left"))
-	{
-		newX = x - speed;
-		direction = 1;
-		
-	}
-	if (ActionManager::GetInstance().getDown("up"))
-	{
-		newY = y - speed;
-		direction = 2;
-		
-	}
-	if (ActionManager::GetInstance().getDown("down"))
-	{
-		newY = y + speed;
-		direction = 3;
-	}
+	if (ActionManager::GetInstance().getDown("right")){direction = 0;}
+	if (ActionManager::GetInstance().getDown("left")){direction = 1;}
+	if (ActionManager::GetInstance().getDown("up")){direction = 2;}
+	if (ActionManager::GetInstance().getDown("down")){direction = 3;}
 
-	switch (direction)
+	if (time == 10)
 	{
-		//derecha
-	case 0: setImage(image[3]); newX = x + speed; break;
-		//izquierda
-	case 1: setImage(image[2]); newX = x - speed; break;
-		//arriba
-	case 2: setImage(image[0]); newY = y - speed; break;
-		//abajo
-	case 3: setImage(image[1]); newY = y + speed; break;
+		time = 0;
+
+		switch (direction)
+		{
+			//derecha
+		case 0: setImage(image[3]); changePosition(1, 0); break;
+			//izquierda
+		case 1: setImage(image[2]); changePosition(-1, 0); break;
+			//arriba
+		case 2: setImage(image[0]); changePosition(0, -1); break;
+			//abajo
+		case 3: setImage(image[1]); changePosition(0, 1); break;
+		}
+		moveBody();
 	}
-
-
-	if (newY < 440 && newY > 20 && newX < 600 && newX > 20)
+	time++;
+	if (anyCollision(x, y))
 	{
-		lastX = x;
-		lastY = y;
-		x = newX;
-		y = newY;
-		int pos = addTurn();
-		turnX[pos] = x;
-		turnY[pos] = y;
-		turnDirection[pos] = direction;
-	}
-	else
-	{
-		//muereeeeeee
-	}
 
-	moveBody();
+	}
 }
 
 void Player::addBody()
 {
-	if (countBody == 0)
-	{
-		body[countBody] = new Object("body" + countBody, x - 20, y, 0, 20, 20);
-		body[countBody]->setImage(image[4]);
-		countBody++;
-	}
-	else
-	{
-		body[countBody] = new Object("body" + countBody, body[countBody-1]->x - 20, y, 0, 20, 20);
-		body[countBody]->setImage(image[4]);
-		countBody++;
-	}
+	body[countBody] = new Object("body" + countBody, x, y, 0, 20, 20);
+	body[countBody]->setImage(image[4]);
+	countBody++;
 }
 
 void Player::moveBody()
 {
-	int posX;
-	int posY;
-	int newPosX;
-	int newPosY;
-	int dir;
-
-	for (int i = 0; i < countBody; i++)
+	int b = 0;
+	for (int i = 0; i < 32; i++)
 	{
-		if(i == 0)
+		for (int j = 0; j < 24; j++)
 		{
-			posX = body[i]->x;
-			posY = body[i]->y;
-			switch (direction)
+			if (position[i][j] != 0)
 			{
-				//derecha
-			case 0: body[i]->x = lastX - 20; body[i]->y = lastY; dir = 0; break;
-				//izquierda
-			case 1: body[i]->x = lastX + 20; body[i]->y = lastY; dir = 1;  break;
-				//arriba
-			case 2: body[i]->y = lastY + 20; body[i]->x = lastX; dir = 2; break;
-				//abajo
-			case 3:  body[i]->y = lastY - 20; body[i]->x = lastX; dir = 3; break;
-			}
-			dir = direction;
-		}
-		else
-		{
-			newPosX = body[i]->x;
-			newPosY = body[i]->y;
-			
-				switch (dir)
+				if (position[i][j] == 1)
 				{
-					//derecha
-				case 0: if (checkTurn(posX, posY)) body[i]->x = posX - 20; else body[i]->x = newPosX + 1; body[i]->y = posY; dir = 0; break;
-					//izquierda
-				case 1: if (checkTurn(posX, posY)) body[i]->x = posX + 20; else body[i]->x = newPosX - 1; body[i]->y = posY;  dir = 1; break;
-					//arriba
-				case 2: if (checkTurn(posX, posY)) body[i]->y = posY + 20; else body[i]->y = newPosY - 1; body[i]->x = posX; dir = 2; break;
-					//abajo
-				case 3:  if (checkTurn(posX, posY)) body[i]->y = posY - 20; else body[i]->y = newPosY + 1; body[i]->x = posX; dir = 3; break;
+					x = i * 20;
+					y = j * 20;
 				}
-			posX = newPosX;
-			posY = newPosY;
+				else if(countBody != 0 && b < countBody)
+				{
+					body[b]->x = i * 20;
+					body[b]->y = j * 20;
+					b++;
+				}
+			}
 		}
 	}
 }
 
-int Player::addTurn()
+void Player::changePosition(int newI, int newJ)
 {
-	for (int i = 0; i < 100; i++)
+	bool out = false;
+	for (int i = 0; i < 32; i++)
 	{
-		if (turnX[i] == 0) return i;
-	}
-	return -1;
-}
-
-bool Player::checkTurn(int x, int y)
-{
-	for (int i = 0; i < 100; i++)
-	{
-		if (turnX[i] == x && turnY[i] == y)
+		for (int j = 0; j < 24; j++)
 		{
-			return true;
+			if (position[i][j] == 1)
+			{
+				if (newI != 0)
+				{
+					position[i + newI][j] = 1;
+					out = true;
+					updatePosition(i + newI, j);
+					break;
+				}
+				else
+				{
+					position[i][j + newJ] = 1;
+					out = true;
+					updatePosition(i, j + newJ);
+					break;
+				}
+			}
+		}
+		if (out) break;
+	}
+}
+
+void Player::updatePosition(int newI, int newJ)
+{
+	for (int i = 0; i < 32; i++){
+		for (int j = 0; j < 24; j++){
+			if (position[i][j] != 0 && (newI != i || newJ != j)){
+				if (countBody >= position[i][j]){position[i][j]++;}
+				else position[i][j] = 0;}
 		}
 	}
-	return false;
 }

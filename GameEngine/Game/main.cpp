@@ -48,6 +48,7 @@ int main(int argc, char* args[])
 		SoundManager::GetInstance().loadEffect("sound/high.wav","sound_1");
 		SoundManager::GetInstance().loadMusic("sound/beat.wav", "music_1");
 		SoundManager::GetInstance().play("music_1");
+
 		//create the enemy
 		Enemy enemy("obj_enemy", 200, 100, 0, 20, 20);
 		RenderManager::GetInstance().addImage("images/manzana.jpg", "img_enemy");
