@@ -11,9 +11,9 @@ ColliderManager::~ColliderManager()
 {
 }
 
-void ColliderManager::addCollider(string name, float x, float y, float w, float h)
+void ColliderManager::addCollider(string name, string tag, float x, float y, float w, float h)
 {
-	Collider* newCollider = new Collider(name, x, y, w, h);
+	Collider* newCollider = new Collider(name, tag, x, y, w, h);
 	colliders.push_back(*newCollider);
 }
 
@@ -46,6 +46,18 @@ string ColliderManager::getCollisionName(Collider check)
 		if (check.checkCollision(collIt->getCollider()) && check.getName() != collIt->getName())
 		{
 			return collIt->getName();
+		}
+	}
+	return "";
+}
+
+string ColliderManager::getCollisionTag(Collider check)
+{
+	for (vector<Collider>::iterator collIt = colliders.begin(); collIt != colliders.end(); collIt++)
+	{
+		if (check.checkCollision(collIt->getCollider()) && check.getName() != collIt->getName())
+		{
+			return collIt->getTag();
 		}
 	}
 	return "";

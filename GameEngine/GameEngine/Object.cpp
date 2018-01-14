@@ -7,15 +7,16 @@ Object::Object()
 {
 }
 
-Object::Object(string name,int x, int y,int depth, float w, float h)
+Object::Object(string name,int x, int y,int depth, float w, float h, string tag)
 {
 	this->name = name;
+	this->tag = tag;
 	this->x = x;
 	this->y = y;
 	width = w;
 	height = h;
 	this->depth = depth;
-	addCollider(name, this->x, this->y, this->width, this->height);
+	addCollider(name, tag, this->x, this->y, this->width, this->height);
 	ObjectManager::GetInstance().addObject(this);
 }
 
@@ -34,9 +35,9 @@ void Object::postUpdate()
 		collider.Update(this->x, this->y);
 }
 
-void Object::addCollider(string name, float x, float y, float w, float h)
+void Object::addCollider(string name, string tag, float x, float y, float w, float h)
 {
-	ColliderManager::GetInstance().addCollider(name, x, y, w, h);
+	ColliderManager::GetInstance().addCollider(name, tag, x, y, w, h);
 	collider = *(ColliderManager::GetInstance().getColliderByName(name));
 }
 
@@ -60,22 +61,29 @@ SDL_Rect Object::getCollider()
 bool Object::checkCollision(Object * b,int x, int y)
 {
 	collider.Update(x, y);
+	//collider.Update(this->x, this->y);
 	return collider.checkCollision(b->getCollider());
-	collider.Update(this->x, this->y);
 }
 
 bool Object::anyCollision(int x, int y)
 {
 	collider.Update(x, y);
+	//collider.Update(this->x, this->y);
 	return collider.anyCollision();
-	collider.Update(this->x, this->y);
 }
 
 string Object::getCollisionName(int x, int y)
 {
 	collider.Update(x, y);
 	return collider.getCollisionName();
-	collider.Update(this->x, this->y);
+	//collider.Update(this->x, this->y);
+}
+
+string Object::getCollisionTag(int x, int y)
+{
+	collider.Update(x, y);
+	return collider.getCollisionTag();
+	//collider.Update(this->x, this->y);
 }
 
 void Object::destroy()

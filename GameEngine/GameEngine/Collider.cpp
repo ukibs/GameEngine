@@ -7,9 +7,10 @@ Collider::Collider()
 {
 }
 
-Collider::Collider(string name, int x, int y, int w, int h)
+Collider::Collider(string name, string tag, int x, int y, int w, int h)
 {
 	this->name = name;
+	this->tag = tag;
 	collider.x = x;
 	collider.y = y;
 	collider.w = w;
@@ -91,7 +92,17 @@ string Collider::getCollisionName()
 	return ColliderManager::GetInstance().getCollisionName(*this);
 }
 
+string Collider::getCollisionTag()
+{
+	return ColliderManager::GetInstance().getCollisionTag(*this);
+}
+
 string Collider::getName()
 {
 	return name;
+}
+
+string Collider::getTag()
+{
+	return tag;
 }

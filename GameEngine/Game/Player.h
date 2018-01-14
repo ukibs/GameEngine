@@ -5,15 +5,15 @@
 #include "ActionManager.h"
 class Player: public Object
 {
-public:
-	float time;
+private:
+	int time;
 	Object * body[100];
 	int position[32][24];
+	int snakeDirection[32][24];
 	Image * image[6];
 	int countBody;
 	int direction;
-	int lastX;
-	int lastY;
+public:
 	Player(string name,int x, int y,int depth, float w, float h);
 	~Player();
 	void update();
@@ -21,6 +21,6 @@ public:
 	void moveBody();
 	void changePosition(int, int);
 	void updatePosition(int, int);
-	void print();
+	void updateDirection(int, int, int);
 };
 
