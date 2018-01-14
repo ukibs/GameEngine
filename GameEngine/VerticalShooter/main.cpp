@@ -37,17 +37,12 @@ int main(int argc, char* args[])
 
 
 	//Initialize SDL
-	if (!RenderManager::GetInstance().init())
+	if (!RenderManager::GetInstance().init() || !SoundManager::GetInstance().init())
 	{
 		printf("Failed to initialize!\n");
 	}
 	else
 	{
-		if (!SoundManager::GetInstance().init())
-		{
-			printf("Failed to initialize sound!\n");
-		}
-
 		
 		GameManager gameManager("GameManager", 0, 0, 0, 0);
 

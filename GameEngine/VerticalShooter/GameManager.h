@@ -8,6 +8,7 @@
 
 #include "EnemyShip.h"
 #include "PlayerShip.h"
+#include "WaterLayer.h"
 
 namespace VerticalShooter {
 	class GameManager : public Object
@@ -25,6 +26,9 @@ namespace VerticalShooter {
 
 		//Background
 		Object * backGround;
+
+		// Water layers
+		vector<WaterLayer*> waterLayers;
 
 		//Time stuff
 		float currentTime;

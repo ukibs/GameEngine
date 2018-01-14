@@ -40,6 +40,7 @@ void EnemyShip::Kill()
 
 void EnemyShip::update() {
 	if (alive){
+		y -= speed / 2;
 		floatDepth -= speed;
 		depth = floatDepth;
 		//cout << depth << ", " << floatDepth << endl;
