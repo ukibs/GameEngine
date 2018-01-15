@@ -14,7 +14,6 @@ ColliderManager::~ColliderManager()
 void ColliderManager::addCollider(string name, string tag, float x, float y, float w, float h)
 {
 	Collider* newCollider = new Collider(name, tag, x, y, w, h);
-	cout << "collider con nombre " << name << " creado en x:" << x << ", y:" << y << endl;
 	colliders.push_back(newCollider);
 }
 

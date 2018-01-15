@@ -1,5 +1,5 @@
 #include "JumpMan.h"
-
+#include "ItemFinal.h"
 
 
 JumpMan::JumpMan()
@@ -47,10 +47,12 @@ void JumpMan::update()
 	if (checkName != "") {
 		Object* check = ObjectManager::GetInstance().getObjectByName(checkName);
 
-		if (typeid(*check) == typeid(Item)) {
+		if (typeid(*check) == typeid(Item) || typeid(*check) == typeid(ItemFinal)) {
 			Item *item = dynamic_cast<Item *>(check);
 			item->collect();
-			item->destroy();
+			if (typeid(*item) == typeid(Item)) {
+				item->destroy();
+			}
 		}
 	}
 	
