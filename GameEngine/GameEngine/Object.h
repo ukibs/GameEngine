@@ -14,7 +14,7 @@ protected:
 	string tag;
 	float width;
 	float height;
-	Collider collider;
+	Collider* collider;
 	Image image;
 	int depth;
 public:

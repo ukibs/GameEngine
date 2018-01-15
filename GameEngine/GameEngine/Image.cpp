@@ -10,7 +10,7 @@ Image::Image(SDL_Renderer * gRendererRef, string path, string name,int depth,boo
 {
 	gRenderer = gRendererRef;
 	if (loadFromFile(path)) {
-		cout << "Good";
+		cout << "Good\n";
 	}
 	this->name = name;
 	this->depth = depth;

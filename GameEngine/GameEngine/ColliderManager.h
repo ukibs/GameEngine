@@ -7,7 +7,7 @@ using namespace std;
 class ColliderManager : public Singleton<ColliderManager>
 {
 private:
-	vector<Collider> colliders;
+	vector<Collider*> colliders;
 	
 public:
 	ColliderManager();
