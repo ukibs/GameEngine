@@ -7,7 +7,7 @@ GameManager::GameManager(string name, int x, int y, int w, int h, int depth) : O
 {
 	loadMedia();
 	initPlayer();
-	initLevel();
+	initLevel(level);
 }
 
 
@@ -18,11 +18,11 @@ GameManager::~GameManager()
 void GameManager::update() {
 }
 
-void Platform::GameManager::initLevel()
+void Platform::GameManager::initLevel(int nivel)
 {
 	initWalls();
-	initPlatforms();
-	initItems();
+	initPlatforms(nivel);
+	initItems(nivel);
 }
 
 void Platform::GameManager::initWalls()
@@ -47,37 +47,34 @@ void Platform::GameManager::initWalls()
 	platforms.push_back(wall);
 }
 
-void Platform::GameManager::initPlatforms()
+void Platform::GameManager::initPlatforms(int nivel)
 {
-	//load platform image
-	
 	Image * img_plt = RenderManager::GetInstance().getImageByName("img_plt");
 	//create the platforms
 	Object* platform;
-	platform = new Object("obj_plt1", 60, 400, 0, 40, 20);
-	platform->setImage(img_plt);
-	platforms.push_back(platform);
-	platform = new Object("obj_plt2", 120, 400, 0, 40, 20);
-	platform->setImage(img_plt);
-	platforms.push_back(platform);
-	platform = new Object("obj_plt3", 200, 400, 0, 40, 20);
-	platform->setImage(img_plt);
-	platforms.push_back(platform);
-	platform = new Object("obj_plt4", 260, 400, 0, 40, 20);
-	platform->setImage(img_plt);
-	platforms.push_back(platform);
+	for (int i = 0; i < sizeof(lvlsP[nivel])/6; i++) {
+		if (lvlsP[nivel][i][0] == 0 || lvlsP[nivel][i][1] == 0) { return; }
+		platform = new Object("obj_plt" + to_string(i), lvlsP[nivel][i][0], lvlsP[nivel][i][1], 0, 40, 20);
+		platform->setImage(img_plt);
+		platforms.push_back(platform);
+	}
 }
 
-void Platform::GameManager::initItems()
+void Platform::GameManager::initItems(int nivel)
 {
-	
-	//create the items
-	addItem("obj_item1", 100, 360, 0, 20, 20,"img_manzana");
-	addItem("obj_item2", 200, 360, 0, 20, 20, "img_pineapple");
-	addItem("obj_item3", 300, 360, 0, 20, 20, "img_carrot");
-	addItem("obj_item4", 400, 360, 0, 20, 20, "img_tomato");
+	Item* item;
+	int i = 0;
+	for (i = 0; i < sizeof(lvlsI[nivel]) / 6; i++) {
+		if (lvlsI[nivel][i][0] <= 0 || lvlsI[nivel][i][1] <= 0) { break; }
+		//generate a random int lower than the number of item images
+		mt19937 rng(rd());
+		uniform_int_distribution<int> uni(0, imgNames.size()-1);
+		int rnd = uni(rng);
+		string imgName = imgNames[rnd];
+		addItem("obj_item" + to_string(i), lvlsI[nivel][i][0], lvlsI[nivel][i][1], 0, 20, 20, imgName);
+	}
 	//create the final item to reset the game when you collect it
-	ItemFinal* itemF = new ItemFinal("obj_itemF", 500, 400, 0, 30, 30, this);
+	ItemFinal* itemF = new ItemFinal("obj_itemF", 500, 370, 0, 30, 30, this);
 	itemF->setImage(RenderManager::GetInstance().getImageByName("img_diamond"));
 	items.push_back(itemF);
 }
@@ -92,11 +89,13 @@ void Platform::GameManager::addItem(string name, int x,int y,int depth, int w, i
 
 void Platform::GameManager::reset()
 {
+	if (level == maxLevels-1) { level = 0; }
+	else { level++; }
 	player->x = 25;
 	player->y = RenderManager::GetInstance().SCREEN_HEIGHT - 25 - 20;
 	cleanPlatforms();
 	cleanItems();
-	initLevel();
+	initLevel(level);
 }
 
 void Platform::GameManager::initPlayer()
@@ -131,9 +130,13 @@ void Platform::GameManager::loadMedia()
 	RenderManager::GetInstance().addImage("images/plt_40_20.png", "img_plt");
 	//load the images for the items
 	RenderManager::GetInstance().addImage("images/manzana.jpg", "img_manzana");
+	imgNames.push_back("img_manzana");
 	RenderManager::GetInstance().addImage("images/carrot.png", "img_carrot");
+	imgNames.push_back("img_carrot");
 	RenderManager::GetInstance().addImage("images/pineapple.png", "img_pineapple");
+	imgNames.push_back("img_pineapple");
 	RenderManager::GetInstance().addImage("images/tomato.png", "img_tomato");
+	imgNames.push_back("img_tomato");
 	RenderManager::GetInstance().addImage("images/diamond.png", "img_diamond");
 	//the image for the player
 	RenderManager::GetInstance().addImage("images/dot.bmp", "player");
