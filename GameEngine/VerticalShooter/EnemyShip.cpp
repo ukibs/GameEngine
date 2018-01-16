@@ -7,11 +7,13 @@
 EnemyShip::EnemyShip(string name, int x, int y, int w, int h, Image* sprite, int depth) : Object(name, x, y, depth, w, h)
 {
 	setImage(sprite);
+	image.setWidth(w);
+	image.setHeight(h);
 	//this.depth = depth;
 	alive = false;
 	maxHeight = h;
 	maxWidth = w;
-	speed = 0.07;
+	speed = 0.05;
 }
 
 
@@ -40,7 +42,7 @@ void EnemyShip::Kill()
 
 void EnemyShip::update() {
 	if (alive){
-		y -= speed / 2;
+		y += speed * 10;
 		floatDepth -= speed;
 		depth = floatDepth;
 		//cout << depth << ", " << floatDepth << endl;
@@ -49,8 +51,12 @@ void EnemyShip::update() {
 			Kill();
 		}
 		else {
+			// Image
 			image.setWidth(maxWidth / depth);
 			image.setHeight(maxHeight / depth);
+			// Collider
+			collider->SetHeight(maxHeight / depth);
+			collider->SetWidth(maxWidth / depth);
 		}
  	}
 }

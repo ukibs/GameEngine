@@ -6,12 +6,10 @@ using namespace VerticalShooter;
 		//RenderManager::GetInstance().addImage("images/Space.png", "Space");
 		RenderManager::GetInstance().addImage("images/PlayerShip.png", "PlayerShip");
 		RenderManager::GetInstance().addImage("images/Water.png", "Water");
-		RenderManager::GetInstance().addImage("images/Dot.jpg", "Dot");
-
-		// The player image
-		Image* img_player = RenderManager::GetInstance().getImageByName("PlayerShip");
-
-		//
+		RenderManager::GetInstance().addImage("images/AlienShip.png", "AlienShip");
+		RenderManager::GetInstance().addImage("images/SpaceLemon.png", "SpaceLemon");
+		
+		// Backgroudn for the game
 		backGround = new Object("Background", 0, 0, 100, RenderManager::GetInstance().SCREEN_WIDTH, RenderManager::GetInstance().SCREEN_WIDTH);
 		backGround->addImage("images/Space.png", "Space");
 
@@ -27,18 +25,34 @@ using namespace VerticalShooter;
 		
 
 		// Create the enemy ships
+		Image* img_alien = RenderManager::GetInstance().getImageByName("AlienShip");
 		for (int i = 0; i < 10; i++) {
 			string shipName = "EnemyShip" + to_string(i);
-			enemyShips.push_back(new EnemyShip(shipName, -50, -50, 45, 37, img_player, 10));
+			enemyShips.push_back(new EnemyShip(shipName, -50, -50, 70, 62, img_alien, 10));
+		}
+
+		// Create the proyectiles
+		Image* img_proyectile = RenderManager::GetInstance().getImageByName("SpaceLemon");
+		for (int i = 0; i < 20; i++) {
+			string shipName = "Proyectile" + to_string(i);
+			proyectiles.push_back(new Proyectile(shipName, -50, -50, 12, 6, img_proyectile, 0));
 		}
 
 		// create the player
+		Image* img_player = RenderManager::GetInstance().getImageByName("PlayerShip");
 		playerShip = new PlayerShip("PlayerShip", 200, 200, 45, 37, img_player);
 
 		// Timer shit
 		//TimerManager::GetInstance().getFPS();
 		currentTime = 0;
 		timeFromLastSpawn = 0;
+
+		// Score stuff
+		currentScore = 0;
+		maxScore = 0;
+
+		// Text stuff
+		scoreText = new Text("Score: " + to_string(currentScore), "ScoreText", 0, 0, 100, 20, 0, true);
 	}
 
 
@@ -48,9 +62,6 @@ using namespace VerticalShooter;
 
 	void GameManager::update()
 	{
-		//
-		//RenderManager::GetInstance().render("Space", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
 		// Time stuff
 		currentTime++;
 		timeFromLastSpawn++;
@@ -64,6 +75,15 @@ using namespace VerticalShooter;
 
 		// Check collisions between enemies and the player
 		playerShip->CheckCollisionsWithEnemies(enemyShips);
+
+		// Shoots from the player
+		if (playerShip->GetShooting()) {
+			
+			activateProyectile(); // Get x and y of thge player
+		}
+
+		// Proyectile control
+		checkProyectiles();
 	}
 
 	void GameManager::activateEnemy() {
@@ -75,4 +95,27 @@ using namespace VerticalShooter;
 			}
 		}
 		//cout << "All enemies currently active" << endl;
+	}
+
+	void GameManager::activateProyectile() {
+		vector<Proyectile*>::iterator proyecIT;
+		for (proyecIT = proyectiles.begin(); proyecIT < proyectiles.end(); proyecIT++) {
+			if ((*proyecIT)->isAlive() == false) {
+				(*proyecIT)->Activate(playerShip->x, playerShip->y);
+				return;
+			}
+		}
+		//cout << "All enemies currently active" << endl;
+	}
+
+	void GameManager::checkProyectiles()
+	{
+		vector<Proyectile*>::iterator proyecIT;
+		for (proyecIT = proyectiles.begin(); proyecIT < proyectiles.end(); proyecIT++) {
+			if ((*proyecIT)->isAlive() == true) {
+				// Order it to make the checkings
+				currentScore += (*proyecIT)->CheckCollisionsWithEnemies(enemyShips);
+				scoreText->setText("Score: " + to_string(currentScore));
+			}
+		}
 	}

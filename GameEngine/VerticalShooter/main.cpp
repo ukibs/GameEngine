@@ -47,14 +47,15 @@ int main(int argc, char* args[])
 		GameManager gameManager("GameManager", 0, 0, 0, 0);
 
 		//create some actions
-		ActionManager::GetInstance().addAction("up", 0, "w");
+		ActionManager::GetInstance().addAction("up", "w");
 		ActionManager::GetInstance().getActionByName("up")->addKey("up");
-		ActionManager::GetInstance().addAction("down", 0, "s");
+		ActionManager::GetInstance().addAction("down", "s");
 		ActionManager::GetInstance().getActionByName("down")->addKey("down");
-		ActionManager::GetInstance().addAction("left", 0, "a");
+		ActionManager::GetInstance().addAction("left", "a");
 		ActionManager::GetInstance().getActionByName("left")->addKey("left");
-		ActionManager::GetInstance().addAction("right", 0, "d");
+		ActionManager::GetInstance().addAction("right", "d");
 		ActionManager::GetInstance().getActionByName("right")->addKey("right");
+		ActionManager::GetInstance().addAction("shoot", "space");
 
 		//Main loop flag
 		bool quit = false;

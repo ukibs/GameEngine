@@ -25,5 +25,10 @@ public:
 	string getName();
 	string getTag();
 	void destroy();
+
+	//
+	void SetWidth(int newWidth) { collider.w = newWidth; };
+	void SetHeight(int newHeight) { collider.w = newHeight; };
+
 };
 

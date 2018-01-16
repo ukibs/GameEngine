@@ -120,12 +120,14 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerShip.cpp" />
+    <ClCompile Include="Proyectile.cpp" />
     <ClCompile Include="WaterLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="PlayerShip.h" />
+    <ClInclude Include="Proyectile.h" />
     <ClInclude Include="WaterLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
