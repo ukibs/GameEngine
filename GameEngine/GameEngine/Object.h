@@ -36,5 +36,7 @@ public:
 	string getCollisionTag(int x, int y);
 	void destroy();
 	string getName();
+	float getWidth() { return width; };
+	float getHeight() { return height; };
 };
 

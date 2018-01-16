@@ -63,9 +63,20 @@ using namespace VerticalShooter;
 		lifesText->setColor(255, 255, 255);
 			// Menu ones
 				// Title
-		title1 = new Text("Don't", "ScoreText", 20, 20, 200, 100, 0, true);
+		title1 = new Text("NOT", "TitleText1", 20, 20, 200, 100, 0, true);
 		title1 ->setFont("Config/xirod.ttf", 40);
 		title1->setColor(255, 255, 255);
+		title2 = new Text("VERTICAL", "TitleText2", 20, 20, 200, 100, 0, true);
+		title2->setFont("Config/xirod.ttf", 40);
+		title2->setColor(255, 255, 255);
+				// Start instruction
+		startInstructions = new Text("ENTER TO START", "StartText", 20, 20, 200, 100, 0, true);
+		startInstructions->setFont("Config/xirod.ttf", 20);
+		startInstructions->setColor(255, 255, 255);
+				// Quit instruction
+		quitInstructions = new Text("QUIT TO EXIT", "QuitText", 20, 20, 200, 100, 0, true);
+		quitInstructions->setFont("Config/xirod.ttf", 20);
+		quitInstructions->setColor(255, 255, 255);
 
 		// Sounds
 		SoundManager::GetInstance().loadEffect("sound/Lazer.wav", "Lazer");
@@ -82,32 +93,41 @@ using namespace VerticalShooter;
 
 	void GameManager::update()
 	{
-		// Time stuff
-		currentTime++;
-		timeFromLastSpawn++;
-
-		//Enemy spawn
-		if (timeFromLastSpawn > 10) {
-			//cout << "Spawning enemy" << endl;
-			activateEnemy();
-			timeFromLastSpawn = 0;
-		}
-
-		// Check collisions between enemies and the player
-		playerShip->CheckCollisionsWithEnemies(enemyShips);
-		lifesText->setText("Lifes: " + to_string(playerShip->GetLifes()));
-
-		// Shoots from the player
-		if (playerShip->GetShooting()) {
-			
-			activateProyectile(); // Get x and y of thge player
-		}
-
-		// Proyectile control
-		checkProyectiles();
-
 		//
-		
+		if (inMenu) {
+
+			quitGamePressed = ActionManager::GetInstance().getPressed("quit");
+
+			if (ActionManager::GetInstance().getReleased("accept")) {
+				StartGame();
+			}
+		}
+		else
+		{
+			// Time stuff
+			currentTime++;
+			timeFromLastSpawn++;
+
+			//Enemy spawn
+			if (timeFromLastSpawn > 10) {
+				//cout << "Spawning enemy" << endl;
+				activateEnemy();
+				timeFromLastSpawn = 0;
+			}
+
+			// Check collisions between enemies and the player
+			playerShip->CheckCollisionsWithEnemies(enemyShips);
+			lifesText->setText("Lifes: " + to_string(playerShip->GetLifes()));
+
+			// Shoots from the player
+			if (playerShip->GetShooting()) {
+
+				activateProyectile(); // Get x and y of thge player
+			}
+
+			// Proyectile control
+			checkProyectiles();
+		}
 	}
 
 	void GameManager::activateEnemy() {
@@ -144,3 +164,29 @@ using namespace VerticalShooter;
 			}
 		}
 	}
+
+	void VerticalShooter::GameManager::SetMenu()
+	{
+		int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
+		int screenHeight = RenderManager::GetInstance().SCREEN_HEIGHT;
+		// Set the menu texts
+		title1->x = screenWidth - (title1->getWidth()/2);
+		title1->y = 50;
+		title2->x = screenWidth - (title2->getWidth()/2);
+		title2->y = 100;
+		startInstructions->x = screenWidth - (startInstructions->getWidth() / 2);
+		startInstructions->y = 150;
+		quitInstructions->x = screenWidth - (quitInstructions->getWidth() / 2);
+		quitInstructions->y = 200;
+	}
+
+	void VerticalShooter::GameManager::StartGame()
+	{
+
+	}
+
+	void VerticalShooter::GameManager::EndGame()
+	{
+
+	}
+
