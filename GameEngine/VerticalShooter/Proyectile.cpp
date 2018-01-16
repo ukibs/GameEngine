@@ -63,6 +63,7 @@ int Proyectile::CheckCollisionsWithEnemies(vector<EnemyShip*> enemyShips)
 			int distance = abs((*esIT)->getDepth() - depth);
 			if (distance <= 1) {
 				cout << "Impact on " << (*esIT)->getName() << endl;
+				SoundManager::GetInstance().play("Explosion");
 				(*esIT)->Kill();
 				Kill();
 				return 100;

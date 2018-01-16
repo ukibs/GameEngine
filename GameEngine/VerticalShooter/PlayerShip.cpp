@@ -62,9 +62,22 @@ void PlayerShip::CheckCollisionsWithEnemies(vector<EnemyShip*> enemyShips)
 {
 	vector<EnemyShip*>::iterator esIT;
 	for (esIT = enemyShips.begin(); esIT < enemyShips.end(); esIT++) {
-		if (checkCollision(*esIT, x, y) && (*esIT)->getDepth() < 2){
+		if (checkCollision(*esIT, x, y) && (*esIT)->getDepth() <= 1){
 			cout << "Collision with " << (*esIT)->getName() << endl;
 			(*esIT)->Kill();
+			LoseLife();
 		}
+	}
+}
+
+void PlayerShip::LoseLife() {
+	lifes--;
+	if (lifes <= 0) {
+		// Game over
+	}
+	else {
+		x = RenderManager::GetInstance().SCREEN_WIDTH / 2 - width;
+		y = RenderManager::GetInstance().SCREEN_HEIGHT - 100;
+		SoundManager::GetInstance().play("Explosion");
 	}
 }

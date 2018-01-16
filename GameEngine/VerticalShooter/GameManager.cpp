@@ -28,7 +28,7 @@ using namespace VerticalShooter;
 		Image* img_alien = RenderManager::GetInstance().getImageByName("AlienShip");
 		for (int i = 0; i < 10; i++) {
 			string shipName = "EnemyShip" + to_string(i);
-			enemyShips.push_back(new EnemyShip(shipName, -50, -50, 70, 62, img_alien, 10));
+			enemyShips.push_back(new EnemyShip(shipName, -50, -50, 100, 85, img_alien, 10));
 		}
 
 		// Create the proyectiles
@@ -52,9 +52,27 @@ using namespace VerticalShooter;
 		maxScore = 0;
 
 		// Text stuff
-		scoreText = new Text("Score: " + to_string(currentScore), "ScoreText", 0, 0, 200, 100, 0, true);
+			// Game ones
+				// Score
+		scoreText = new Text("Score: " + to_string(currentScore), "ScoreText", 400, 20, 200, 100, 0, true);
 		scoreText->setFont("Config/xirod.ttf", 20);
 		scoreText->setColor(255, 255, 255);
+				// Life
+		lifesText = new Text("Lifes: " + to_string(playerShip->GetLifes()), "ScoreText", 20, 20, 200, 100, 0, true);
+		lifesText->setFont("Config/xirod.ttf", 20);
+		lifesText->setColor(255, 255, 255);
+			// Menu ones
+				// Title
+		title1 = new Text("Don't", "ScoreText", 20, 20, 200, 100, 0, true);
+		title1 ->setFont("Config/xirod.ttf", 40);
+		title1->setColor(255, 255, 255);
+
+		// Sounds
+		SoundManager::GetInstance().loadEffect("sound/Lazer.wav", "Lazer");
+		SoundManager::GetInstance().loadEffect("sound/Explosion.wav", "Explosion");
+
+		//
+		inMenu = true;
 	}
 
 
@@ -77,6 +95,7 @@ using namespace VerticalShooter;
 
 		// Check collisions between enemies and the player
 		playerShip->CheckCollisionsWithEnemies(enemyShips);
+		lifesText->setText("Lifes: " + to_string(playerShip->GetLifes()));
 
 		// Shoots from the player
 		if (playerShip->GetShooting()) {
@@ -107,6 +126,7 @@ using namespace VerticalShooter;
 		for (proyecIT = proyectiles.begin(); proyecIT < proyectiles.end(); proyecIT++) {
 			if ((*proyecIT)->isAlive() == false) {
 				(*proyecIT)->Activate(playerShip->x, playerShip->y);
+				SoundManager::GetInstance().play("Lazer");
 				return;
 			}
 		}
@@ -121,7 +141,6 @@ using namespace VerticalShooter;
 				// Order it to make the checkings
 				currentScore += (*proyecIT)->CheckCollisionsWithEnemies(enemyShips);
 				scoreText->setText("Score: " + to_string(currentScore));
-				
 			}
 		}
 	}

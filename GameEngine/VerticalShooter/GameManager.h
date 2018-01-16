@@ -7,11 +7,12 @@
 
 #include <vector>
 #include <string.h>
-
+// Engine headers
 #include "Object.h"
 #include "TimerManager.h"
 #include "Text.h"
-
+#include "SoundManager.h"
+//Game headers
 #include "EnemyShip.h"
 #include "PlayerShip.h"
 #include "WaterLayer.h"
@@ -19,14 +20,10 @@
 
 /*
 	Stuff to do
-	- Text
-		+ Lifes
-		+ Score
 	- Sound
 		+ Effects
 		+ Music
 	- Menu
-	- Colliders
 	- Botón para salir del juego
 */
 namespace VerticalShooter {
@@ -36,7 +33,13 @@ namespace VerticalShooter {
 		GameManager(string name, int x, int y, int w, int h, int depth = 0);
 		~GameManager();
 
+		bool GetQuitGame() { return inMenu && quitGamePressed; }
+
 	private:
+		// Menu variable
+		bool inMenu;
+		bool quitGamePressed;
+
 		// The player
 		PlayerShip * playerShip;
 
@@ -53,8 +56,14 @@ namespace VerticalShooter {
 		vector<WaterLayer*> waterLayers;
 
 		// Text stuff
+			// Game ones
 		Text * lifesText;
 		Text * scoreText;
+			// Menu ones
+		Text * title1;
+		Text * title2;
+		Text * startInstructions;
+		Text * quitInstructions;
 
 		// Score stuff
 		int currentScore;

@@ -5,12 +5,13 @@
 #endif // !GAMEMANAGER_H
 
 #include <vector>
-
+// Engine libraries
 #include "Object.h"
 #include "ObjectManager.h"
 #include "InputManager.h"
 #include "ActionManager.h"
-
+#include "SoundManager.h"
+// Game headers
 #include "EnemyShip.h"
 
 class PlayerShip : public Object
@@ -25,6 +26,7 @@ public:
 	void CheckCollisionsWithEnemies(vector<EnemyShip*>);
 
 	bool GetShooting() { return shooting; };
+	int GetLifes() { return lifes; };
 
 private:
 
@@ -33,5 +35,8 @@ private:
 	int lifes;
 
 	bool shooting;
+
+	//
+	void LoseLife();
 };
 

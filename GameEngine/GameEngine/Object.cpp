@@ -61,14 +61,12 @@ SDL_Rect Object::getCollider()
 bool Object::checkCollision(Object * b,int x, int y)
 {
 	collider->Update(x, y);
-	//collider.Update(this->x, this->y);
 	return collider->checkCollision(b->getCollider());
 }
 
 bool Object::anyCollision(int x, int y)
 {
 	collider->Update(x, y);
-	//collider.Update(this->x, this->y);
 	return collider->anyCollision();
 }
 
@@ -76,14 +74,12 @@ string Object::getCollisionName(int x, int y)
 {
 	collider->Update(x, y);
 	return collider->getCollisionName();
-	//collider.Update(this->x, this->y);
 }
 
 string Object::getCollisionTag(int x, int y)
 {
 	collider->Update(x, y);
 	return collider->getCollisionTag();
-	//collider.Update(this->x, this->y);
 }
 
 void Object::destroy()

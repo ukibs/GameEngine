@@ -47,6 +47,7 @@ int main(int argc, char* args[])
 		GameManager gameManager("GameManager", 0, 0, 0, 0);
 
 		//create some actions
+			// Movement ones
 		ActionManager::GetInstance().addAction("up", "w");
 		ActionManager::GetInstance().getActionByName("up")->addKey("up");
 		ActionManager::GetInstance().addAction("down", "s");
@@ -55,7 +56,10 @@ int main(int argc, char* args[])
 		ActionManager::GetInstance().getActionByName("left")->addKey("left");
 		ActionManager::GetInstance().addAction("right", "d");
 		ActionManager::GetInstance().getActionByName("right")->addKey("right");
+			// Action ones
 		ActionManager::GetInstance().addAction("shoot", "space");
+		ActionManager::GetInstance().addAction("accept", "enter");
+		ActionManager::GetInstance().addAction("quit", "scape");
 
 		//Main loop flag
 		bool quit = false;
@@ -63,16 +67,15 @@ int main(int argc, char* args[])
 		//While application is running
 		while (!quit)
 		{
-			//Handle events on queue
+			// Handle events on queue
+				// 
 			RenderManager::GetInstance().preUpdate();
-
+				// Action manager and the others
 			ActionManager::GetInstance().update();
-			quit = InputManager::GetInstance().checkQuit();
+			quit = InputManager::GetInstance().checkQuit() || gameManager.GetQuitGame();
+				// 
 			ObjectManager::GetInstance().update();
-
-			//playerShip.update();
 			RenderManager::GetInstance().postUpdate();
-
 			TimerManager::GetInstance().update();
 		}
 	}
