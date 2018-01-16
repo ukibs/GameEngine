@@ -40,19 +40,53 @@ InputManager::~InputManager()
 
 void InputManager::keyboardCheck()
 {
+	lMousePressed = false;
+	lMouseReleased = false;
+	rMousePressed = false;
+	rMouseReleased = false;
 	while (SDL_PollEvent(&e) != 0)
 	{
 		if (e.type == SDL_QUIT) {
 			quit = true;
 		}
-		int i = 0;
-		for (vector <key*>::iterator keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
-		{
-			if (keysToCheck[i])
-			{
-				(*keysIt)->updateData(e);
+		else if (e.type == SDL_MOUSEBUTTONDOWN) {
+			SDL_GetMouseState(&mouseX, &mouseY);
+			if (e.button.button == SDL_BUTTON_LEFT) {
+				if (!lMouseDown) {
+					lMousePressed = true;
+				}
+				lMouseDown = true;
 			}
-			i++;
+			if (e.button.button == SDL_BUTTON_RIGHT) {
+				if (!rMouseDown) {
+					rMousePressed = true;
+				}
+				rMouseDown = true;
+			}
+		}
+		else if (e.type == SDL_MOUSEBUTTONUP) {
+			if (e.button.button == SDL_BUTTON_LEFT) {
+				lMouseReleased = true;
+				lMouseDown = false;
+			}
+			if (e.button.button == SDL_BUTTON_RIGHT) {
+				rMouseReleased = true;
+				rMouseDown = false;
+			}
+		}
+		else if (e.type == SDL_MOUSEMOTION) {
+			SDL_GetMouseState(&mouseX, &mouseY);
+		}
+		else {
+			int i = 0;
+			for (vector <key*>::iterator keysIt = keys.begin(); keysIt != keys.end(); keysIt++)
+			{
+				if (keysToCheck[i])
+				{
+					(*keysIt)->updateData(e);
+				}
+				i++;
+			}
 		}
 	}
 }
