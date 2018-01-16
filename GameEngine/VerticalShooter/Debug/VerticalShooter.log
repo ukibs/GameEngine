@@ -1,6 +1,10 @@
-﻿  PlayerShip.cpp
-d:\documents\gameengine\gameengine\verticalshooter\playership.cpp(8): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\documents\gameengine\gameengine\verticalshooter\playership.cpp(48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\documents\gameengine\gameengine\verticalshooter\playership.cpp(50): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+﻿  WaterLayer.cpp
+d:\documents\gameengine\gameengine\verticalshooter\waterlayer.cpp(10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\gameengine\gameengine\verticalshooter\waterlayer.cpp(38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  GameManager.cpp
+d:\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(4): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(13): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+d:\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(22): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
   VerticalShooter.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\VerticalShooter.exe
   VerticalShooter.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\VerticalShooter.pdb (Partial PDB)

@@ -27,6 +27,7 @@
 		+ Music
 	- Menu
 	- Colliders
+	- Botón para salir del juego
 */
 namespace VerticalShooter {
 	class GameManager : public Object

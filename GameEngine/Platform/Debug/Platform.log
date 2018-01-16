@@ -1,6 +1,3 @@
-﻿  GameManager.cpp
-c:\users\aritz\documents\gameengine\gameengine\platform\gamemanager.cpp(7): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\aritz\documents\gameengine\gameengine\platform\gamemanager.cpp(65): warning C4101: 'item': unreferenced local variable
-c:\users\aritz\documents\gameengine\gameengine\platform\gamemanager.cpp(84): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.exe
-  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)
+﻿  main.cpp
+  Platform.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Platform.exe
+  Platform.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)

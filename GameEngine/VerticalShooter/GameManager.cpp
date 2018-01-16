@@ -17,7 +17,7 @@ using namespace VerticalShooter;
 		Image* img_water = RenderManager::GetInstance().getImageByName("Water");
 		int screenHeight = RenderManager::GetInstance().SCREEN_HEIGHT;
 		int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 7; i++) {
 			string layerName = "Water" + to_string(i);
 			waterLayers.push_back(new WaterLayer(layerName, 0, screenHeight + (i * 20) - 100, screenWidth, screenWidth * 0.75, img_water, 100 - (i * 20)));
 		}
@@ -52,7 +52,9 @@ using namespace VerticalShooter;
 		maxScore = 0;
 
 		// Text stuff
-		scoreText = new Text("Score: " + to_string(currentScore), "ScoreText", 0, 0, 100, 20, 0, true);
+		scoreText = new Text("Score: " + to_string(currentScore), "ScoreText", 0, 0, 200, 100, 0, true);
+		scoreText->setFont("Config/xirod.ttf", 20);
+		scoreText->setColor(255, 255, 255);
 	}
 
 
@@ -84,6 +86,9 @@ using namespace VerticalShooter;
 
 		// Proyectile control
 		checkProyectiles();
+
+		//
+		
 	}
 
 	void GameManager::activateEnemy() {
@@ -116,6 +121,7 @@ using namespace VerticalShooter;
 				// Order it to make the checkings
 				currentScore += (*proyecIT)->CheckCollisionsWithEnemies(enemyShips);
 				scoreText->setText("Score: " + to_string(currentScore));
+				
 			}
 		}
 	}

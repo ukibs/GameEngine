@@ -32,10 +32,10 @@ void Text::render(int x, int y, SDL_Rect * clip, double angle, SDL_Point * cente
 	SDL_RenderCopyEx(gRenderer, file, clip, &renderQuad, angle, center, flip);
 }
 
-bool Text::loadFromRenderedText(std::string textureText, SDL_Color textColor)
+bool Text::loadFromRenderedText(std::string textureText)
 {
 	//Render text surface
-	SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, textureText.c_str(), textColor);
+	SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, textureText.c_str(), color);
 	if (textSurface != NULL)
 	{
 		//Create texture from surface pixels
@@ -80,9 +80,15 @@ void Text::setText(string newText)
 	loadFromRenderedText(newText);
 }
 
-void Text::setFont(string path)
+void Text::setColor(Uint8 red, Uint8 green, Uint8 blue)
 {
-	gFont = TTF_OpenFont(path.c_str(), 10);
+	color = { red,green,blue };
+	loadFromRenderedText(text);
+}
+
+void Text::setFont(string path, int size)
+{
+	gFont = TTF_OpenFont(path.c_str(), size);
 }
 
 void Text::update()

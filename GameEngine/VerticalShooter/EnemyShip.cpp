@@ -13,7 +13,7 @@ EnemyShip::EnemyShip(string name, int x, int y, int w, int h, Image* sprite, int
 	alive = false;
 	maxHeight = h;
 	maxWidth = w;
-	speed = 0.05;
+	speed = 0.03;
 }
 
 
@@ -24,7 +24,7 @@ EnemyShip::~EnemyShip()
 void EnemyShip::Activate()
 {
 	alive = true;
-	y = rand() % (int)(RenderManager::GetInstance().SCREEN_HEIGHT - height);
+	floatY = rand() % (int)(RenderManager::GetInstance().SCREEN_HEIGHT - height - 100);
 	x = rand() % (int)(RenderManager::GetInstance().SCREEN_WIDTH - width);
 	floatDepth = 10;
 	//cout << "Activating: " << x << ", " << y << endl;
@@ -42,11 +42,13 @@ void EnemyShip::Kill()
 
 void EnemyShip::update() {
 	if (alive){
-		y += speed * 10;
+		// "Descending" movement
+		floatY += speed * 2;
+		y = floatY;
+		// Movement in z
 		floatDepth -= speed;
 		depth = floatDepth;
-		//cout << depth << ", " << floatDepth << endl;
-		//if (y > RenderManager::GetInstance().SCREEN_HEIGHT + 10) {
+		// Check to "get bigger" or deactivate
 		if(depth <= 0){
 			Kill();
 		}

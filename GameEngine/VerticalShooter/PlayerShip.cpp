@@ -9,6 +9,7 @@ PlayerShip::PlayerShip(string name, int x, int y, int w, int h, Image* sprite, i
 	setImage(sprite);
 	image.setWidth(w);
 	image.setHeight(h);
+	lifes = 3;
 }
 
 /*PlayerShip::PlayerShip(string name, int x, int y, int w, int h, GameManager * gameMgr, Image* sprite, int depth) : Object(name, x, y, depth, w, h)

@@ -11,17 +11,13 @@
 #include "InputManager.h"
 #include "ActionManager.h"
 
-//#include "GameManager.h"
 #include "EnemyShip.h"
-
-//using namespace VerticalShooter;
 
 class PlayerShip : public Object
 {
 public:
 	PlayerShip();
 	PlayerShip(string name, int x, int y, int w, int h, Image* sprite = NULL, int depth = 0);
-	//PlayerShip(string name, int x, int y, int w, int h, GameManager *, Image* sprite = NULL, int depth = 0);
 	~PlayerShip();
 
 	void update();
@@ -32,11 +28,9 @@ public:
 
 private:
 
-	//GameManager * gameMgr;
-
 	int speed = 10;
-	//Image * image;		// Revisar
 
+	int lifes;
 
 	bool shooting;
 };

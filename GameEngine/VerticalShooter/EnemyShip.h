@@ -25,5 +25,6 @@ private:
 	int maxWidth;
 
 	float floatDepth;
+	float floatY;
 };
 
