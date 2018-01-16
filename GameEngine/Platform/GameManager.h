@@ -43,6 +43,7 @@ namespace Platform {
 		vector<string> imgNames;
 		//random
 		random_device rd;
+		void initPull();
 	};
 };
 

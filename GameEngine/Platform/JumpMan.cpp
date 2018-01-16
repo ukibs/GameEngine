@@ -53,6 +53,10 @@ void JumpMan::update()
 			if (typeid(*item) == typeid(Item)) {
 				item->destroy();
 			}
+			else {
+				newX = x;
+				newY = y;
+			}
 		}
 	}
 	

@@ -7,6 +7,7 @@ GameManager::GameManager(string name, int x, int y, int w, int h, int depth) : O
 {
 	loadMedia();
 	initPlayer();
+	initPull();
 	initLevel(level);
 }
 
@@ -74,7 +75,7 @@ void Platform::GameManager::initItems(int nivel)
 		addItem("obj_item" + to_string(i), lvlsI[nivel][i][0], lvlsI[nivel][i][1], 0, 20, 20, imgName);
 	}
 	//create the final item to reset the game when you collect it
-	ItemFinal* itemF = new ItemFinal("obj_itemF", 500, 370, 0, 30, 30, this);
+	ItemFinal* itemF = new ItemFinal("obj_itemF", -lvlsI[nivel][i][0], -lvlsI[nivel][i][1], 0, 30, 30, this);
 	itemF->setImage(RenderManager::GetInstance().getImageByName("img_diamond"));
 	items.push_back(itemF);
 }
@@ -140,5 +141,28 @@ void Platform::GameManager::loadMedia()
 	RenderManager::GetInstance().addImage("images/diamond.png", "img_diamond");
 	//the image for the player
 	RenderManager::GetInstance().addImage("images/dot.bmp", "player");
+}
+
+void Platform::GameManager::initPull()
+{
+	Object* platform;
+	for (int i = 0; i < maxPlatf; i++) {
+		platform = new Object();
+		ObjectManager::GetInstance().addObject(platform);
+		platforms.push_back(platform);
+	}
+	
+	Item* item;
+	for (int i = 0; i < maxItems; i++) {
+		item = new Item();
+		ObjectManager::GetInstance().addObject(item);
+		items.push_back(item);
+	}
+	for (int i = 0; i < maxPlatf; i++) {
+		platforms[0]->destroy();
+	}
+	for (int i = 0; i < maxItems; i++) {
+		items[0]->destroy();
+	}
 }
 
