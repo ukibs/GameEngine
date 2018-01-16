@@ -80,6 +80,11 @@ namespace VerticalShooter {
 
 		void activateProyectile();
 		void checkProyectiles();
+
+		//
+		void SetMenu();
+		void StartGame();
+		void EndGame();
 	};
 }
 
