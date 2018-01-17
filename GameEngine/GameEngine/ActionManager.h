@@ -14,7 +14,6 @@ class ActionManager : public Singleton<ActionManager>
 {
 private:
 	vector <Action> actions;
-	vector <Action>::iterator actionIt;
 public:
 	ActionManager();
 	~ActionManager();
@@ -27,5 +26,6 @@ public:
 	bool getPressed(string name);
 	bool getReleased(string name);
 	Action* getActionByName(string name);
+	void close() { actions.clear(); };
 };
 

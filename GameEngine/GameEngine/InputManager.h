@@ -38,4 +38,5 @@ public:
 	bool getLeftMousePressed() { return lMousePressed; };
 	bool getLeftMouseReleased() { return lMouseReleased; };
 	bool getLeftMouseDown() { return lMouseDown; };
+	void close() { keys.clear(); };
 };

@@ -53,3 +53,8 @@ void ObjectManager::destroyObject(string name)
 		}
 	}
 }
+
+void ObjectManager::close()
+{
+	objects.clear();
+}

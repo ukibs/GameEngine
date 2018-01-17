@@ -4,15 +4,9 @@
 #include <cstdlib>
 #include <string>
 
-#include "InputManager.h"
-#include "ActionManager.h"
-#include "RenderManager.h"
-#include "ObjectManager.h"
-#include "TimerManager.h"
+#include "EngineManager.h"
 #include "SoundManager.h"
-#include "Image.h"
-#include "Text.h"
-#include "Object.h"
+
 #include "Player.h"
 #include "Enemy.h"
 
@@ -21,12 +15,7 @@
 int main(int argc, char* args[])
 {
 	//Create the managers
-	ObjectManager::CreateSingleton();
-	RenderManager::CreateSingleton();
-	InputManager::CreateSingleton();
-	ActionManager::CreateSingleton();
-	ColliderManager::CreateSingleton();
-	TimerManager::CreateSingleton();
+	EngineManager::CreateSingleton();
 	SoundManager::CreateSingleton();
 
 	//variables
@@ -34,7 +23,7 @@ int main(int argc, char* args[])
 
 
 	//Initialize SDL
-	if (!RenderManager::GetInstance().init())
+	if (!EngineManager::GetInstance().start())
 	{
 		printf("Failed to initialize!\n");
 	}
@@ -96,16 +85,12 @@ int main(int argc, char* args[])
 		while (!quit)
 		{
 			//Handle events on queue
-			RenderManager::GetInstance().preUpdate();
+			quit = EngineManager::GetInstance().update();
 					
 			if (InputManager::GetInstance().checkKey("space")) 
 			{
 				SoundManager::GetInstance().toggleMusic();
 			}
-
-			ActionManager::GetInstance().update();
-			ObjectManager::GetInstance().update();
-			
 
 			if (player.checkCollision(&enemy,player.x,player.y))
 			{
@@ -113,12 +98,8 @@ int main(int argc, char* args[])
 				enemy.caught();
 				//SoundManager::GetInstance().play("sound_1");
 			}
-			RenderManager::GetInstance().postUpdate();
-
-			TimerManager::GetInstance().update();
 			fps = TimerManager::GetInstance().getFPS();
 			prueba.setText(to_string(fps));
-			quit = InputManager::GetInstance().checkQuit();
 		}
 	}
 	return 0;

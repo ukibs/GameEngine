@@ -13,9 +13,7 @@ class SoundManager : public Singleton<SoundManager>
 {
 private:
 	vector <Sound> sounds;
-	vector <Sound>::iterator soundIt;
 	Mix_Music * gMusic;
-	void close();
 
 public:
 	bool loadMusic(string path,string name);
@@ -25,5 +23,6 @@ public:
 	~SoundManager();
 	void play(string name);
 	void toggleMusic();
+	void close();
 };
 

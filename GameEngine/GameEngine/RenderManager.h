@@ -17,7 +17,6 @@ private:
 	SDL_Renderer* gRenderer;
 	SDL_Window* gWindow = NULL;
 	vector<Image*> images;
-	vector<Image*>::iterator imageIt;
 public:
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;
@@ -29,7 +28,6 @@ public:
 	Image* getImageByName(string name);
 	void preUpdate();
 	SDL_Renderer* getRenderer();
-
-
+	void close();
 };
 

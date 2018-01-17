@@ -65,7 +65,7 @@ bool SoundManager::loadEffect(string path, string name)
 
 void SoundManager::close()
 {
-
+	sounds.clear();
 	//Free the music
 	Mix_FreeMusic(gMusic);
 	gMusic = NULL;
@@ -76,7 +76,7 @@ void SoundManager::close()
 
 void SoundManager::play(string name)
 {
-	for (soundIt = sounds.begin(); soundIt != sounds.end(); soundIt++) {
+	for (vector<Sound>::iterator soundIt = sounds.begin(); soundIt != sounds.end(); soundIt++) {
 		if (soundIt->GetName() == name) {
 			soundIt->play();
 		}

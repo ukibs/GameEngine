@@ -18,6 +18,8 @@ Image::Image(SDL_Renderer * gRendererRef, string path, string name,int depth,boo
 
 Image::~Image()
 {
+	SDL_DestroyTexture(file);
+	file = NULL;
 }
 
 void Image::render(int x, int y,SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)

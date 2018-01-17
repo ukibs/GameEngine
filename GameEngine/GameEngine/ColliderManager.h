@@ -18,5 +18,6 @@ public:
 	string getCollisionName(Collider check);
 	string getCollisionTag(Collider check);
 	void destroyCollider(string name);
+	void close() { colliders.clear(); };
 };
 

@@ -38,7 +38,7 @@ void ActionManager::addAction(string name,int numKeys, string keyName, ...) {
 
 void ActionManager::removeAction(string name)
 {
-	for (actionIt = actions.begin(); actionIt != actions.end(); actionIt++) {
+	for (vector <Action>::iterator actionIt = actions.begin(); actionIt != actions.end(); actionIt++) {
 		if (actionIt->getAction()==name) {
 			//hay que probarlo!!
 			actions.erase(actionIt);
@@ -49,7 +49,7 @@ void ActionManager::removeAction(string name)
 void ActionManager::update()
 {
 	InputManager::GetInstance().keyboardCheck();
-	for (actionIt = actions.begin(); actionIt != actions.end(); actionIt++) 
+	for (vector <Action>::iterator actionIt = actions.begin(); actionIt != actions.end(); actionIt++)
 	{
 		actionIt->update();
 	}
@@ -57,7 +57,7 @@ void ActionManager::update()
 
 bool ActionManager::getDown(string name)
 {
-	for (actionIt = actions.begin(); actionIt != actions.end(); actionIt++) 
+	for (vector <Action>::iterator actionIt = actions.begin(); actionIt != actions.end(); actionIt++)
 	{
 		if (actionIt->getAction() == name) 
 		{
@@ -70,7 +70,7 @@ bool ActionManager::getDown(string name)
 
 bool ActionManager::getPressed(string name)
 {
-	for (actionIt = actions.begin(); actionIt != actions.end(); actionIt++) {
+	for (vector <Action>::iterator actionIt = actions.begin(); actionIt != actions.end(); actionIt++) {
 		if (actionIt->getAction() == name) {
 			return actionIt->getPressed();
 		}
@@ -81,7 +81,7 @@ bool ActionManager::getPressed(string name)
 
 bool ActionManager::getReleased(string name)
 {
-	for (actionIt = actions.begin(); actionIt != actions.end(); actionIt++) {
+	for (vector <Action>::iterator actionIt = actions.begin(); actionIt != actions.end(); actionIt++) {
 		if (actionIt->getAction() == name) {
 			return actionIt->getReleased();
 		}
@@ -92,7 +92,7 @@ bool ActionManager::getReleased(string name)
 
 Action* ActionManager::getActionByName(string name)
 {
-	for (actionIt = actions.begin(); actionIt != actions.end(); actionIt++) {
+	for (vector <Action>::iterator actionIt = actions.begin(); actionIt != actions.end(); actionIt++) {
 		if (actionIt->getAction() == name) {
 			return &(*actionIt);
 		}

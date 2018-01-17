@@ -19,5 +19,6 @@ public:
 	void update();
 	Object* getObjectByName(string name);
 	void destroyObject(string name);
+	void close();
 };
 
