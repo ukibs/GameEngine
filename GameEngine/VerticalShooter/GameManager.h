@@ -62,8 +62,10 @@ namespace VerticalShooter {
 			// Menu ones
 		Text * title1;
 		Text * title2;
+		Text * title3;
 		Text * startInstructions;
 		Text * quitInstructions;
+		Text * bestScore;
 
 		// Score stuff
 		int currentScore;
@@ -83,8 +85,10 @@ namespace VerticalShooter {
 
 		//
 		void SetMenu();
+		void HideMenu();
 		void StartGame();
 		void EndGame();
+		void CleanEnemiesAndBullets();
 	};
 }
 

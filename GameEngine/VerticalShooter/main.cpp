@@ -58,8 +58,8 @@ int main(int argc, char* args[])
 		ActionManager::GetInstance().getActionByName("right")->addKey("right");
 			// Action ones
 		ActionManager::GetInstance().addAction("shoot", "space");
-		ActionManager::GetInstance().addAction("accept", "enter");
-		ActionManager::GetInstance().addAction("quit", "scape");
+		ActionManager::GetInstance().addAction("accept", "return");
+		ActionManager::GetInstance().addAction("quit", "escape");
 
 		//Main loop flag
 		bool quit = false;
