@@ -24,9 +24,11 @@ public:
 	void update();
 
 	void CheckCollisionsWithEnemies(vector<EnemyShip*>);
+	void Activate();
 
 	bool GetShooting() { return shooting; };
 	int GetLifes() { return lifes; };
+	void SetLifes(int value) { lifes = value; };
 
 private:
 

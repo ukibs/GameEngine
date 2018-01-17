@@ -2,8 +2,11 @@
 using namespace VerticalShooter;
 	GameManager::GameManager(string name, int x, int y, int w, int h, int depth) : Object(name, x, y, depth, w, h)
 	{
+		// Get the screen width an height for the start
+		int screenHeight = RenderManager::GetInstance().SCREEN_HEIGHT;
+		int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
+
 		// Images for the game
-		//RenderManager::GetInstance().addImage("images/Space.png", "Space");
 		RenderManager::GetInstance().addImage("images/PlayerShip.png", "PlayerShip");
 		RenderManager::GetInstance().addImage("images/Water.png", "Water");
 		RenderManager::GetInstance().addImage("images/AlienShip.png", "AlienShip");
@@ -14,33 +17,29 @@ using namespace VerticalShooter;
 		backGround->addImage("images/Space.png", "Space");
 
 		// Create the water layers
-		Image* img_water = RenderManager::GetInstance().getImageByName("Water");
-		int screenHeight = RenderManager::GetInstance().SCREEN_HEIGHT;
-		int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
+		/*Image* img_water = RenderManager::GetInstance().getImageByName("Water");
 		for (int i = 0; i < 7; i++) {
 			string layerName = "Water" + to_string(i);
 			waterLayers.push_back(new WaterLayer(layerName, 0, screenHeight + (i * 20) - 100, screenWidth, screenWidth * 0.75, img_water, 100 - (i * 20)));
-		}
-
-		
+		}*/
 
 		// Create the enemy ships
 		Image* img_alien = RenderManager::GetInstance().getImageByName("AlienShip");
 		for (int i = 0; i < 10; i++) {
 			string shipName = "EnemyShip" + to_string(i);
-			enemyShips.push_back(new EnemyShip(shipName, -50, -50, 100, 85, img_alien, 10));
+			enemyShips.push_back(new EnemyShip(shipName, screenWidth, screenHeight, 100, 85, img_alien, 10));
 		}
 
 		// Create the proyectiles
 		Image* img_proyectile = RenderManager::GetInstance().getImageByName("SpaceLemon");
 		for (int i = 0; i < 20; i++) {
 			string shipName = "Proyectile" + to_string(i);
-			proyectiles.push_back(new Proyectile(shipName, -50, -50, 12, 6, img_proyectile, 0));
+			proyectiles.push_back(new Proyectile(shipName, screenWidth, screenHeight, 12, 6, img_proyectile, 0));
 		}
 
 		// create the player
 		Image* img_player = RenderManager::GetInstance().getImageByName("PlayerShip");
-		playerShip = new PlayerShip("PlayerShip", 200, 200, 45, 37, img_player);
+		playerShip = new PlayerShip("PlayerShip", screenWidth, screenHeight, 45, 37, img_player);
 
 		// Timer shit
 		//TimerManager::GetInstance().getFPS();
@@ -69,6 +68,9 @@ using namespace VerticalShooter;
 		title2 = new Text("VERTICAL", "TitleText2", 20, 20, 200, 100, 0, true);
 		title2->setFont("Config/xirod.ttf", 40);
 		title2->setColor(255, 255, 255);
+		title3 = new Text("SHOOTER", "TitleText3", 20, 20, 200, 100, 0, true);
+		title3->setFont("Config/xirod.ttf", 40);
+		title3->setColor(255, 255, 255);
 				// Start instruction
 		startInstructions = new Text("ENTER TO START", "StartText", 20, 20, 200, 100, 0, true);
 		startInstructions->setFont("Config/xirod.ttf", 20);
@@ -77,6 +79,10 @@ using namespace VerticalShooter;
 		quitInstructions = new Text("QUIT TO EXIT", "QuitText", 20, 20, 200, 100, 0, true);
 		quitInstructions->setFont("Config/xirod.ttf", 20);
 		quitInstructions->setColor(255, 255, 255);
+				// Best score
+		bestScore = new Text("MAX SCORE: 0", "QuitText", 20, 20, 200, 100, 0, true);
+		bestScore->setFont("Config/xirod.ttf", 20);
+		bestScore->setColor(255, 255, 255);
 
 		// Sounds
 		SoundManager::GetInstance().loadEffect("sound/Lazer.wav", "Lazer");
@@ -84,6 +90,9 @@ using namespace VerticalShooter;
 
 		//
 		inMenu = true;
+
+		//
+		SetMenu();
 	}
 
 
@@ -99,6 +108,7 @@ using namespace VerticalShooter;
 			quitGamePressed = ActionManager::GetInstance().getPressed("quit");
 
 			if (ActionManager::GetInstance().getReleased("accept")) {
+				HideMenu();
 				StartGame();
 			}
 		}
@@ -118,6 +128,7 @@ using namespace VerticalShooter;
 			// Check collisions between enemies and the player
 			playerShip->CheckCollisionsWithEnemies(enemyShips);
 			lifesText->setText("Lifes: " + to_string(playerShip->GetLifes()));
+			
 
 			// Shoots from the player
 			if (playerShip->GetShooting()) {
@@ -127,6 +138,13 @@ using namespace VerticalShooter;
 
 			// Proyectile control
 			checkProyectiles();
+
+			// Game over check
+			if (playerShip->GetLifes() <= 0 || ActionManager::GetInstance().getPressed("quit")) {
+				playerShip->SetLifes(0);
+				EndGame();
+				SetMenu();
+			}
 		}
 	}
 
@@ -170,23 +188,71 @@ using namespace VerticalShooter;
 		int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
 		int screenHeight = RenderManager::GetInstance().SCREEN_HEIGHT;
 		// Set the menu texts
-		title1->x = screenWidth - (title1->getWidth()/2);
+		title1->x = screenWidth / 2 - (title1->getWidth()/2);
 		title1->y = 50;
-		title2->x = screenWidth - (title2->getWidth()/2);
-		title2->y = 100;
-		startInstructions->x = screenWidth - (startInstructions->getWidth() / 2);
-		startInstructions->y = 150;
-		quitInstructions->x = screenWidth - (quitInstructions->getWidth() / 2);
-		quitInstructions->y = 200;
+		title2->x = screenWidth / 2 - (title2->getWidth()/2);
+		title2->y = 120;
+		title3->x = screenWidth / 2 - (title2->getWidth() / 2);
+		title3->y = 190;
+		startInstructions->x = screenWidth / 2 - (startInstructions->getWidth() / 2);
+		startInstructions->y = 300;
+		quitInstructions->x = screenWidth / 2 - (quitInstructions->getWidth() / 2);
+		quitInstructions->y = 350;
+		bestScore->x = screenWidth - bestScore->getWidth() - 10;
+		bestScore->y = 10;
+		//
+		lifesText->x = 1000;
+		scoreText->y = 1000;
+	}
+
+	void VerticalShooter::GameManager::HideMenu()
+	{
+		int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
+		// 
+		title1->x = 1000;
+		title2->x = 1000;
+		title3->x = 1000;
+		startInstructions->x = 1000;
+		quitInstructions->x = 1000;
+		bestScore->x = 1000;
+		//
+		lifesText->x = 10;
+		scoreText->x = screenWidth - scoreText->getWidth() - 10;
 	}
 
 	void VerticalShooter::GameManager::StartGame()
 	{
-
+		inMenu = false;
+		playerShip->Activate();
 	}
 
 	void VerticalShooter::GameManager::EndGame()
 	{
+		if (maxScore < currentScore) {
+			maxScore = currentScore;
+		}
+		bestScore->setText("Max score: " + to_string(maxScore));
+		currentScore = 0;
+		inMenu = true;
+		// Clean screen
+		CleanEnemiesAndBullets();
+	}
 
+	void VerticalShooter::GameManager::CleanEnemiesAndBullets()
+	{
+		// Enemies
+		vector<EnemyShip*>::iterator esIT;
+		for (esIT = enemyShips.begin(); esIT < enemyShips.end(); esIT++) {
+			if ((*esIT)->isAlive() == true) {
+				(*esIT)->Kill();
+			}
+		}
+		// Bullets
+		vector<Proyectile*>::iterator proyecIT;
+		for (proyecIT = proyectiles.begin(); proyecIT < proyectiles.end(); proyecIT++) {
+			if ((*proyecIT)->isAlive() == true) {
+				(*proyecIT)->Kill();
+			}
+		}
 	}
 
