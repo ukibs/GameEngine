@@ -88,6 +88,9 @@ using namespace VerticalShooter;
 		SoundManager::GetInstance().loadEffect("sound/Lazer.wav", "Lazer");
 		SoundManager::GetInstance().loadEffect("sound/Explosion.wav", "Explosion");
 
+		// Music
+		SoundManager::GetInstance().loadMusic("sound/MenuMusic.mp3", "MenuMusic");
+		SoundManager::GetInstance().loadMusic("sound/GameMusic.mp3", "GameMusic");
 		//
 		inMenu = true;
 
@@ -202,7 +205,9 @@ using namespace VerticalShooter;
 		bestScore->y = 10;
 		//
 		lifesText->x = 1000;
-		scoreText->y = 1000;
+		scoreText->x = 1000;
+		// Music
+		SoundManager::GetInstance().play("MenuMusic");
 	}
 
 	void VerticalShooter::GameManager::HideMenu()
@@ -224,6 +229,7 @@ using namespace VerticalShooter;
 	{
 		inMenu = false;
 		playerShip->Activate();
+		SoundManager::GetInstance().play("GameMusic");
 	}
 
 	void VerticalShooter::GameManager::EndGame()
