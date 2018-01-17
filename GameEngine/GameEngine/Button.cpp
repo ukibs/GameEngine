@@ -17,9 +17,9 @@ Button::~Button()
 }
 
 void Button::update() {
-	int mouseX = InputManager::GetInstance().getMouseX();
-	int mouseY = InputManager::GetInstance().getMouseY();
-	if (area.x >= mouseX && area.x + area.w <= mouseX && area.y >= mouseY && area.y + area.y <= mouseY) {
+	int mouseX =  InputManager::GetInstance().getMouseX();
+	int mouseY =  InputManager::GetInstance().getMouseY();
+	if ((area.x <= mouseX) && ((area.x + area.w) >= mouseX) && (area.y <= mouseY) && ((area.y + area.h) >= mouseY)) {
 		if (InputManager::GetInstance().getLeftMousePressed()) {
 			onClick();
 		}

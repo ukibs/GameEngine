@@ -10,7 +10,8 @@ GameManager::GameManager(string name, int x, int y, int w, int h, int depth) : O
 	initWalls();
 	initPull();
 	initLevel(level);
-	Button button = Button("obj_but1", "Boton 1", 50, 50, 0, 30, 30);
+	Button button = (* new Button("obj_but1", "Boton 1", 50, 50, 0, 40, 20));
+	button.setImage(RenderManager::GetInstance().getImageByName("img_plt"));
 }
 
 
