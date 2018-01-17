@@ -1,7 +1,7 @@
 #pragma once
-#include "Object.h"
+#include "EngineManager.h"
 #include "SoundManager.h"
-#include "Timer.h"
+
 class Item: public Object
 {
 public:

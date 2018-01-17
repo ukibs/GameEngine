@@ -55,6 +55,5 @@ void EngineManager::close()
 	ActionManager::GetInstance();
 	InputManager::GetInstance().close();
 	InputManager::DestroySingleton();
-	TimerManager::GetInstance().close();
 	TimerManager::DestroySingleton();
 }

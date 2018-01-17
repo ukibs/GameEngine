@@ -1,5 +1,5 @@
 #pragma once
-#include "Object.h"
+#include "EngineManager.h"
 #include "Item.h"
 #include <random>
 #include "JumpMan.h"
@@ -19,7 +19,7 @@ namespace Platform {
 		JumpMan* player;
 		vector<Object*> walls;
 		vector<Object*> platforms;
-		virtual void update();
+		void update() {};
 		void initLevel(int nivel);
 		void initWalls();
 		void initPlatforms(int nivel);

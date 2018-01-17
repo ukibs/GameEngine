@@ -28,6 +28,7 @@ void ObjectManager::update()
 	for (vector <Object*>::iterator objIt = objects.begin(); objIt != objects.end(); objIt++)
 	{
 		(*objIt)->postUpdate();
+		i++;
 		
 	}
 }

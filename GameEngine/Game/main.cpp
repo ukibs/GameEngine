@@ -101,6 +101,8 @@ int main(int argc, char* args[])
 			fps = TimerManager::GetInstance().getFPS();
 			prueba.setText(to_string(fps));
 		}
+		SoundManager::GetInstance().close();
+		EngineManager::GetInstance().close();
 	}
 	return 0;
 }
