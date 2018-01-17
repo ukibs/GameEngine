@@ -43,20 +43,17 @@ void JumpMan::update()
 	newY = y + ySpeed;
 
 	//check to collect items
-	string checkName = getCollisionName(newX, newY);
+	string checkName = checkForItem(newX,newY);
 	if (checkName != "") {
 		Object* check = ObjectManager::GetInstance().getObjectByName(checkName);
-
-		if (typeid(*check) == typeid(Item) || typeid(*check) == typeid(ItemFinal)) {
-			Item *item = dynamic_cast<Item *>(check);
-			item->collect();
-			if (typeid(*item) == typeid(Item)) {
-				item->destroy();
-			}
-			else {
-				newX = x;
-				newY = y;
-			}
+		Item *item = dynamic_cast<Item *>(check);
+		item->collect();
+		if (typeid(*item) == typeid(Item)) {
+			item->kill();
+		}
+		else {
+			newX = x;
+			newY = y;
 		}
 	}
 	
@@ -123,4 +120,45 @@ void JumpMan::addImage(Image * newImage)
 
 JumpMan::~JumpMan()
 {
+}
+
+string JumpMan::checkForItem(int newX, int newY)
+{
+	string checkName = getCollisionName(newX, newY);
+	//si colisiona con algo
+	if (checkName != "") {
+		Object* check = ObjectManager::GetInstance().getObjectByName(checkName);
+		//si es item devuelve su nombre
+		if (typeid(*check) == typeid(Item) || typeid(*check) == typeid(ItemFinal)) {
+			return checkName;
+		}
+		//si no es item busca la colision en eje x
+		else {
+			checkName = getCollisionName(newX, y);
+			if (checkName != "") {
+				Object* check = ObjectManager::GetInstance().getObjectByName(checkName);
+
+				if (typeid(*check) == typeid(Item) || typeid(*check) == typeid(ItemFinal)) {
+					return checkName;
+				}
+			}
+			//si colisiona con un no item en x prueba en y
+			else {
+				checkName = getCollisionName(x, newY);
+				if (checkName != "") {
+					Object* check = ObjectManager::GetInstance().getObjectByName(checkName);
+
+					if (typeid(*check) == typeid(Item) || typeid(*check) == typeid(ItemFinal)) {
+						return checkName;
+					}
+				}
+				else return "";
+			}
+		}
+	}
+	//si no colisiona con nada
+	else {
+		return "";
+	}
+	return "";
 }

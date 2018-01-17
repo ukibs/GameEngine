@@ -13,11 +13,11 @@ namespace Platform {
 	public:
 		GameManager(string name, int x, int y, int w, int h, int depth = 0);
 		~GameManager();
-		void addItem(string name, int x, int y, int depth, int w, int h, string imageName);
 		void reset();
 	private:
 		vector<Item*> items;
 		JumpMan* player;
+		vector<Object*> walls;
 		vector<Object*> platforms;
 		virtual void update();
 		void initLevel(int nivel);
