@@ -6,12 +6,14 @@ class Item: public Object
 {
 public:
 	Item();
-	Item(string name, int x, int y, int depth, float w, float h,Uint8 time=30);
+	Item(string name, int x, int y, int depth, float w, float h,int time=10000);
 	~Item();
 	virtual void collect();
+	void kill();
+	void restart(int newX,int newY);
 	void update();
 private:
-	//Uint8 time;
-	//Timer timer;
+	Timer timer;
+	int time;
 };
 

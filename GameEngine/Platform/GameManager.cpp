@@ -7,6 +7,7 @@ GameManager::GameManager(string name, int x, int y, int w, int h, int depth) : O
 {
 	loadMedia();
 	initPlayer();
+	initWalls();
 	initPull();
 	initLevel(level);
 }
@@ -16,12 +17,9 @@ GameManager::~GameManager()
 {
 }
 
-void GameManager::update() {
-}
-
 void Platform::GameManager::initLevel(int nivel)
 {
-	initWalls();
+	
 	initPlatforms(nivel);
 	initItems(nivel);
 }
@@ -36,56 +34,46 @@ void Platform::GameManager::initWalls()
 	//create the walls
 	Object* wall=new Object("obj_wall1", 0, 0, 0, 640, 20);
 	wall->setImage(img_horWall);
-	platforms.push_back(wall);
+	walls.push_back(wall);
 	wall = new Object("obj_wall2", 0, 460, 0, 640, 20);
 	wall->setImage(img_horWall);
-	platforms.push_back(wall);
+	walls.push_back(wall);
 	wall = new Object("obj_wall3", 0, 20, 0, 20, 480);
 	wall->setImage(img_verWall);
-	platforms.push_back(wall);
+	walls.push_back(wall);
 	wall = new Object("obj_wall4", 620, 0, 0, 20, 480);
 	wall->setImage(img_verWall);
-	platforms.push_back(wall);
+	walls.push_back(wall);
 }
 
 void Platform::GameManager::initPlatforms(int nivel)
 {
-	Image * img_plt = RenderManager::GetInstance().getImageByName("img_plt");
-	//create the platforms
-	Object* platform;
+	vector<Object*>::iterator pltIt = platforms.begin();
 	for (int i = 0; i < sizeof(lvlsP[nivel])/6; i++) {
 		if (lvlsP[nivel][i][0] == 0 || lvlsP[nivel][i][1] == 0) { return; }
-		platform = new Object("obj_plt" + to_string(i), lvlsP[nivel][i][0], lvlsP[nivel][i][1], 0, 40, 20);
-		platform->setImage(img_plt);
-		platforms.push_back(platform);
+		(*pltIt)->x = lvlsP[nivel][i][0];
+		(*pltIt)->y = lvlsP[nivel][i][1];
+		pltIt++;
 	}
 }
 
 void Platform::GameManager::initItems(int nivel)
 {
-	Item* item;
+	vector<Item*>::iterator itemIt = items.begin();
 	int i = 0;
-	for (i = 0; i < sizeof(lvlsI[nivel]) / 6; i++) {
+	for (i; i < sizeof(lvlsI[nivel]) / 6; i++) {
 		if (lvlsI[nivel][i][0] <= 0 || lvlsI[nivel][i][1] <= 0) { break; }
-		//generate a random int lower than the number of item images
 		mt19937 rng(rd());
-		uniform_int_distribution<int> uni(0, imgNames.size()-1);
+		uniform_int_distribution<int> uni(0, imgNames.size() - 1);
 		int rnd = uni(rng);
 		string imgName = imgNames[rnd];
-		addItem("obj_item" + to_string(i), lvlsI[nivel][i][0], lvlsI[nivel][i][1], 0, 20, 20, imgName);
+		(*itemIt)->setImage(RenderManager::GetInstance().getImageByName(imgName));
+		(*itemIt)->restart(lvlsI[nivel][i][0],lvlsI[nivel][i][1]);
+		itemIt++;
 	}
-	//create the final item to reset the game when you collect it
-	ItemFinal* itemF = new ItemFinal("obj_itemF", -lvlsI[nivel][i][0], -lvlsI[nivel][i][1], 0, 30, 30, this);
-	itemF->setImage(RenderManager::GetInstance().getImageByName("img_diamond"));
-	items.push_back(itemF);
-}
-
-void Platform::GameManager::addItem(string name, int x,int y,int depth, int w, int h, string imgName) {
-	//create an item
-	Item* item = new Item(name, x, y, depth, w, h);
-	Image* img_Item = RenderManager::GetInstance().getImageByName(imgName);
-	item->setImage(img_Item);
-	items.push_back(item);
+	itemIt = items.end()-1;
+	(*itemIt)->x = -lvlsI[nivel][i][0];
+	(*itemIt)->y = -lvlsI[nivel][i][1];
 }
 
 void Platform::GameManager::reset()
@@ -109,18 +97,22 @@ void Platform::GameManager::initPlayer()
 
 void Platform::GameManager::cleanPlatforms()
 {
+	int s_W = RenderManager::GetInstance().SCREEN_WIDTH;
+	int s_H = RenderManager::GetInstance().SCREEN_HEIGHT;
 	for (vector <Object*>::iterator pltIt = platforms.begin(); pltIt != platforms.end(); pltIt++) {
-		(*pltIt)->destroy();
+		(*pltIt)->x=s_W;
+		(*pltIt)->y = s_H;
 	}
-	platforms.clear();
 }
 
 void Platform::GameManager::cleanItems()
 {
+	int s_W = RenderManager::GetInstance().SCREEN_WIDTH;
+	int s_H = RenderManager::GetInstance().SCREEN_HEIGHT;
 	for (vector <Item*>::iterator itemIt = items.begin(); itemIt != items.end(); itemIt++) {
-		(*itemIt)->destroy();
+		(*itemIt)->x = s_W;
+		(*itemIt)->y = s_H;
 	}
-	items.clear();
 }
 
 void Platform::GameManager::loadMedia()
@@ -145,24 +137,26 @@ void Platform::GameManager::loadMedia()
 
 void Platform::GameManager::initPull()
 {
+	int s_W = RenderManager::GetInstance().SCREEN_WIDTH;
+	int s_H = RenderManager::GetInstance().SCREEN_HEIGHT;
+	//create the pull of platforms
 	Object* platform;
+	Image * img_plt = RenderManager::GetInstance().getImageByName("img_plt");
 	for (int i = 0; i < maxPlatf; i++) {
-		platform = new Object();
-		ObjectManager::GetInstance().addObject(platform);
+		platform = new Object("obj_plt" + to_string(i), s_W, s_H, 0, 40, 20);
+		platform->setImage(img_plt);
 		platforms.push_back(platform);
 	}
-	
+	//create the pull of objects
 	Item* item;
-	for (int i = 0; i < maxItems; i++) {
-		item = new Item();
-		ObjectManager::GetInstance().addObject(item);
+	for (int i = 0; i < maxItems-1; i++) {
+		item = new Item("obj_item" + to_string(i), 0, 0, 0, 20, 20);
+		item->kill();
 		items.push_back(item);
 	}
-	for (int i = 0; i < maxPlatf; i++) {
-		platforms[0]->destroy();
-	}
-	for (int i = 0; i < maxItems; i++) {
-		items[0]->destroy();
-	}
+	//create the final item
+	ItemFinal* itemF= new ItemFinal("obj_itemF", s_W ,s_H , 0, 30, 30, this);
+	itemF->setImage(RenderManager::GetInstance().getImageByName("img_diamond"));
+	items.push_back(itemF);
 }
 

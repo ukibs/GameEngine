@@ -9,6 +9,7 @@ public:
 	~ItemFinal();
 	void collect();
 	bool getCollected() { return collected; }
+	void update() {};
 private:
 	GameManager* manager;
 	bool collected = false;

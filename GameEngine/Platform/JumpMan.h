@@ -29,5 +29,6 @@ private:
 	bool jumping;
 	int gravity;
 	Image * sprite;
+	string checkForItem(int newX, int newY);
 };
 

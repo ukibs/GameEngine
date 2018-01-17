@@ -4,25 +4,38 @@ Item::Item():Object()
 {
 }
 
-Item::Item(string name, int x, int y, int depth, float w, float h,Uint8 time) : Object(name, x, y, depth, w, h)
+Item::Item(string name, int x, int y, int depth, float w, float h,int time) : Object(name, x, y, depth, w, h)
 {
-	//this->time = time;
-	//timer.start();
+	this->time = time;
+	timer.start();
 }
 
 
 Item::~Item()
 {
 }
+
+void Item::update() {
+	if (time <= timer.getTicks()) {
+		kill();
+	}
+}
+
 //lo que haria al ser recogida
 void Item::collect()
 {
 	SoundManager::GetInstance().play("sound_1");
 }
+//lo quita de pantalla
+void Item::kill() {
+	x = RenderManager::GetInstance().SCREEN_WIDTH;
+	y= RenderManager::GetInstance().SCREEN_HEIGHT;
+	timer.stop();
+}
 
-void Item::update()
+void Item::restart(int newX, int newY)
 {
-	/*if (timer.getTicks() >= time) {
-		collect();
-	}*/
+	x = newX;
+	y = newY;
+	timer.start();
 }
