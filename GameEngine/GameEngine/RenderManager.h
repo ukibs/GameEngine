@@ -17,6 +17,8 @@ private:
 	SDL_Renderer* gRenderer;
 	SDL_Window* gWindow = NULL;
 	vector<Image*> images;
+	vector<Image*> imgToRender;
+	void render();
 public:
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;
@@ -29,5 +31,6 @@ public:
 	void preUpdate();
 	SDL_Renderer* getRenderer();
 	void close();
+	void addToRender(Image* img);
 };
 

@@ -1,5 +1,5 @@
 #include "Image.h"
-
+#include "RenderManager.h"
 
 
 Image::Image()
@@ -22,7 +22,14 @@ Image::~Image()
 	file = NULL;
 }
 
-void Image::render(int x, int y,SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)
+void Image::setToRender(int x,int y)
+{
+	this->x = x;
+	this->y = y;
+	RenderManager::GetInstance().addToRender(this);
+}
+
+void Image::render(SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)
 {
 	//set rendering space and render to screen
 	SDL_Rect renderQuad = { x,y,width,height };

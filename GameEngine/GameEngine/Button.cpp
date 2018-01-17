@@ -2,7 +2,7 @@
 
 
 
-Button::Button(string name, string text, int x, int y, int depth, float w, float h):Object(name,x,y,depth,0,0)
+Button::Button(string name, string text, int x, int y, int depth, float w, float h):Object(name,x,y,depth,w,h)
 {
 	this->text = new Text(text, "text_"+name, x, y, w, h, depth, true);
 	area.x = x;
@@ -27,10 +27,6 @@ void Button::update() {
 			onOver();
 		}
 	}
-	if(image!=NULL){
-		image->render(x, y);
-	}
-	
 }
 
 void Button::onClick() {

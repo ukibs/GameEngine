@@ -38,5 +38,7 @@ public:
 	string getName();
 	float getWidth() { return width; };
 	float getHeight() { return height; };
+	void setImageWidth(int w) { image.setWidth(w); };
+	void setImageHeight(int h) { image.setHeight(h); };
 };
 

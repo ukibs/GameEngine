@@ -10,8 +10,11 @@ GameManager::GameManager(string name, int x, int y, int w, int h, int depth) : O
 	initWalls();
 	initPull();
 	initLevel(level);
-	Button button = (* new Button("obj_but1", "Boton 1", 50, 50, 0, 40, 20));
-	button.setImage(RenderManager::GetInstance().getImageByName("img_plt"));
+	Button *button = new Button("obj_but1", "Boton 1", 50, 50, 0, 40, 20);
+	Image* img_b = RenderManager::GetInstance().getImageByName("img_button");
+	button->setImage(img_b);
+	button->setImageHeight(20);
+	button->setImageWidth(40);
 }
 
 
@@ -112,8 +115,7 @@ void Platform::GameManager::cleanItems()
 	int s_W = RenderManager::GetInstance().SCREEN_WIDTH;
 	int s_H = RenderManager::GetInstance().SCREEN_HEIGHT;
 	for (vector <Item*>::iterator itemIt = items.begin(); itemIt != items.end(); itemIt++) {
-		(*itemIt)->x = s_W;
-		(*itemIt)->y = s_H;
+		(*itemIt)->kill();
 	}
 }
 
@@ -135,6 +137,7 @@ void Platform::GameManager::loadMedia()
 	RenderManager::GetInstance().addImage("images/diamond.png", "img_diamond");
 	//the image for the player
 	RenderManager::GetInstance().addImage("images/dot.bmp", "player");
+	RenderManager::GetInstance().addImage("images/button.png", "img_button");
 }
 
 void Platform::GameManager::initPull()
@@ -152,7 +155,7 @@ void Platform::GameManager::initPull()
 	//create the pull of objects
 	Item* item;
 	for (int i = 0; i < maxItems-1; i++) {
-		item = new Item("obj_item" + to_string(i), 0, 0, 0, 20, 20);
+		item = new Item("obj_item" + to_string(i), s_W, s_H, 0, 20, 20);
 		item->kill();
 		items.push_back(item);
 	}

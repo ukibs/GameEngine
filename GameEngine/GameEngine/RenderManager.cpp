@@ -16,6 +16,27 @@ void RenderManager::close()
 	SDL_Quit();
 }
 
+void RenderManager::addToRender(Image* img)
+{
+	int i = 0;
+	for (vector<Image*>::iterator imgIt = imgToRender.begin(); imgIt != imgToRender.end(); imgIt++) {
+		if ((*imgIt)->getDepth() <= img->getDepth()) {
+			imgToRender.insert(imgIt, img);
+			return;
+		}
+	}
+	imgToRender.push_back(img);
+}
+
+void RenderManager::render()
+{
+	vector<Image*>::iterator imgIt = imgToRender.end() - 1;
+	for (imgIt; imgIt != imgToRender.begin(); imgIt--) {
+		(*imgIt)->render();
+	}
+	(*imgIt)->render();
+}
+
 RenderManager::RenderManager()
 {
 }
@@ -88,7 +109,9 @@ bool RenderManager::init()
 
 void RenderManager::postUpdate()
 {
+	render();
 	SDL_RenderPresent(gRenderer);
+	imgToRender.clear();
 }
 
 void RenderManager::addImage(std::string path,std::string name)

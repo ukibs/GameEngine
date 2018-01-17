@@ -31,7 +31,7 @@ void Object::start()
 void Object::postUpdate()
 {
 		update();
-		image.render(x, y);
+		image.setToRender(x, y);
 		collider->Update(x, y);
 }
 
