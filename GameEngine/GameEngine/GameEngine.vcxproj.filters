@@ -57,9 +57,12 @@
     <ClInclude Include="Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+>>>>>>> 0bb4bf51249e52aef0deccab09c33df070f9a733
     <ClInclude Include="EngineManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -104,9 +107,12 @@
     <ClCompile Include="Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+=======
+>>>>>>> 0bb4bf51249e52aef0deccab09c33df070f9a733
     <ClCompile Include="EngineManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

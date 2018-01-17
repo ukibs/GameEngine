@@ -5,39 +5,23 @@
 #include <string>
 
 // Engine ones
-#include "InputManager.h"
-#include "ActionManager.h"
-#include "RenderManager.h"
-#include "ObjectManager.h"
-#include "TimerManager.h"
+#include "EngineManager.h"
 #include "SoundManager.h"
-#include "Image.h"
-#include "Text.h"
-#include "Object.h"
 
 //Game ones
-#include "PlayerShip.h"
-#include "EnemyShip.h"
 #include "GameManager.h"
+
 using namespace VerticalShooter;
 
 #undef main
 int main(int argc, char* args[])
 {
-	//Create the managers
-	ObjectManager::CreateSingleton();
-	RenderManager::CreateSingleton();
-	InputManager::CreateSingleton();
-	ActionManager::CreateSingleton();
-	ColliderManager::CreateSingleton();
-	TimerManager::CreateSingleton();
+	// Create the managers
+	EngineManager::CreateSingleton();
 	SoundManager::CreateSingleton();
-
-	//variables
-
-
-	//Initialize SDL
-	if (!RenderManager::GetInstance().init() || !SoundManager::GetInstance().init())
+	
+	// Initialize SDL
+	if (!EngineManager::GetInstance().start() || !SoundManager::GetInstance().init())
 	{
 		printf("Failed to initialize!\n");
 	}
@@ -67,17 +51,12 @@ int main(int argc, char* args[])
 		//While application is running
 		while (!quit)
 		{
-			// Handle events on queue
-				// 
-			RenderManager::GetInstance().preUpdate();
-				// Action manager and the others
-			ActionManager::GetInstance().update();
-			quit = InputManager::GetInstance().checkQuit() || gameManager.GetQuitGame();
-				// 
-			ObjectManager::GetInstance().update();
-			RenderManager::GetInstance().postUpdate();
-			TimerManager::GetInstance().update();
+			quit = EngineManager::GetInstance().update() || gameManager.GetQuitGame();
 		}
+
+		//Close everything
+		SoundManager::GetInstance().close();
+		EngineManager::GetInstance().close();
 	}
 	return 0;
 }
