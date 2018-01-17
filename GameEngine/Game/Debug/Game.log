@@ -1,2 +1,6 @@
-﻿  Game.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Game.exe
+﻿  Player.cpp
+  main.cpp
+  Enemy.cpp
+  Generating Code...
+  Game.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Game.exe
   Game.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Game.pdb (Full PDB)

@@ -1,3 +1,11 @@
 ﻿  main.cpp
+  JumpMan.cpp
+d:\documents\gameengine\gameengine\platform\jumpman.cpp(10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ItemFinal.cpp
+  Item.cpp
+d:\documents\gameengine\gameengine\platform\item.cpp(19): warning C4018: '<=': signed/unsigned mismatch
+  GameManager.cpp
+d:\documents\gameengine\gameengine\platform\gamemanager.cpp(7): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   Platform.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Platform.exe
   Platform.vcxproj -> D:\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)
