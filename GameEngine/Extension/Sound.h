@@ -18,6 +18,7 @@ public:
 	std::string GetName();
 	void play();
 	void stop();
+	void destroy();
 	~Sound();
 };
 

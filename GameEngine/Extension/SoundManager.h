@@ -12,8 +12,7 @@ using namespace std;
 class SoundManager : public Singleton<SoundManager>
 {
 private:
-	vector <Sound> sounds;
-	Mix_Music * gMusic;
+	vector <Sound*> sounds;
 
 public:
 	bool loadMusic(string path,string name);
@@ -22,6 +21,7 @@ public:
 	SoundManager();
 	~SoundManager();
 	void play(string name);
+	void stopMusic();
 	void toggleMusic();
 	void close();
 };

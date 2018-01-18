@@ -37,12 +37,14 @@ bool SoundManager::loadMusic(string path,string name)
 	bool success = true;
 
 	//Load music
-	Mix_Music *newMusic = Mix_LoadMUS(path.c_str());
+	Mix_Music *newMusic;
+	newMusic = Mix_LoadMUS(path.c_str());
 	if (newMusic == NULL)
 	{
 		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
 		success = false;
-	} Sound newSound = Sound(newMusic,name);
+	} 
+	Sound* newSound = new Sound(newMusic,name);
 	sounds.push_back(newSound);
 	return success;
 }
@@ -58,35 +60,42 @@ bool SoundManager::loadEffect(string path, string name)
 	{
 		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
 		success = false;
-	} Sound newSound = Sound(newMusic, name);
+	} Sound* newSound = new Sound(newMusic, name);
 	sounds.push_back(newSound);
 	return success;
 }
 
 void SoundManager::close()
 {
-	sounds.clear();
-	//Free the music
-	Mix_FreeMusic(gMusic);
-	gMusic = NULL;
-
-	//Quit SDL subsystems
-	Mix_Quit();
+	stopMusic();
+	for (vector<Sound*>::iterator soundIt = sounds.begin(); soundIt < sounds.end(); soundIt++) {
+		(*soundIt)->destroy();
+	}
+	
+	Mix_CloseAudio();
+	// force a quit
+	while (Mix_Init(0))
+		Mix_Quit();
 }
 
 void SoundManager::play(string name)
 {
-	for (vector<Sound>::iterator soundIt = sounds.begin(); soundIt != sounds.end(); soundIt++) {
-		if (soundIt->GetName() == name) {
-			soundIt->play();
+	for (vector<Sound*>::iterator soundIt = sounds.begin(); soundIt != sounds.end(); soundIt++) {
+		if ((*soundIt)->GetName() == name) {
+			(*soundIt)->play();
 		}
 	}
+}
+
+void SoundManager::stopMusic()
+{
+	Mix_HaltMusic();
 }
 
 void SoundManager::toggleMusic()
 {
 	if (Mix_PausedMusic() == 0) {
-		Mix_PauseMusic();
+ 		Mix_PauseMusic();
 	}
 	else {
 		Mix_ResumeMusic();

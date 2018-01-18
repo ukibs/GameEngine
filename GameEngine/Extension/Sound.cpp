@@ -26,6 +26,7 @@ std::string Sound::GetName()
 
 Sound::~Sound()
 {
+	
 }
 
 void Sound::play()
@@ -42,4 +43,17 @@ void Sound::play()
 void Sound::stop()
 {
 
+}
+
+void Sound::destroy()
+{
+	if (soundEffect != NULL) {
+		Mix_FreeChunk(soundEffect);
+		soundEffect = NULL;
+	}
+
+	if (track != NULL) {
+		Mix_FreeMusic(track);
+		track = NULL;
+	}
 }
