@@ -93,7 +93,7 @@ void Player::moveBody()
 				{
 					if (anyCollision(i * 20, j * 20) && getCollisionTag(i * 20, j * 20) != "enemy")
 					{
-						setActive(false);
+						restart();
 					}
 					else
 					{
@@ -167,4 +167,23 @@ void Player::updateDirection(int pos, int i, int j)
 void Player::setActive(bool change)
 {
 	active = change;
+}
+
+void Player::restart()
+{
+	for (int i = 0; i < 32; i++)
+	{
+		for (int j = 0; j < 24; j++)
+		{
+			position[i][j] = 0;
+			snakeDirection[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < 100; i++)
+	{
+		body[i]->x = 0;
+		body[i]->y = 0;
+	}
+	position[2][2] = 1;
+	countBody = 0;
 }

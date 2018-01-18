@@ -25,5 +25,7 @@ public:
 	void updatePosition(int, int);
 	void updateDirection(int, int, int);
 	void setActive(bool);
+	int getCountBody() { return countBody; }
+	void restart();
 };
 

@@ -6,11 +6,11 @@ using namespace Snake;
 	{
 		quit = false;
 		start();
+		createActions();
 		loadMedia();
 		initPlayer();
 		initWalls();
 		setMenu();
-		createActions();
 		inMenu = true;
 		click = false;
 	}
@@ -77,6 +77,7 @@ using namespace Snake;
 		ActionManager::GetInstance().getActionByName("left")->addKey("left");
 		ActionManager::GetInstance().addAction("right","d");
 		ActionManager::GetInstance().getActionByName("right")->addKey("right");
+		ActionManager::GetInstance().addAction("quit", "escape");
 	}
 
 	bool GameManager::update()
@@ -84,9 +85,10 @@ using namespace Snake;
 		quit = EngineManager::GetInstance().update();
 		if (inMenu) 
 		{
-			quitGamePressed = ActionManager::GetInstance().getPressed("quit");
+			quit = ActionManager::GetInstance().getPressed("quit");
 
-			if (click) {
+			if (click) 
+			{
 				inMenu = false;
 				hideMenu();
 				player->setActive(true);
@@ -94,6 +96,7 @@ using namespace Snake;
 		}
 		else
 		{
+			click = false;
 			if (enemy->caught(player))
 			{
 				player->addBody();
@@ -102,6 +105,20 @@ using namespace Snake;
 			if (InputManager::GetInstance().checkKey("space"))
 			{
 				SoundManager::GetInstance().toggleMusic();
+			}
+			if (ActionManager::GetInstance().getPressed("quit"))
+			{
+				pause = true;
+				setMenu();
+				pauseText->setVisible(true);
+				inMenu = true;
+			}
+			if (player->getCountBody() == 99)
+			{
+				setMenu();
+				pauseText->setText("win");
+				pauseText->setVisible(true);
+				inMenu = true;
 			}
 		}
 		return quit;
@@ -113,24 +130,27 @@ using namespace Snake;
 
 	void GameManager::setMenu()
 	{
+		player->setActive(false);
 		int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
 		int screenHeight = RenderManager::GetInstance().SCREEN_HEIGHT;
 		// Set the menu button
 		menu = new Object("mainMenu", 0, 0, 0, screenWidth, screenHeight);
 		Image* menuImage = RenderManager::GetInstance().getImageByName("menu");
 		menu->setImage(menuImage);
-		button = new Button("obj_but1", "Boton 1", 200, 200, 0, 40, 20);
+		button = new Button("obj_but1", "Start", 200, 200, 0, 100, 50);
 		Image* img_b = RenderManager::GetInstance().getImageByName("img_button");
 		button->setImage(img_b);
 		button->setImageHeight(20);
 		button->setImageWidth(40);
 		button->setFunction(startGame, &click);
+		pauseText = new Text("Pause", "pause", 300, 300, 0, 0, 0, false);
 	}
 
 	void GameManager::hideMenu()
 	{
 		menu->destroy();
 		button->destroy();
+		pauseText->destroy();
 	}
 
 	void GameManager::startGame(bool * c)

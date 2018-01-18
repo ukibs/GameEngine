@@ -110,6 +110,11 @@ void Text::setColor(Uint8 red, Uint8 green, Uint8 blue)
 	loadFromRenderedText(text);
 }
 
+void Text::setVisible(bool change)
+{
+	visible = change;
+}
+
 void Text::setFont(string path, int size)
 {
 	gFont = TTF_OpenFont(path.c_str(), size);

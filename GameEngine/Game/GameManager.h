@@ -25,6 +25,8 @@ namespace Snake
 		bool quitGamePressed;
 		Button * button;
 		Object * menu;
+		bool pause;
+		Text * pauseText;
 		bool quit;
 		void start();
 		bool click;
