@@ -1,4 +1,8 @@
 #pragma once
+#ifndef PLATFORM_H
+#define PLATFORM_H
+#include "GameManager.h"
+#endif
 #include "EngineManager.h"
 #include "Item.h"
 #include <random>

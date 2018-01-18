@@ -11,10 +11,15 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::caught()
+bool Enemy::caught(Object * p)
 {
-	x = rand() % 600;
-	y = rand() % 400;
+	if (checkCollision(p, x, y))
+	{
+		x = rand() % 600;
+		y = rand() % 400;
+		return true;
+	}
+	return false;
 }
 
 

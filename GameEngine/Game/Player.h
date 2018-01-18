@@ -13,6 +13,7 @@ private:
 	Image * image[6];
 	int countBody;
 	int direction;
+	bool active;
 public:
 	Player(string name,int x, int y,int depth, float w, float h);
 	~Player();
@@ -22,5 +23,6 @@ public:
 	void changePosition(int, int);
 	void updatePosition(int, int);
 	void updateDirection(int, int, int);
+	void setActive(bool);
 };
 

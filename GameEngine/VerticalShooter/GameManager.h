@@ -1,10 +1,4 @@
 #pragma once
-
-#ifndef PLAYERSHIP_H
-#define PLAYERSHIP_H
-#include "GameManager.h"
-#endif // !GAMEMANAGER_H
-
 #include <vector>
 #include <string.h>
 // Engine headers

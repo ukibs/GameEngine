@@ -7,6 +7,7 @@ Player::Player(string name, int x, int y, int depth, float w, float h): Object(n
 	time = 0;
 	countBody = 0;
 	direction = 0;
+	active = false;
 	RenderManager::GetInstance().addImage("images/snakeUp.jpg", "img_sUp");
 	image[0] = RenderManager::GetInstance().getImageByName("img_sUp");
 	RenderManager::GetInstance().addImage("images/snakeDown.jpg", "img_sDown");
@@ -29,6 +30,13 @@ Player::Player(string name, int x, int y, int depth, float w, float h): Object(n
 			position[i][j] = 0;
 			snakeDirection[i][j] = 0;
 		}
+	}
+
+	for (int i = 0; i < 100; i++)
+	{
+		string name = "body" + to_string(i);
+		body[i] = new Object(name, 0, 0, 0, 20, 20);
+		body[i]->setImage(image[4]);
 	}
 
 	position[2][2] = 1;
@@ -61,17 +69,13 @@ void Player::update()
 			//abajo
 		case 3: setImage(image[1]); changePosition(0, 1); break;
 		}
-		moveBody();
+		if (active)	moveBody();
 	}
 	time++;
 }
 
 void Player::addBody()
 {
-	string name = "body" + to_string(countBody);
-	if(countBody == 0)body[countBody] = new Object(name, x, y, 0, 20, 20);
-	else body[countBody] = new Object(name, body[0]->x, body[0]->y, 0, 20, 20);
-	body[countBody]->setImage(image[4]);
 	countBody++;
 }
 
@@ -85,7 +89,6 @@ void Player::moveBody()
 				{
 					if (anyCollision(i * 20, j * 20) && getCollisionTag(i * 20, j * 20) != "enemy")
 					{
-						cout << "he colisionado con " << getCollisionName(i * 20, j * 20);
 						time = 11;
 					}
 					else
@@ -155,4 +158,9 @@ void Player::updateDirection(int pos, int i, int j)
 		//abajo
 	case 3: body[pos]->setImage(image[5]); break;
 	}
+}
+
+void Player::setActive(bool change)
+{
+	active = change;
 }
