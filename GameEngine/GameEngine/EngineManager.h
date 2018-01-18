@@ -12,7 +12,6 @@
 #include "InputManager.h"
 #include "ColliderManager.h"
 #include "TimerManager.h"
-#include "Text.h"
 #include "Button.h"
 using namespace std;
 

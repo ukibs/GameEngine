@@ -1,5 +1,4 @@
 #pragma once
-#include "Text.h"
 #include "RenderManager.h"
 #include "InputManager.h"
 #include "Object.h"

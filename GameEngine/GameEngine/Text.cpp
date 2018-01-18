@@ -6,31 +6,42 @@ Text::Text()
 {
 }
 
-Text::Text(string text, string name, int x, int y, float w, float h, int depth, bool visible):Object(name, x, y, depth, w, h)
+Text::Text(string text, string name, int x, int y, float w, float h, int depth, bool visible)
 {
+
 	gRenderer = RenderManager::GetInstance().getRenderer();
 	this->text = text;
 	this->visible = visible;
 	setFont("./Config/OpenSans-Bold.ttf");
 	loadFromRenderedText(text);
+	RenderManager::GetInstance().addText(this);
 }
 
 Text::~Text()
 {
 }
 
-void Text::render(int x, int y, SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)
+void Text::render(SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)
 {
-	//set rendering space and render to screen
-	SDL_Rect renderQuad = { x,y,width,height };
-	//set clip rendering dimensions
-	if (clip != NULL) {
-		renderQuad.w = clip->w;
-		renderQuad.h = clip->h;
+	if (visible) {
+		//set rendering space and render to screen
+		SDL_Rect renderQuad = { x,y,width,height };
+		//set clip rendering dimensions
+		if (clip != NULL) {
+			renderQuad.w = clip->w;
+			renderQuad.h = clip->h;
+		}
+		//Render to screen
+		SDL_RenderCopyEx(gRenderer, file, clip, &renderQuad, angle, center, flip);
 	}
-	//Render to screen
-	SDL_RenderCopyEx(gRenderer, file, clip, &renderQuad, angle, center, flip);
 }
+
+/*void Text::setToRender(int x, int y)
+{
+	this->x = x;
+	this->y = y;
+	RenderManager::GetInstance().addToRender(this);
+}*/
 
 bool Text::loadFromRenderedText(std::string textureText)
 {
@@ -93,5 +104,6 @@ void Text::setFont(string path, int size)
 
 void Text::update()
 {
-	render(x, y);
+	//render(x, y);
+	//setToRender(x, y);
 }

@@ -28,6 +28,11 @@ void RenderManager::addToRender(Image* img)
 	imgToRender.push_back(img);
 }
 
+/*void RenderManager::addToRender(Text * text)
+{
+	textToRender.push_back(text);
+}*/
+
 void RenderManager::render()
 {
 	vector<Image*>::iterator imgIt = imgToRender.end() - 1;
@@ -35,6 +40,10 @@ void RenderManager::render()
 		(*imgIt)->render();
 	}
 	(*imgIt)->render();
+	vector<Text*>::iterator textIt;
+	for (textIt = texts.begin(); textIt < texts.end(); textIt++) {
+		(*textIt)->render();
+	}
 }
 
 RenderManager::RenderManager()
@@ -118,6 +127,11 @@ void RenderManager::addImage(std::string path,std::string name)
 {
 	Image* newImage = new Image(gRenderer, path,name);
 	images.push_back(newImage);
+}
+
+void RenderManager::addText(Text * newText)
+{
+	texts.push_back(newText);
 }
 
 Image * RenderManager::getImageByName(string name)

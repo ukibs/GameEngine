@@ -40,5 +40,5 @@ void Button::onOver() {
 void Button::destroy()
 {
 	Object::destroy();
-	text->destroy();
+	//text->~Text;
 }

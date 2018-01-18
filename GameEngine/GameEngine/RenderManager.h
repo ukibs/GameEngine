@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include "Singleton.h"
 #include "Image.h"
+#include "Text.h"
 #include <iostream>
 using namespace std;
 
@@ -18,6 +19,8 @@ private:
 	SDL_Window* gWindow = NULL;
 	vector<Image*> images;
 	vector<Image*> imgToRender;
+	vector<Text*> texts;
+	//vector<Text*> textToRender;
 	void render();
 public:
 	const int SCREEN_WIDTH = 640;
@@ -27,10 +30,12 @@ public:
 	bool init();
 	void postUpdate();
 	void addImage(string path,string name);
+	void addText(Text *);
 	Image* getImageByName(string name);
 	void preUpdate();
 	SDL_Renderer* getRenderer();
 	void close();
 	void addToRender(Image* img);
+	//void addToRender(Text* text);
 };
 
