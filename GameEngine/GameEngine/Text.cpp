@@ -8,6 +8,11 @@ Text::Text()
 
 Text::Text(string text, string name, int x, int y, float w, float h, int depth, bool visible)
 {
+	this->x = x;
+	this->y = y;
+	this->width = w;
+	this->height = h;
+	//depth
 
 	gRenderer = RenderManager::GetInstance().getRenderer();
 	this->text = text;
