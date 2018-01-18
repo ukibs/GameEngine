@@ -30,7 +30,8 @@ void Button::update() {
 }
 
 void Button::onClick() {
-	cout << name << " ha sido clickado\n";
+	buttonClick(aux);
+	//cout << name << " ha sido clickado\n";
 }
 
 void Button::onOver() {
@@ -40,5 +41,11 @@ void Button::onOver() {
 void Button::destroy()
 {
 	Object::destroy();
-	//text->~Text;
+	text->~Text();
+}
+
+void Button::setFunction(void(*function)(bool*), bool*a)
+{
+	aux = a;
+	buttonClick = function;
 }

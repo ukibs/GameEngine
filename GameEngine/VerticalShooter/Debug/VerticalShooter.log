@@ -1,10 +1,17 @@
-﻿  GameManager.cpp
-c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(51): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(231): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(233): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(235): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(237): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(239): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(241): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(262): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  VerticalShooter.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\VerticalShooter.lib
+﻿  EnemyShip.cpp
+c:\users\usuario\documents\gameengine\gameengine\verticalshooter\enemyship.cpp(8): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\usuario\documents\gameengine\gameengine\verticalshooter\enemyship.cpp(16): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\usuario\documents\gameengine\gameengine\verticalshooter\enemyship.cpp(27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\usuario\documents\gameengine\gameengine\verticalshooter\enemyship.cpp(47): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\usuario\documents\gameengine\gameengine\verticalshooter\enemyship.cpp(50): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
+  GameManager.cpp
+c:\users\usuario\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(52): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\usuario\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  WaterLayer.cpp
+  Proyectile.cpp
+  PlayerShip.cpp
+  VerticalShooter.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\VerticalShooter.lib

@@ -24,8 +24,10 @@ namespace Snake
 		bool inMenu;
 		bool quitGamePressed;
 		Button * button;
+		Object * menu;
 		bool quit;
 		void start();
+		bool click;
 
 	public:
 		GameManager();
@@ -37,6 +39,7 @@ namespace Snake
 		bool update();
 		void setMenu();
 		void hideMenu();
+		static void startGame(bool*);
 		void close();
 	};
 };

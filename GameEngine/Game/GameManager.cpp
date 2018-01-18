@@ -6,13 +6,13 @@ using namespace Snake;
 	{
 		quit = false;
 		start();
-
 		loadMedia();
 		initPlayer();
 		initWalls();
-		createActions();
 		setMenu();
+		createActions();
 		inMenu = true;
+		click = false;
 	}
 
 	void GameManager::start() {
@@ -62,6 +62,7 @@ using namespace Snake;
 		RenderManager::GetInstance().addImage("images/dot.bmp", "player");
 		RenderManager::GetInstance().addImage("images/manzana.jpg", "img_enemy");
 		//GUI
+		RenderManager::GetInstance().addImage("images/snakeMenu.png", "menu");
 		RenderManager::GetInstance().addImage("images/button.png", "img_button");
 	}
 
@@ -85,11 +86,10 @@ using namespace Snake;
 		{
 			quitGamePressed = ActionManager::GetInstance().getPressed("quit");
 
-			if (InputManager::GetInstance().checkKey("space")) {
+			if (click) {
 				inMenu = false;
 				hideMenu();
 				player->setActive(true);
-				SoundManager::GetInstance().play("music_1");
 			}
 		}
 		else
@@ -116,16 +116,27 @@ using namespace Snake;
 		int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
 		int screenHeight = RenderManager::GetInstance().SCREEN_HEIGHT;
 		// Set the menu button
-		button = new Button("obj_but1", "Boton 1", 50, 50, 0, 40, 20);
+		menu = new Object("mainMenu", 0, 0, 0, screenWidth, screenHeight);
+		Image* menuImage = RenderManager::GetInstance().getImageByName("menu");
+		menu->setImage(menuImage);
+		button = new Button("obj_but1", "Boton 1", 200, 200, 0, 40, 20);
 		Image* img_b = RenderManager::GetInstance().getImageByName("img_button");
 		button->setImage(img_b);
 		button->setImageHeight(20);
 		button->setImageWidth(40);
+		button->setFunction(startGame, &click);
 	}
 
 	void GameManager::hideMenu()
 	{
+		menu->destroy();
 		button->destroy();
+	}
+
+	void GameManager::startGame(bool * c)
+	{
+		*c = true;
+		SoundManager::GetInstance().play("music_1");
 	}
 
 	void GameManager::close() {

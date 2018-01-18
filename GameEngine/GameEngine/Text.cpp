@@ -8,6 +8,7 @@ Text::Text()
 
 Text::Text(string text, string name, int x, int y, float w, float h, int depth, bool visible)
 {
+	this->name = name;
 	this->x = x;
 	this->y = y;
 	this->width = w;
@@ -24,6 +25,7 @@ Text::Text(string text, string name, int x, int y, float w, float h, int depth, 
 
 Text::~Text()
 {
+	RenderManager::GetInstance().destroyText(this);
 }
 
 void Text::render(SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)

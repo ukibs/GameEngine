@@ -37,5 +37,6 @@ public:
 	void close();
 	void addToRender(Image* img);
 	//void addToRender(Text* text);
+	void destroyText(Text*);
 };
 

@@ -49,29 +49,33 @@ Player::~Player()
 
 void Player::update()
 {
-	if (ActionManager::GetInstance().getDown("right")){direction = 0;}
-	if (ActionManager::GetInstance().getDown("left")){direction = 1;}
-	if (ActionManager::GetInstance().getDown("up")){direction = 2;}
-	if (ActionManager::GetInstance().getDown("down")){direction = 3;}
-
-	if (time == 10)
+	if (active)
 	{
-		time = 0;
+		lastDirection = direction;
+		if (ActionManager::GetInstance().getDown("right")) { if (lastDirection != 1) direction = 0; }
+		if (ActionManager::GetInstance().getDown("left")) { if (lastDirection != 0) direction = 1; }
+		if (ActionManager::GetInstance().getDown("up")) { if (lastDirection != 3) direction = 2; }
+		if (ActionManager::GetInstance().getDown("down")) { if (lastDirection != 2) direction = 3; }
 
-		switch (direction)
+		if (time == 10)
 		{
-			//derecha
-		case 0: setImage(image[3]); changePosition(1, 0); break;
-			//izquierda
-		case 1: setImage(image[2]); changePosition(-1, 0); break;
-			//arriba
-		case 2: setImage(image[0]); changePosition(0, -1); break;
-			//abajo
-		case 3: setImage(image[1]); changePosition(0, 1); break;
+			time = 0;
+
+			switch (direction)
+			{
+				//derecha
+			case 0: setImage(image[3]); changePosition(1, 0); break;
+				//izquierda
+			case 1: setImage(image[2]); changePosition(-1, 0); break;
+				//arriba
+			case 2: setImage(image[0]); changePosition(0, -1); break;
+				//abajo
+			case 3: setImage(image[1]); changePosition(0, 1); break;
+			}
+			moveBody();
 		}
-		if (active)	moveBody();
+		time++;
 	}
-	time++;
 }
 
 void Player::addBody()
@@ -89,7 +93,7 @@ void Player::moveBody()
 				{
 					if (anyCollision(i * 20, j * 20) && getCollisionTag(i * 20, j * 20) != "enemy")
 					{
-						time = 11;
+						setActive(false);
 					}
 					else
 					{

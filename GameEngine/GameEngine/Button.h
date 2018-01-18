@@ -10,7 +10,10 @@ public:
 	void setText(string newTxt) { text->setText(newTxt); };
 	void update();
 	void onClick();
+	bool * aux;
+	void(*buttonClick)(bool*);
 	void onOver();
+	void setFunction(void(*function)(bool*), bool*);
 	Image getImage() { return image; };
 	void destroy();
 private:
