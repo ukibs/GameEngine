@@ -7,7 +7,6 @@ class Action
 {
 private:
 	vector <key*> keys;
-	vector <key*>::iterator keyIt;
 	string name;
 	bool pressed;
 	bool down;

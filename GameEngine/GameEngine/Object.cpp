@@ -20,8 +20,25 @@ Object::Object(string name,int x, int y,int depth, float w, float h, string tag)
 	ObjectManager::GetInstance().addObject(this);
 }
 
+Object::Object(string name, int x, int y, int depth, float w, float h, string direction, string imageName, string tag)
+{
+	this->name = name;
+	this->tag = tag;
+	this->x = x;
+	this->y = y;
+	this->width = w;
+	this->height = h;
+	this->depth = depth;
+	addCollider(name, tag, this->x, this->y, this->width, this->height);
+	ObjectManager::GetInstance().addObject(this);
+	// Add the image
+	RenderManager::GetInstance().addImage(direction, imageName);
+	setImage(RenderManager::GetInstance().getImageByName(imageName));
+}
+
 Object::~Object()
 {
+	collider->destroy();
 }
 
 void Object::start()

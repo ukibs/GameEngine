@@ -9,11 +9,19 @@ Button::Button(string name, string text, int x, int y, int depth, float w, float
 	area.y = y;
 	area.w = w;
 	area.h = h;
+	buttonClick = defaultFunction;
+}
+
+void Button::defaultFunction(bool *a)
+{
+	cout << "nothing";
 }
 
 
 Button::~Button()
 {
+	text->~Text();
+	Object::destroy();
 }
 
 void Button::update() {
@@ -40,8 +48,8 @@ void Button::onOver() {
 
 void Button::destroy()
 {
+	text->destroy();
 	Object::destroy();
-	text->~Text();
 }
 
 void Button::setFunction(void(*function)(bool*), bool*a)

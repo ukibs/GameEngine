@@ -30,12 +30,14 @@ public:
 	bool init();
 	void postUpdate();
 	void addImage(string path,string name);
+	void addImage(Image *);
 	void addText(Text *);
 	Image* getImageByName(string name);
 	void preUpdate();
 	SDL_Renderer* getRenderer();
 	void close();
 	void addToRender(Image* img);
+	void addToRender(string name, int depth);
 	//void addToRender(Text* text);
 	void destroyText(Text*);
 };

@@ -43,14 +43,18 @@ void GameManager::init()
 	int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
 
 	// Images for the game
+	RenderManager::GetInstance().addImage("images/Space.png", "Space");
 	RenderManager::GetInstance().addImage("images/PlayerShip.png", "PlayerShip");
 	RenderManager::GetInstance().addImage("images/Water.png", "Water");
 	RenderManager::GetInstance().addImage("images/AlienShip.png", "AlienShip");
 	RenderManager::GetInstance().addImage("images/SpaceLemon.png", "SpaceLemon");
 		
 	// Backgroudn for the game
-	backGround = new Object("Background", 0, 0, 100, RenderManager::GetInstance().SCREEN_WIDTH, RenderManager::GetInstance().SCREEN_WIDTH);
-	backGround->addImage("images/Space.png", "Space");
+	//backGround = new Object("Background", 0, 0, 100, RenderManager::GetInstance().SCREEN_WIDTH, RenderManager::GetInstance().SCREEN_WIDTH);
+	//backGround->addImage("images/Space.png", "Space");
+	/*backGround = new Object("Background", 0, 0, 100, 
+		RenderManager::GetInstance().SCREEN_WIDTH, RenderManager::GetInstance().SCREEN_WIDTH,
+		"images/Space.png", "Space");*/
 
 	// Create the water layers
 	Image* img_water = RenderManager::GetInstance().getImageByName("Water");
@@ -141,6 +145,10 @@ void GameManager::init()
 
 	bool GameManager::update()
 	{
+		// Paint space
+		//Image * spaceImage = RenderManager::GetInstance().getImageByName("Space");
+		RenderManager::GetInstance().addToRender("Space",500);
+			//
 		quit = EngineManager::GetInstance().update();
 		if (inMenu) {
 

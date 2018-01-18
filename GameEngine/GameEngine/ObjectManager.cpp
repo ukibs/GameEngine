@@ -9,6 +9,10 @@ ObjectManager::ObjectManager()
 
 ObjectManager::~ObjectManager()
 {
+	for (vector<Object*>::iterator objIt = objects.begin(); objIt != objects.end(); objIt++) {
+		(*objIt)->~Object();
+	}
+	objects.clear();
 }
 
 void ObjectManager::addObject(Object * newObject)

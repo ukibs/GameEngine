@@ -14,6 +14,7 @@ Image::Image(SDL_Renderer * gRendererRef, string path, string name,int depth,boo
 	}
 	this->name = name;
 	this->depth = depth;
+	RenderManager::GetInstance().addImage(this);
 }
 
 Image::~Image()
@@ -31,15 +32,17 @@ void Image::setToRender(int x,int y)
 
 void Image::render(SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)
 {
-	//set rendering space and render to screen
-	SDL_Rect renderQuad = { x,y,width,height };
-	//set clip rendering dimensions
-	if (clip != NULL) {
+	if (visible = true) {
+		//set rendering space and render to screen
+		SDL_Rect renderQuad = { x,y,width,height };
+		//set clip rendering dimensions
+		if (clip != NULL) {
 			renderQuad.w = clip->w;
 			renderQuad.h = clip->h;
+		}
+		//Render to screen
+		SDL_RenderCopyEx(gRenderer, file, clip, &renderQuad, angle, center, flip);
 	}
-	//Render to screen
-	SDL_RenderCopyEx(gRenderer, file, clip, &renderQuad, angle, center, flip);
 }
 
 bool Image::loadFromFile(std::string path)

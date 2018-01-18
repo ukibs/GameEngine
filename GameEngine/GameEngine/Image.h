@@ -33,8 +33,13 @@ public:
 		// Height
 	int getHeight() { return height; }
 	void setHeight(int value) { height = value; }
+		// Depth
 	int getDepth() { return depth; };
 	void setDepth(int newD) { depth = newD; };
+		// Visibility
+	bool getVisibility() { return visible; }
+	void setVisibility(bool value) { visible = value; }
+	// Render
 	void render(SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 };
 

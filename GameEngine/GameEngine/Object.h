@@ -22,6 +22,7 @@ public:
 	int y;
 	Object();
 	Object(string name,int x,int y,int depth, float w, float h, string tag = "");
+	Object(string name, int x, int y, int depth, float w, float h, string direction, string imageName, string tag = "");
 	~Object();
 	void start();
 	void postUpdate();

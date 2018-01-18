@@ -12,6 +12,7 @@ public:
 	void onClick();
 	bool * aux;
 	void(*buttonClick)(bool*);
+	static void defaultFunction(bool*);
 	void onOver();
 	void setFunction(void(*function)(bool*), bool*);
 	Image getImage() { return image; };

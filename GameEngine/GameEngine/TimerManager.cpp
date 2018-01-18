@@ -2,12 +2,12 @@
 
 TimerManager::TimerManager()
 {
-
 	init();
 }
 
 TimerManager::~TimerManager()
 {
+	fpsTimer.~Timer();
 }
 
 void TimerManager::init()

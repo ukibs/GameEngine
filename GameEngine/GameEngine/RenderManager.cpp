@@ -1,7 +1,5 @@
 #include "RenderManager.h"
 
-
-
 void RenderManager::close()
 {
 	images.clear();
@@ -26,6 +24,13 @@ void RenderManager::addToRender(Image* img)
 		}
 	}
 	imgToRender.push_back(img);
+}
+
+void RenderManager::addToRender(string name, int depth)
+{
+	Image* img = getImageByName(name);
+	img->setDepth(depth);
+	addToRender(img);
 }
 
 void RenderManager::destroyText(Text * textToDelete)
@@ -63,6 +68,23 @@ RenderManager::RenderManager()
 
 RenderManager::~RenderManager()
 {
+	for (vector<Image*>::iterator imgIt = images.begin(); imgIt != images.end(); imgIt++){
+		(*imgIt)->~Image();
+	}
+	images.clear();
+	for (vector<Text*>::iterator txtIt = texts.begin(); txtIt != texts.end(); txtIt++) {
+		(*txtIt)->~Text();
+	}
+	texts.clear();
+	//Destroy window    
+	SDL_DestroyRenderer(gRenderer);
+	SDL_DestroyWindow(gWindow);
+	gWindow = NULL;
+	gRenderer = NULL;
+
+	//Quit SDL subsystems
+	IMG_Quit();
+	SDL_Quit();
 }
 
 bool RenderManager::init()
@@ -136,6 +158,11 @@ void RenderManager::postUpdate()
 void RenderManager::addImage(std::string path,std::string name)
 {
 	Image* newImage = new Image(gRenderer, path,name);
+	images.push_back(newImage);
+}
+
+void RenderManager::addImage(Image * newImage)
+{
 	images.push_back(newImage);
 }
 

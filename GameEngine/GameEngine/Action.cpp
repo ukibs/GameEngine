@@ -17,6 +17,7 @@ Action::Action(string name, key* keyToAdd, ...)
 
 Action::~Action()
 {
+	keys.clear();
 }
 
 void Action::addKey(string name) 
@@ -54,7 +55,7 @@ void Action::update()
 	pressed = false;
 	down = false;
 	released = false;
-	for (keyIt = keys.begin(); keyIt < keys.end(); keyIt++) {
+	for (vector<key*>::iterator keyIt = keys.begin(); keyIt < keys.end(); keyIt++) {
 		//
 		if ((*keyIt)->getDown()) 
 		{

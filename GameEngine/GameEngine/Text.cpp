@@ -25,7 +25,7 @@ Text::Text(string text, string name, int x, int y, float w, float h, int depth, 
 
 Text::~Text()
 {
-	RenderManager::GetInstance().destroyText(this);
+	free();
 }
 
 void Text::render(SDL_Rect * clip, double angle, SDL_Point * center, SDL_RendererFlip flip)
@@ -41,6 +41,12 @@ void Text::render(SDL_Rect * clip, double angle, SDL_Point * center, SDL_Rendere
 		//Render to screen
 		SDL_RenderCopyEx(gRenderer, file, clip, &renderQuad, angle, center, flip);
 	}
+}
+
+void Text::destroy()
+{
+	RenderManager::GetInstance().destroyText(this);
+	this->~Text();
 }
 
 /*void Text::setToRender(int x, int y)

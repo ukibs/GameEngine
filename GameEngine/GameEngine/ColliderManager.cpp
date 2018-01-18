@@ -9,6 +9,10 @@ ColliderManager::ColliderManager()
 
 ColliderManager::~ColliderManager()
 {
+	for (vector<Collider*>::iterator collIt = colliders.begin(); collIt != colliders.end(); collIt++) {
+		(*collIt)->~Collider();
+	}
+	colliders.clear();
 }
 
 void ColliderManager::addCollider(string name, string tag, float x, float y, float w, float h)

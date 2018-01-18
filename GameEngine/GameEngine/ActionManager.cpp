@@ -9,6 +9,7 @@ ActionManager::ActionManager()
 
 ActionManager::~ActionManager()
 {
+	actions.clear();
 }
 
 void ActionManager::addAction(Action action)

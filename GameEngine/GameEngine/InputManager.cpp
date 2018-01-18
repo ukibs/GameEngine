@@ -36,6 +36,10 @@ InputManager::InputManager()
 
 InputManager::~InputManager()
 {
+	for (vector<key*>::iterator keyIt = keys.begin(); keyIt != keys.end(); keyIt++) {
+		(*keyIt)->~key();
+	}
+	keys.clear();
 }
 
 void InputManager::keyboardCheck()

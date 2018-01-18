@@ -43,5 +43,6 @@ public:
 	// Height
 	int getHeight() { return height; }
 	void setHeight(int value) { height = value; }
+	void destroy();
 };
 
