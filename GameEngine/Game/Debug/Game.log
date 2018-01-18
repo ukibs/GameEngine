@@ -1,2 +1,7 @@
 ﻿  GameManager.cpp
-  Game.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Game.lib
+c:\users\usuario\documents\gameengine\gameengine\game\gamemanager.cpp(119): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Player.cpp
+  Enemy.cpp
+  Game.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\Game.lib

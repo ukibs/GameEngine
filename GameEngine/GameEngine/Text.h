@@ -26,6 +26,7 @@ private:
 	bool loadFromRenderedText(string textureText);
 	void free();
 public:
+	string name;
 	int x;
 	int y;
 	Text();

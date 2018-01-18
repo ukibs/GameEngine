@@ -28,6 +28,16 @@ void RenderManager::addToRender(Image* img)
 	imgToRender.push_back(img);
 }
 
+void RenderManager::destroyText(Text * textToDelete)
+{
+	for (vector<Text*>::iterator textIterator = texts.begin(); textIterator < texts.end(); textIterator++) {
+		if ((*textIterator)->name == textToDelete->name) {
+			texts.erase(textIterator);
+			return;
+		}
+	}
+}
+
 /*void RenderManager::addToRender(Text * text)
 {
 	textToRender.push_back(text);
