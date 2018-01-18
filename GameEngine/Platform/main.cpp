@@ -4,15 +4,9 @@
 #include <cstdlib>
 #include <string>
 
-#include "InputManager.h"
-#include "ActionManager.h"
-#include "RenderManager.h"
-#include "ObjectManager.h"
-#include "TimerManager.h"
+#include "EngineManager.h"
 #include "SoundManager.h"
-#include "Image.h"
-#include "Text.h"
-#include "Object.h"
+
 #include "JumpMan.h"
 #include "Item.h"
 #include "GameManager.h"
@@ -40,8 +34,6 @@ int main(int argc, char* args[])
 		{
 			printf("Failed to initialize!\n");
 		}
-		//initialize de gameManager
-		GameManager gameManager("GameManager", 0, 0, 0, 0);
 		
 		//create the fpsCounter
 		float fps = 0.0;

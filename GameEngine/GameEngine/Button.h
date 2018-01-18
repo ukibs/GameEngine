@@ -13,6 +13,7 @@ public:
 	void onClick();
 	void onOver();
 	Image getImage() { return image; };
+	void destroy();
 private:
 	Text* text;
 	SDL_Rect area;

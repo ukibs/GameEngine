@@ -1,2 +1,10 @@
-﻿  VerticalShooter.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\VerticalShooter.exe
-  VerticalShooter.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\VerticalShooter.pdb (Partial PDB)
+﻿  GameManager.cpp
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(51): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(231): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(233): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(235): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(237): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(239): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(241): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\aritz\documents\gameengine\gameengine\verticalshooter\gamemanager.cpp(262): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  VerticalShooter.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\VerticalShooter.lib

@@ -2,14 +2,26 @@
 using namespace Snake;
 
 
-	GameManager::GameManager(string name, int x, int y, int w, int h, int depth) : Object(name, x, y, depth, w, h)
+	GameManager::GameManager()
 	{
+		quit = false;
+		start();
+
 		loadMedia();
 		initPlayer();
 		initWalls();
 		createActions();
 		setMenu();
 		inMenu = true;
+	}
+
+	void GameManager::start() {
+		EngineManager::CreateSingleton();
+		SoundManager::CreateSingleton();
+		if (!EngineManager::GetInstance().start() || !SoundManager::GetInstance().init()) {
+			cout << "Falied to initialize!\n";
+			quit = true;
+		}
 	}
 
 	void GameManager::initWalls()
@@ -56,18 +68,19 @@ using namespace Snake;
 	void GameManager::createActions()
 	{
 		//create some actions
-		ActionManager::GetInstance().addAction("up", 0, "w");
+		ActionManager::GetInstance().addAction("up","w");
 		ActionManager::GetInstance().getActionByName("up")->addKey("up");
-		ActionManager::GetInstance().addAction("down", 0, "s");
+		ActionManager::GetInstance().addAction("down","s");
 		ActionManager::GetInstance().getActionByName("down")->addKey("down");
-		ActionManager::GetInstance().addAction("left", 0, "a");
+		ActionManager::GetInstance().addAction("left","a");
 		ActionManager::GetInstance().getActionByName("left")->addKey("left");
-		ActionManager::GetInstance().addAction("right", 0, "d");
+		ActionManager::GetInstance().addAction("right","d");
 		ActionManager::GetInstance().getActionByName("right")->addKey("right");
 	}
 
-	void GameManager::update()
+	bool GameManager::update()
 	{
+		quit = EngineManager::GetInstance().update();
 		if (inMenu) 
 		{
 			quitGamePressed = ActionManager::GetInstance().getPressed("quit");
@@ -91,6 +104,7 @@ using namespace Snake;
 				SoundManager::GetInstance().toggleMusic();
 			}
 		}
+		return quit;
 	}
 
 	GameManager::~GameManager()
@@ -112,4 +126,9 @@ using namespace Snake;
 	void GameManager::hideMenu()
 	{
 		button->destroy();
+	}
+
+	void GameManager::close() {
+		SoundManager::GetInstance().close();
+		EngineManager::GetInstance().close();
 	}

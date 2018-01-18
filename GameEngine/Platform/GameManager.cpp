@@ -3,24 +3,66 @@
 using namespace Platform;
 
 
-GameManager::GameManager(string name, int x, int y, int w, int h, int depth) : Object(name, x, y, depth, w, h)
+GameManager::GameManager()
 {
-	loadMedia();
-	initPlayer();
-	initWalls();
-	initPull();
-	initLevel(level);
-	Button *button = new Button("obj_but1", "Boton 1", 50, 50, 0, 40, 20);
-	Image* img_b = RenderManager::GetInstance().getImageByName("img_button");
-	button->setImage(img_b);
-	button->setImageHeight(20);
-	button->setImageWidth(40);
+	quit = false;
+	start();
+	if (!quit) {
+		init();
+		loadMedia();
+		initPlayer();
+		initWalls();
+		initPull();
+		initLevel(level);
+		Button *button = new Button("obj_but1", "Boton 1", 50, 50, 0, 40, 20);
+		Image* img_b = RenderManager::GetInstance().getImageByName("img_button");
+		button->setImage(img_b);
+		button->setImageHeight(20);
+		button->setImageWidth(40);
+	}
 }
 
 
 GameManager::~GameManager()
 {
 }
+
+void Platform::GameManager::start() {
+	EngineManager::CreateSingleton();
+	SoundManager::CreateSingleton();
+	if (!EngineManager::GetInstance().start() || !SoundManager::GetInstance().init()) {
+		cout << "Falied to initialize!\n";
+		quit = true;
+	}
+}
+
+void Platform::GameManager::init() {
+	fps = 0.0;
+
+	//create some actions
+	ActionManager::GetInstance().addAction("up", "w");
+	ActionManager::GetInstance().getActionByName("up")->addKey("up");
+	ActionManager::GetInstance().addAction("down", "s");
+	ActionManager::GetInstance().getActionByName("down")->addKey("down");
+	ActionManager::GetInstance().addAction("left", "a");
+	ActionManager::GetInstance().getActionByName("left")->addKey("left");
+	ActionManager::GetInstance().addAction("right", "d");
+	ActionManager::GetInstance().getActionByName("right")->addKey("right");
+
+	SoundManager::GetInstance().loadEffect("sound/high.wav", "sound_1");
+}
+
+bool Platform::GameManager::update() {
+
+	quit = EngineManager::GetInstance().update();
+	fps = TimerManager::GetInstance().getFPS();
+	return quit;
+}
+void Platform::GameManager::close() {
+	SoundManager::GetInstance().close();
+	EngineManager::GetInstance().close();
+}
+
 
 void Platform::GameManager::initLevel(int nivel)
 {

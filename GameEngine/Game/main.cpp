@@ -28,7 +28,7 @@ int main(int argc, char* args[])
 			printf("Failed to initialize!\n");
 		}
 		//initialize de gameManager
-		GameManager gameManager("GameManager", 0, 0, 0, 0);	
+		GameManager gameManager();	
 
 		//Main loop flag
 		bool quit = false;

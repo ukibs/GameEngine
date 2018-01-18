@@ -28,8 +28,7 @@ int main(int argc, char* args[])
 	else
 	{
 		
-		GameManager gameManager("GameManager", 0, 0, 0, 0);
-
+		
 		//create some actions
 			// Movement ones
 		ActionManager::GetInstance().addAction("up", "w");
@@ -51,7 +50,7 @@ int main(int argc, char* args[])
 		//While application is running
 		while (!quit)
 		{
-			quit = EngineManager::GetInstance().update() || gameManager.GetQuitGame();
+			quit = EngineManager::GetInstance().update();
 		}
 
 		//Close everything

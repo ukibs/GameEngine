@@ -36,3 +36,9 @@ void Button::onClick() {
 void Button::onOver() {
 	cout << name << " tiene el raton encima\n";
 }
+
+void Button::destroy()
+{
+	Object::destroy();
+	text->destroy();
+}

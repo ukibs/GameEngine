@@ -1,7 +1,42 @@
 #include "GameManager.h"
 using namespace VerticalShooter;
-	GameManager::GameManager(string name, int x, int y, int w, int h, int depth) : Object(name, x, y, depth, w, h)
+GameManager::GameManager() {
+	quit = false;
+	start();
+	if (!quit) {
+		init();
+	}
+}
+
+void GameManager::start() {
+	EngineManager::CreateSingleton();
+	SoundManager::CreateSingleton();
+	if (!EngineManager::GetInstance().start() || !SoundManager::GetInstance().init()) {
+		quit = true;
+	}
+}
+
+void GameManager::close() {
+	SoundManager::GetInstance().close();
+	EngineManager::GetInstance().close();
+}
+	void GameManager::init()
 	{
+		//create some actions
+		// Movement ones
+		ActionManager::GetInstance().addAction("up", "w");
+		ActionManager::GetInstance().getActionByName("up")->addKey("up");
+		ActionManager::GetInstance().addAction("down", "s");
+		ActionManager::GetInstance().getActionByName("down")->addKey("down");
+		ActionManager::GetInstance().addAction("left", "a");
+		ActionManager::GetInstance().getActionByName("left")->addKey("left");
+		ActionManager::GetInstance().addAction("right", "d");
+		ActionManager::GetInstance().getActionByName("right")->addKey("right");
+		// Action ones
+		ActionManager::GetInstance().addAction("shoot", "space");
+		ActionManager::GetInstance().addAction("accept", "return");
+		ActionManager::GetInstance().addAction("quit", "escape");
+
 		// Get the screen width an height for the start
 		int screenHeight = RenderManager::GetInstance().SCREEN_HEIGHT;
 		int screenWidth = RenderManager::GetInstance().SCREEN_WIDTH;
@@ -103,9 +138,9 @@ using namespace VerticalShooter;
 	{
 	}
 
-	void GameManager::update()
+	bool GameManager::update()
 	{
-		//
+		quit = EngineManager::GetInstance().update();
 		if (inMenu) {
 
 			quitGamePressed = ActionManager::GetInstance().getPressed("quit");
@@ -149,6 +184,8 @@ using namespace VerticalShooter;
 				SetMenu();
 			}
 		}
+		quit = quit || GetQuitGame();
+		return quit;
 	}
 
 	void GameManager::activateEnemy() {

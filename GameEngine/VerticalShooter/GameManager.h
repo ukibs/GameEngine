@@ -2,9 +2,7 @@
 #include <vector>
 #include <string.h>
 // Engine headers
-#include "Object.h"
-#include "TimerManager.h"
-#include "Text.h"
+#include "EngineManager.h"
 #include "SoundManager.h"
 //Game headers
 #include "EnemyShip.h"
@@ -21,15 +19,19 @@
 	- Botón para salir del juego
 */
 namespace VerticalShooter {
-	class GameManager : public Object
+	class GameManager 
 	{
 	public:
-		GameManager(string name, int x, int y, int w, int h, int depth = 0);
+		GameManager();
 		~GameManager();
 
 		bool GetQuitGame() { return inMenu && quitGamePressed; }
-
+		bool update();
+		void close();
 	private:
+		void init();
+		void start();
+		bool quit;
 		// Menu variable
 		bool inMenu;
 		bool quitGamePressed;
@@ -70,8 +72,6 @@ namespace VerticalShooter {
 		float timeFromLastSpawn;
 
 		// Game functions
-		void update();
-
 		void activateEnemy();
 
 		void activateProyectile();

@@ -1,9 +1,6 @@
 #pragma once
-#ifndef PLATFORM_H
-#define PLATFORM_H
-#include "GameManager.h"
-#endif
 #include "EngineManager.h"
+#include "SoundManager.h"
 #include "Item.h"
 #include <random>
 #include "JumpMan.h"
@@ -12,18 +9,24 @@ namespace Platform {
 	const int maxLevels = 3;
 	const int maxPlatf = 10;
 	const int maxItems = 10;
-	class GameManager : public Object
+	class GameManager 
 	{
 	public:
-		GameManager(string name, int x, int y, int w, int h, int depth = 0);
+		GameManager();
 		~GameManager();
 		void reset();
+		bool update();
+		void close();
+		
 	private:
+		void start();
+		void init();
+		bool quit;
+		float fps;
 		vector<Item*> items;
 		JumpMan* player;
 		vector<Object*> walls;
 		vector<Object*> platforms;
-		void update() {};
 		void initLevel(int nivel);
 		void initWalls();
 		void initPlatforms(int nivel);

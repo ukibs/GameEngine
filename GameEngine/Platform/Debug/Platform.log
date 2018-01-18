@@ -1,2 +1,7 @@
-﻿  Platform.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\Platform.exe
-  Platform.vcxproj -> C:\Users\USUARIO\Documents\GameEngine\GameEngine\Debug\Platform.pdb (Partial PDB)
+﻿  GameManager.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  JumpMan.cpp
+  ItemFinal.cpp
+  Item.cpp
+  Platform.vcxproj -> C:\Users\aritz\Documents\GameEngine\GameEngine\Debug\Platform.lib

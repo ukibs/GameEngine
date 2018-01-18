@@ -1,6 +1,9 @@
 #include <Windows.h>
 #include <cstdlib>
 #include <iostream>
+#include "..\Platform\GameManager.h"
+#include "..\VerticalShooter\GameManager.h"
+#include "..\Game\GameManager.h"
 
 using namespace std;
 
@@ -55,14 +58,26 @@ int main(int argc, char *argv[])
 		choice = GetInput();
 		switch (choice) {
 		case 1:
-			system("start ..\\Debug\\Game.exe");
+		{
+			Snake::GameManager* gManager = new Snake::GameManager();
+			while (!gManager->update()) {}
+			gManager->close();
 			break;
+		}
 		case 2:
-			system("start ..\\Debug\\Platform.exe");
+		{
+			Platform::GameManager* gManager = new Platform::GameManager();
+			while (!gManager->update()) {}
+			gManager->close();
 			break;
+		}
 		case 3:
-			system("start ..\\Debug\\VerticalShooter.exe");
+		{
+			VerticalShooter::GameManager* gManager = new VerticalShooter::GameManager();
+			while (!gManager->update()) {}
+			gManager->close();
 			break;
+		}
 		case 4:
 			break;
 		default:
