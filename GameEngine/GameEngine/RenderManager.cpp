@@ -20,7 +20,7 @@ void RenderManager::addToRender(Image* img)
 {
 	int i = 0;
 	for (vector<Image*>::iterator imgIt = imgToRender.begin(); imgIt != imgToRender.end(); imgIt++) {
-		if ((*imgIt)->getDepth() <= img->getDepth()) {
+		if ((*imgIt)->getDepth() >= img->getDepth()) {
 			imgToRender.insert(imgIt, img);
 			return;
 		}

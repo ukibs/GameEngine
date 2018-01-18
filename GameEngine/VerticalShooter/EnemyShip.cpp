@@ -48,6 +48,7 @@ void EnemyShip::update() {
 		// Movement in z
 		floatDepth -= speed;
 		depth = floatDepth;
+		image.setDepth(depth);
 		// Check to "get bigger" or deactivate
 		if(depth <= 0){
 			Kill();

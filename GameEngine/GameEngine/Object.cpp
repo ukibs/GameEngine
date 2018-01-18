@@ -46,11 +46,13 @@ void Object::addImage(string path,string name)
 {
 	RenderManager::GetInstance().addImage(path, name);
 	image = *RenderManager::GetInstance().getImageByName(name);
+	image.setDepth(depth);
 }
 
 void Object::setImage(Image* newImage)
 {
 	image = *newImage;
+	image.setDepth(depth);
 }
 
 SDL_Rect Object::getCollider()

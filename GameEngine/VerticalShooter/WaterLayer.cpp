@@ -27,7 +27,9 @@ void WaterLayer::Reset()
 {
 	x = 0;
 	y = RenderManager::GetInstance().SCREEN_HEIGHT - 100;
-	depth = 100;
+	floatDepth = 100;
+	depth = floatDepth;
+	image.setDepth(depth);
 }
 
 void WaterLayer::update()
@@ -36,6 +38,7 @@ void WaterLayer::update()
 	//x -= 1;
 	floatDepth -= speed;
 	depth = floatDepth;
+	image.setDepth(depth);
 
 	//image.setWidth(initialWidth + 100 - depth);
 	//image.setHeight(initialHeight + 100 - depth);
